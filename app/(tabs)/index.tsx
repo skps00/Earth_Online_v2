@@ -2,34 +2,42 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-nati
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
 import { useCheckIn } from '@/hooks/useCheckIn';
+import { useCompanion } from '@/hooks/useCompanion';
 import { useAtomValue } from 'jotai';
 import { isCheckingInAtom, lastCheckInAtom, checkInErrorAtom } from '@/stores/checkInStore';
+import { companionAtom } from '@/stores/companionStore';
+import { coinsAtom } from '@/stores/currencyStore';
 
 export default function HomeScreen() {
   const { colors } = useTheme();
   const { t } = useTranslation();
   const { checkIn } = useCheckIn();
+  useCompanion();
   const isCheckingIn = useAtomValue(isCheckingInAtom);
   const lastCheckIn = useAtomValue(lastCheckInAtom);
   const error = useAtomValue(checkInErrorAtom);
+  const companion = useAtomValue(companionAtom);
+  const coins = useAtomValue(coinsAtom);
 
   return (
     <ScrollView style={[styles.container, { backgroundColor: colors.background }]} contentContainerStyle={styles.content}>
       <Text style={[styles.title, { color: colors.primaryContainer }]}>{t('home.title')}</Text>
-      <Text style={[styles.level, { color: colors.onSurfaceVariant }]}>{t('home.level', { level: 24 })}</Text>
+      <Text style={[styles.level, { color: colors.onSurfaceVariant }]}>{t('home.level', { level: companion?.level ?? 1 })}</Text>
 
       <View style={[styles.currencyRow, { borderColor: colors.outlineVariant }]}>
-        <Text style={[styles.coins, { color: colors.primaryContainer }]}>🪙 12,450</Text>
+        <Text style={[styles.coins, { color: colors.primaryContainer }]}>🪙 {coins}</Text>
       </View>
 
       <View style={[styles.petCard, { backgroundColor: colors.surface, borderColor: colors.primaryContainer }]}>
-        <Text style={styles.petEmoji}>🐉</Text>
-        <Text style={[styles.petName, { color: colors.onSurface }]}>Ryujin</Text>
-        <Text style={[styles.petLevel, { color: colors.secondary }]}>LVL 24 SPIRIT DRAGON</Text>
+        <Text style={styles.petEmoji}>{companion?.emoji ?? '🐉'}</Text>
+        <Text style={[styles.petName, { color: colors.onSurface }]}>{companion?.name ?? 'Ryujin'}</Text>
+        <Text style={[styles.petLevel, { color: colors.secondary }]}>
+          LVL {companion?.level ?? 1} {companion?.species?.toUpperCase() ?? 'DRAGON'}
+        </Text>
         <View style={styles.statsRow}>
-          {['STR 12', 'AGI 15', 'INT 10'].map(s => (
-            <Text key={s} style={[styles.statText, { color: colors.onSurfaceVariant }]}>{s}</Text>
-          ))}
+          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>STR {companion?.strength ?? 0}</Text>
+          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>AGI {companion?.agility ?? 0}</Text>
+          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>INT {companion?.intelligence ?? 0}</Text>
         </View>
       </View>
 
