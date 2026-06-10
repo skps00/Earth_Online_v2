@@ -1,11 +1,11 @@
 {
   "quest": {
-    "title": "任�??��?",
-    "daily": "每日任�?",
-    "completed": "已�??�任??,
-    "total": "??{{count}} ??,
-    "reward": "?�勵",
+    "title": "任務日誌",
+    "daily": "每日任務",
+    "completed": "已完成任務",
+    "total": "共 {{count}} 個",
+    "reward": "獎勵",
     "xp": "+{{xp}} XP",
-    "notStarted": "尚未?��?"
+    "notStarted": "尚未開始"
   }
 }

@@ -1,16 +1,16 @@
 {
   "home": {
-    "title": "?��? Online",
-    "level": "LVL {{level}} ?�險??,
-    "checkin": "?�步位置",
-    "latestUnlock": "?�?�解??,
-    "nextAchievement": "下�??��?�?,
-    "movement": "活�?",
+    "title": "地球 Online",
+    "level": "LVL {{level}} 冒險者",
+    "checkin": "同步位置",
+    "latestUnlock": "最新解鎖",
+    "nextAchievement": "下一個成就",
+    "movement": "活動",
     "walking": "走路",
-    "cycling": "騎�?",
-    "screenTime": "?��??��?",
-    "reduction": "-{{pct}}% 今日減�?",
+    "cycling": "騎行",
+    "screenTime": "螢幕時間",
+    "reduction": "-{{pct}}% 今日減少",
     "focusXp": "+{{xp}} 專注 XP",
-    "activeQuest": "活�?任�?"
+    "activeQuest": "活躍任務"
   }
 }

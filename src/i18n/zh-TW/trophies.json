@@ -1,15 +1,15 @@
 {
   "trophies": {
-    "title": "?�就",
-    "progress": "{{unlocked}} / {{total}} 已解??,
+    "title": "成就",
+    "progress": "{{unlocked}} / {{total}} 已解鎖",
     "categories": {
-      "combat": "?�鬥",
-      "exploration": "?�索",
-      "collection": "?��?",
+      "combat": "戰鬥",
+      "exploration": "探索",
+      "collection": "收集",
       "social": "社交",
-      "mastery": "精�?
+      "mastery": "精通"
     },
-    "completed": "已�???,
-    "prerequisiteHint": "?�?��???{{name}}"
+    "completed": "已完成",
+    "prerequisiteHint": "需先完成 {{name}}"
   }
 }

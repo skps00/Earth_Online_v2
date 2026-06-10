@@ -1,19 +1,19 @@
 {
   "profile": {
-    "title": "設�?",
-    "theme": "主�?",
+    "title": "設定",
+    "theme": "主題",
     "dark": "深色",
     "light": "淺色",
-    "language": "語�?",
-    "backup": "?�份",
-    "backupExport": "?�出?�份",
-    "backupImport": "?�入?�份",
-    "backupSuccess": "?�份完�?",
-    "memories": "?�憶",
-    "settings": "設�?",
-    "sound": "?��?",
-    "permissions": "權�??��?",
-    "privacy": "?��?權政�?,
-    "clearData": "清除?�?��???
+    "language": "語言",
+    "backup": "備份",
+    "backupExport": "匯出備份",
+    "backupImport": "匯入備份",
+    "backupSuccess": "備份完成",
+    "memories": "回憶",
+    "settings": "設定",
+    "sound": "音效",
+    "permissions": "權限提醒",
+    "privacy": "隱私權政策",
+    "clearData": "清除所有資料"
   }
 }
