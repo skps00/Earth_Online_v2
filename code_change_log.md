@@ -125,3 +125,9 @@
 - **變更摘要**：將 Profile stub 取代為完整設定頁面，含主題/語言/音效切換、備份與回憶區塊
 - **遇到的問題**：無
 - **備註**：Task 13，整合 settingsStore atoms（themeAtom、langAtom、soundEnabledAtom）
+
+## [2026-06-10 11:30:00] 操作類型：新增
+- **文件路徑**：src/services/BackupService.ts
+- **變更摘要**：新增本地 JSON 備份匯出/匯入服務，使用 zod 驗證並支援 expo-sharing 分享
+- **遇到的問題**：無
+- **備註**：Task 15 Google Drive Backup Skeleton，匯出包含 check_ins、user_achievements、companion 表資料，version 1 格式

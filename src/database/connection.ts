@@ -29,6 +29,11 @@ async function runMigrations(database: SQLite.SQLiteDatabase): Promise<void> {
     await database.execAsync(sql);
   }
 
+  // Migration v1 → v2: add charisma column
+  if (currentVersion < 2) {
+    try { await database.execAsync(`ALTER TABLE companion ADD COLUMN charisma INTEGER DEFAULT 10`); } catch { /* column may already exist */ }
+  }
+
   await database.runAsync(
     `INSERT OR REPLACE INTO app_settings (key, value) VALUES ('schema_version', ?)`,
     [String(SCHEMA_VERSION)]

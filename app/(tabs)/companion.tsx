@@ -32,7 +32,7 @@ export default function CompanionScreen() {
 
       <View style={[styles.statsSection, { backgroundColor: colors.surface, borderColor: colors.outlineVariant }]}>
         <Text style={[styles.statsTitle, { color: colors.onSurface }]}>Core Attributes</Text>
-        {(['strength', 'agility', 'intelligence', 'vitality'] as const).map(stat => (
+        {(['strength', 'agility', 'intelligence', 'charisma', 'vitality'] as const).map(stat => (
           <View key={stat} style={styles.statRow}>
             <Text style={[styles.statLabel, { color: colors.onSurfaceVariant }]}>{t(`companion.${stat}`)}</Text>
             <ProgressBar progress={stats[stat]} max={100} height={8} />

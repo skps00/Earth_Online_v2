@@ -1,0 +1,45 @@
+Starting project at C:\Users\skps9\Documents\Code_Project\Earth Online App\Earth_Online_v.2.0
+Starting Metro Bundler
+
+› Opening exp://192.168.50.141:8081 on Pixel_9_Pro_XL
+Waiting on http://localhost:8081
+Logs for your project will appear below.
+Android Bundled 989ms node_modules\expo-router\entry.js (1960 modules)
+ INFO  [DailyReset] Resetting daily quests for 2026-06-10
+ INFO  [Location] Requesting position...
+ ERROR  [CheckIn] Current location is unavailable. Make sure that location services are enabled [Error: Current location is unavailable. Make sure that location services are enabled] 
+
+Call Stack
+  constructor (node_modules\expo-modules-core\src\errors\CodedError.ts)
+Android Bundled 42ms node_modules\expo-router\entry.js (1 module)
+Android Bundled 46ms node_modules\expo-router\entry.js (1 module)
+ INFO  [Location] Requesting position...
+Android Bundled 43ms node_modules\expo-router\entry.js (1 module)
+ INFO  Launching DevTools...
+[debugger-shell stdout] 
+
+Android Bundled 47ms node_modules\expo-router\entry.js (1 module)
+Android Bundled 47ms node_modules\expo-router\entry.js (1 module)
+Android Bundled 42ms node_modules\expo-router\entry.js (1 module)
+ ERROR  [SyntaxError: 12:42:non-terminated string] 
+
+Call Stack
+  inject (node_modules\metro-runtime\src\modules\HMRClient.js)
+  forEach (<native>)
+  injectUpdate (node_modules\metro-runtime\src\modules\HMRClient.js)
+  on$argument_1 (node_modules\metro-runtime\src\modules\HMRClient.js)
+  call (<native>)
+  emit (node_modules\metro-runtime\src\modules\vendor\eventemitter3.js)
+  _ws.onmessage (node_modules\metro-runtime\src\modules\HMRClient.js)
+  invoke (node_modules\react-native\src\private\webapis\dom\events\EventTarget.js)
+  dispatch (node_modules\react-native\src\private\webapis\dom\events\EventTarget.js)
+  dispatchEvent (node_modules\react-native\src\private\webapis\dom\events\EventTarget.js)
+  _eventEmitter.addListener$argument_1 (node_modules\react-native\Libraries\WebSocket\WebSocket.js)
+  apply (<native>)
+  emit (node_modules\react-native\Libraries\vendor\emitter\EventEmitter.js)
+  apply (<native>)
+  RCTDeviceEventEmitterImpl#emit (node_modules\react-native\Libraries\EventEmitter\RCTDeviceEventEmitter.js)
+Android Bundled 39ms node_modules\expo-router\entry.js (1 module)
+Android Bundled 39ms node_modules\expo-router\entry.js (1 module)
+Android Bundled 484ms node_modules\expo-router\entry.js (1 module)
+Android Bundled 39ms node_modules\expo-router\entry.js (1 module)

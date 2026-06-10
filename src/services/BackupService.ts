@@ -22,7 +22,7 @@ const BackupSchema = z.object({
     name: z.string(), species: z.string(), emoji: z.string(),
     level: z.number(), xp: z.number(),
     strength: z.number(), agility: z.number(),
-    intelligence: z.number(), vitality: z.number(),
+    intelligence: z.number(), charisma: z.number(), vitality: z.number(),
     collection: z.string(),
   }).nullable(),
 });

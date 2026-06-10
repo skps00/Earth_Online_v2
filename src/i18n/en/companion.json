@@ -5,6 +5,7 @@
     "strength": "Strength (STR)",
     "agility": "Agility (AGI)",
     "intelligence": "Intelligence (INT)",
+    "charisma": "Charisma (CHA)",
     "vitality": "Vitality (VIT)",
     "collection": "Collection",
     "change": "Change Companion",

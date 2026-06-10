@@ -10,6 +10,7 @@ export interface Companion {
   strength: number;
   agility: number;
   intelligence: number;
+  charisma: number;
   vitality: number;
   collection: Species[];
 }
@@ -18,5 +19,6 @@ export interface CompanionStats {
   strength: number;
   agility: number;
   intelligence: number;
+  charisma: number;
   vitality: number;
 }

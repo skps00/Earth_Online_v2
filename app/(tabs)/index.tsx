@@ -38,6 +38,8 @@ export default function HomeScreen() {
           <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>STR {companion?.strength ?? 0}</Text>
           <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>AGI {companion?.agility ?? 0}</Text>
           <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>INT {companion?.intelligence ?? 0}</Text>
+          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>CHA {companion?.charisma ?? 0}</Text>
+          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>VIT {companion?.vitality ?? 0}</Text>
         </View>
       </View>
 

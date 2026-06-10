@@ -1,4 +1,4 @@
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2;
 
 export const CREATE_TABLES = [
   `CREATE TABLE IF NOT EXISTS achievement_definitions (
@@ -57,6 +57,7 @@ export const CREATE_TABLES = [
     strength INTEGER DEFAULT 10,
     agility INTEGER DEFAULT 10,
     intelligence INTEGER DEFAULT 10,
+    charisma INTEGER DEFAULT 10,
     vitality INTEGER DEFAULT 10,
     collection TEXT DEFAULT '["Dragon"]'
   )`,
