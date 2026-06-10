@@ -4,6 +4,7 @@ import { useTranslation } from '@/i18n';
 import { useAtomValue } from 'jotai';
 import { themeAtom, langAtom, soundEnabledAtom } from '@/stores/settingsStore';
 import { useSettings } from '@/hooks/useSettings';
+import { exportBackup } from '@/services/BackupService';
 
 export default function ProfileScreen() {
   const { colors } = useTheme();
@@ -29,7 +30,7 @@ export default function ProfileScreen() {
 
       <View style={[styles.section, { borderColor: colors.outlineVariant }]}>
         <Text style={[styles.sectionTitle, { color: colors.onSurface }]}>{t('profile.backup')}</Text>
-        <TouchableOpacity style={[styles.btn, { borderColor: colors.primaryContainer }]}>
+        <TouchableOpacity onPress={exportBackup} style={[styles.btn, { borderColor: colors.primaryContainer }]}>
           <Text style={[styles.btnText, { color: colors.primaryContainer }]}>{t('profile.backupExport')}</Text>
         </TouchableOpacity>
       </View>
