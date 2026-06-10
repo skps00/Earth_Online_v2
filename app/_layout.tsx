@@ -3,10 +3,26 @@ import { Provider as JotaiProvider } from 'jotai';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 import { useEffect } from 'react';
 import { seedDatabase } from '@/database/seed';
+import { initCheckIn } from '@/services/CheckInCoordinator';
+import { LocationService } from '@/services/LocationService';
+import { CheckInRepository } from '@/repositories/CheckInRepository';
+import { resetDailyQuests } from '@/services/DailyResetService';
+import { reconcile } from '@/engine/reconcile';
+import { Logger } from '@/utils/logger';
 
 export default function RootLayout() {
   useEffect(() => {
-    seedDatabase();
+    // Initialize DI for production
+    initCheckIn({
+      locationService: new LocationService(),
+      checkInRepo: new CheckInRepository(),
+    });
+
+    seedDatabase().then(async () => {
+      await resetDailyQuests();
+      const fixed = await reconcile();
+      if (fixed > 0) Logger.info('Startup', `Reconciled ${fixed} missed achievements`);
+    });
   }, []);
 
   return (
