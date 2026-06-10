@@ -1,6 +1,7 @@
 import { useSetAtom } from 'jotai';
 import { isCheckingInAtom, lastCheckInAtom, checkInErrorAtom } from '@/stores/checkInStore';
 import { photoPromptAtom } from '@/stores/photoPromptStore';
+import { questVersionAtom } from '@/stores/questStore';
 import { performCheckIn } from '@/services/CheckInCoordinator';
 import { Logger } from '@/utils/logger';
 
@@ -9,6 +10,7 @@ export function useCheckIn() {
   const setLastCheckIn = useSetAtom(lastCheckInAtom);
   const setError = useSetAtom(checkInErrorAtom);
   const setPhotoPrompt = useSetAtom(photoPromptAtom);
+  const setQuestVersion = useSetAtom(questVersionAtom);
 
   const checkIn = async () => {
     setIsCheckingIn(true);
@@ -16,6 +18,7 @@ export function useCheckIn() {
     try {
       const result = await performCheckIn();
       setLastCheckIn(result);
+      setQuestVersion(v => v + 1);
       if (result.unlockedAchievements.length > 0) {
         setPhotoPrompt({
           achievementId: result.unlockedAchievements[0],

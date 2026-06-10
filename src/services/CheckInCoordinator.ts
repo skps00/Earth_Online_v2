@@ -2,6 +2,7 @@ import { LocationService } from './LocationService';
 import { checkSunEvent } from './SunriseService';
 import { CheckInRepository } from '@/repositories/CheckInRepository';
 import { processEvent } from '@/engine/processEvent';
+import { updateQuestProgress } from './QuestService';
 import type { GameEvent } from '@/types/events';
 
 export interface CheckInDependencies {
@@ -13,6 +14,7 @@ export interface CheckInResult {
   success: boolean;
   location: { lat: number; lng: number; country: string | null; continent: string | null; address: string | null };
   unlockedAchievements: string[];
+  completedQuests: string[];
   sunPhase: 'sunrise' | 'sunset' | null;
 }
 
@@ -71,10 +73,14 @@ export async function performCheckIn(): Promise<CheckInResult> {
     unlocked.push(...sunResults);
   }
 
+  // Update daily quest progress
+  const completedQuests = await updateQuestProgress('checkin', 1);
+
   return {
     success: true,
     location: { lat: loc.latitude, lng: loc.longitude, country: loc.country, continent: loc.continent, address: loc.address },
     unlockedAchievements: unlocked,
+    completedQuests,
     sunPhase: sun.phase,
   };
 }

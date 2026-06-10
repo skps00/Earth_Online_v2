@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { dailyQuestsAtom, isQuestLoadingAtom } from '@/stores/questStore';
+import { dailyQuestsAtom, isQuestLoadingAtom, questVersionAtom } from '@/stores/questStore';
 import { langAtom } from '@/stores/settingsStore';
 import { QuestRepository } from '@/repositories/QuestRepository';
 import { ProgressBar } from '@/components/ProgressBar';
@@ -20,6 +20,7 @@ export default function QuestScreen() {
   const setQuests = useSetAtom(dailyQuestsAtom);
   const setLoading = useSetAtom(isQuestLoadingAtom);
   const lang = useAtomValue(langAtom);
+  const questVersion = useAtomValue(questVersionAtom);
 
   useEffect(() => {
     (async () => {
@@ -27,7 +28,7 @@ export default function QuestScreen() {
       setQuests(data);
       setLoading(false);
     })();
-  }, [lang]);
+  }, [lang, questVersion]);
 
   if (isLoading) return <LoadingSkeleton lines={4} />;
 
