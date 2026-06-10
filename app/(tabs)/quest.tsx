@@ -1,17 +1,33 @@
 import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { useEffect } from 'react';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { dailyQuestsAtom, isQuestLoadingAtom } from '@/stores/questStore';
+import { langAtom } from '@/stores/settingsStore';
+import { QuestRepository } from '@/repositories/QuestRepository';
 import { ProgressBar } from '@/components/ProgressBar';
 import { EmptyState } from '@/components/EmptyState';
 import { LoadingSkeleton } from '@/components/LoadingSkeleton';
+
+const questRepo = new QuestRepository();
 
 export default function QuestScreen() {
   const { colors } = useTheme();
   const { t } = useTranslation();
   const quests = useAtomValue(dailyQuestsAtom);
   const isLoading = useAtomValue(isQuestLoadingAtom);
+  const setQuests = useSetAtom(dailyQuestsAtom);
+  const setLoading = useSetAtom(isQuestLoadingAtom);
+  const lang = useAtomValue(langAtom);
+
+  useEffect(() => {
+    (async () => {
+      const data = await questRepo.getToday(lang);
+      setQuests(data);
+      setLoading(false);
+    })();
+  }, [lang]);
 
   if (isLoading) return <LoadingSkeleton lines={4} />;
 

@@ -1,12 +1,17 @@
 import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { useEffect } from 'react';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
-import { useAtom, useAtomValue } from 'jotai';
-import { activeCategoryAtom, achievementsAtom, isAchievementsLoadingAtom } from '@/stores/achievementStore';
-import { CATEGORIES, Category } from '@/types/achievement';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { activeCategoryAtom, achievementsAtom, isAchievementsLoadingAtom, unlockedIdsAtom } from '@/stores/achievementStore';
+import { langAtom } from '@/stores/settingsStore';
+import { AchievementRepository } from '@/repositories/AchievementRepository';
+import { CATEGORIES } from '@/types/achievement';
 import { CategoryChip } from '@/components/CategoryChip';
 import { EmptyState } from '@/components/EmptyState';
 import { LoadingSkeleton } from '@/components/LoadingSkeleton';
+
+const achievementRepo = new AchievementRepository();
 
 export default function TrophiesScreen() {
   const { colors } = useTheme();
@@ -14,6 +19,20 @@ export default function TrophiesScreen() {
   const [category, setCategory] = useAtom(activeCategoryAtom);
   const achievements = useAtomValue(achievementsAtom);
   const isLoading = useAtomValue(isAchievementsLoadingAtom);
+  const setAchievements = useSetAtom(achievementsAtom);
+  const setUnlocked = useSetAtom(unlockedIdsAtom);
+  const setLoading = useSetAtom(isAchievementsLoadingAtom);
+  const lang = useAtomValue(langAtom);
+
+  useEffect(() => {
+    (async () => {
+      const data = await achievementRepo.getAll(lang);
+      setAchievements(data);
+      const ids = await achievementRepo.getUnlockedIds();
+      setUnlocked(ids);
+      setLoading(false);
+    })();
+  }, [lang]);
 
   if (isLoading) return <LoadingSkeleton lines={6} />;
 

@@ -1,10 +1,14 @@
 import { View, Text, StyleSheet } from 'react-native';
+import { useEffect } from 'react';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { companionAtom, companionStatsAtom, isCompanionLoadingAtom } from '@/stores/companionStore';
+import { CompanionRepository } from '@/repositories/CompanionRepository';
 import { ProgressBar } from '@/components/ProgressBar';
 import { LoadingSkeleton } from '@/components/LoadingSkeleton';
+
+const companionRepo = new CompanionRepository();
 
 export default function CompanionScreen() {
   const { colors } = useTheme();
@@ -12,6 +16,16 @@ export default function CompanionScreen() {
   const companion = useAtomValue(companionAtom);
   const stats = useAtomValue(companionStatsAtom);
   const isLoading = useAtomValue(isCompanionLoadingAtom);
+  const setCompanion = useSetAtom(companionAtom);
+  const setLoading = useSetAtom(isCompanionLoadingAtom);
+
+  useEffect(() => {
+    (async () => {
+      const data = await companionRepo.get();
+      setCompanion(data);
+      setLoading(false);
+    })();
+  }, []);
 
   if (isLoading || !companion) return <LoadingSkeleton lines={5} />;
 
