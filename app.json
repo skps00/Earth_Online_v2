@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "地球 Online",
+    "slug": "earth-online",
+    "version": "2.0.0",
+    "orientation": "portrait",
+    "scheme": "earthonline",
+    "userInterfaceStyle": "dark",
+    "plugins": [
+      "expo-router",
+      "expo-localization",
+      "expo-location",
+      "expo-camera",
+      "expo-sensors",
+      "expo-background-fetch",
+      "expo-audio",
+      "expo-file-system"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "OPENWEATHERMAP_API_KEY": "",
+      "GOOGLE_CLIENT_ID": "",
+      "router": { "origin": false }
+    }
+  }
+}
