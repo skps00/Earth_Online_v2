@@ -24,6 +24,7 @@ const i18n = new I18n({
 
 i18n.enableFallback = true;
 i18n.defaultLocale = 'en';
+i18n.locale = 'en';
 
 export function getDeviceLanguage(): Language {
   const locales = getLocales();
