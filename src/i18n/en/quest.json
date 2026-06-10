@@ -3,9 +3,9 @@
     "title": "Quest Log",
     "daily": "Daily Quests",
     "completed": "Completed Quests",
-    "total": "{count} Total",
+    "total": "{{count}} Total",
     "reward": "Reward",
-    "xp": "+{xp} XP",
+    "xp": "+{{xp}} XP",
     "notStarted": "Not started"
   }
 }

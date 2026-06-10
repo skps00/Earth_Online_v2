@@ -1,11 +1,11 @@
 {
   "errors": {
-    "GPS_DENIED": "位置權限已關閉，請至設定中開啟",
-    "GPS_TIMEOUT": "GPS 訊號微弱，請移至空曠處再試",
-    "NETWORK_OFFLINE": "目前無網路連線，部分功能已暫停",
-    "DB_WRITE_FAILED": "儲存失敗，請確認裝置儲存空間",
-    "CAMERA_PERM_DENIED": "需要相機權限以拍攝照片，請至設定中開啟",
-    "SYNC_CONFLICT": "偵測到雲端有較新資料，請選擇保留哪一份",
-    "SENSOR_UNAVAILABLE": "你的裝置不支援此功能"
+    "GPS_DENIED": "位置權�?已�??��?請至設�?中�???,
+    "GPS_TIMEOUT": "GPS 訊�?微弱，�?移至空�??��?�?,
+    "NETWORK_OFFLINE": "?��??�網路�??，部?��??�已?��?",
+    "DB_WRITE_FAILED": "?��?失�?，�?確�?裝置?��?空�?",
+    "CAMERA_PERM_DENIED": "?�要相機�??�以?��??��?，�??�設定中?��?",
+    "SYNC_CONFLICT": "?�測?�雲端�?較新資�?，�??��?保�??��?�?,
+    "SENSOR_UNAVAILABLE": "你�?裝置不支?�此?�能"
   }
 }

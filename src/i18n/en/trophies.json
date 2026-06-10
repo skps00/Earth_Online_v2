@@ -1,7 +1,7 @@
 {
   "trophies": {
     "title": "Trophies",
-    "progress": "{unlocked} / {total} Unlocked",
+    "progress": "{{unlocked}} / {{total}} Unlocked",
     "categories": {
       "combat": "Combat",
       "exploration": "Exploration",
@@ -10,6 +10,6 @@
       "mastery": "Mastery"
     },
     "completed": "Completed",
-    "prerequisiteHint": "Complete {name} first"
+    "prerequisiteHint": "Complete {{name}} first"
   }
 }

@@ -1,7 +1,7 @@
 {
   "home": {
     "title": "Earth Online",
-    "level": "LVL {level} ADVENTURER",
+    "level": "LVL {{level}} ADVENTURER",
     "checkin": "Synchronize Location",
     "latestUnlock": "Latest Unlock",
     "nextAchievement": "Next Achievement",
@@ -9,8 +9,8 @@
     "walking": "Walking",
     "cycling": "Cycling",
     "screenTime": "Screen Time",
-    "reduction": "-{pct}% Reduction Today",
-    "focusXp": "+{xp} Focus XP",
+    "reduction": "-{{pct}}% Reduction Today",
+    "focusXp": "+{{xp}} Focus XP",
     "activeQuest": "Active Realm Quest"
   }
 }
