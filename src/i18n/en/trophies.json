@@ -1,0 +1,11 @@
+{
+  "trophies.title": "Trophies",
+  "trophies.progress": "{unlocked} / {total} Unlocked",
+  "trophies.categories.combat": "Combat",
+  "trophies.categories.exploration": "Exploration",
+  "trophies.categories.collection": "Collection",
+  "trophies.categories.social": "Social",
+  "trophies.categories.mastery": "Mastery",
+  "trophies.completed": "Completed",
+  "trophies.prerequisiteHint": "Complete {name} first"
+}

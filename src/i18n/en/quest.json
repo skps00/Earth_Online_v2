@@ -1,0 +1,9 @@
+{
+  "quest.title": "Quest Log",
+  "quest.daily": "Daily Quests",
+  "quest.completed": "Completed Quests",
+  "quest.total": "{count} Total",
+  "quest.reward": "Reward",
+  "quest.xp": "+{xp} XP",
+  "quest.notStarted": "Not started"
+}

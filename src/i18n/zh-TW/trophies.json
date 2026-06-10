@@ -1,0 +1,11 @@
+{
+  "trophies.title": "成就",
+  "trophies.progress": "{unlocked} / {total} 已解鎖",
+  "trophies.categories.combat": "戰鬥",
+  "trophies.categories.exploration": "探索",
+  "trophies.categories.collection": "收集",
+  "trophies.categories.social": "社交",
+  "trophies.categories.mastery": "精通",
+  "trophies.completed": "已完成",
+  "trophies.prerequisiteHint": "需先完成 {name}"
+}

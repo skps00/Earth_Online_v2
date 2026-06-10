@@ -1,0 +1,9 @@
+{
+  "errors.GPS_DENIED": "Location permission denied. Please enable in Settings.",
+  "errors.GPS_TIMEOUT": "GPS signal weak. Move to an open area and try again.",
+  "errors.NETWORK_OFFLINE": "No network connection. Some features are paused.",
+  "errors.DB_WRITE_FAILED": "Save failed. Check device storage.",
+  "errors.CAMERA_PERM_DENIED": "Camera permission required. Please enable in Settings.",
+  "errors.SYNC_CONFLICT": "Newer cloud data detected. Choose which to keep.",
+  "errors.SENSOR_UNAVAILABLE": "Your device does not support this feature."
+}

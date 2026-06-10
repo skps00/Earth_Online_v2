@@ -1,0 +1,9 @@
+{
+  "errors.GPS_DENIED": "位置權限已關閉，請至設定中開啟",
+  "errors.GPS_TIMEOUT": "GPS 訊號微弱，請移至空曠處再試",
+  "errors.NETWORK_OFFLINE": "目前無網路連線，部分功能已暫停",
+  "errors.DB_WRITE_FAILED": "儲存失敗，請確認裝置儲存空間",
+  "errors.CAMERA_PERM_DENIED": "需要相機權限以拍攝照片，請至設定中開啟",
+  "errors.SYNC_CONFLICT": "偵測到雲端有較新資料，請選擇保留哪一份",
+  "errors.SENSOR_UNAVAILABLE": "你的裝置不支援此功能"
+}

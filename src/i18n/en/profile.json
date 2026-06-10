@@ -1,0 +1,17 @@
+{
+  "profile.title": "Profile",
+  "profile.theme": "Theme",
+  "profile.dark": "Dark",
+  "profile.light": "Light",
+  "profile.language": "Language",
+  "profile.backup": "Backup",
+  "profile.backupExport": "Export Backup",
+  "profile.backupImport": "Import Backup",
+  "profile.backupSuccess": "Backup completed",
+  "profile.memories": "Memories",
+  "profile.settings": "Settings",
+  "profile.sound": "Sound Effects",
+  "profile.permissions": "Permission Reminders",
+  "profile.privacy": "Privacy Policy",
+  "profile.clearData": "Clear All Data"
+}

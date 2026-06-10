@@ -1,0 +1,14 @@
+{
+  "home.title": "地球 Online",
+  "home.level": "LVL {level} 冒險者",
+  "home.checkin": "同步位置",
+  "home.latestUnlock": "最新解鎖",
+  "home.nextAchievement": "下一個成就",
+  "home.movement": "活動",
+  "home.walking": "走路",
+  "home.cycling": "騎行",
+  "home.screenTime": "螢幕時間",
+  "home.reduction": "-{pct}% 今日減少",
+  "home.focusXp": "+{xp} 專注 XP",
+  "home.activeQuest": "活躍任務"
+}

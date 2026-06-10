@@ -1,0 +1,12 @@
+{
+  "common.ok": "OK",
+  "common.cancel": "Cancel",
+  "common.retry": "Retry",
+  "common.save": "Save",
+  "common.delete": "Delete",
+  "common.share": "Share",
+  "common.close": "Close",
+  "common.loading": "Loading...",
+  "common.empty": "Nothing here yet",
+  "common.goSettings": "Open Settings"
+}

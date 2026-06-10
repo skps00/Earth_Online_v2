@@ -1,0 +1,9 @@
+{
+  "quest.title": "任務日誌",
+  "quest.daily": "每日任務",
+  "quest.completed": "已完成任務",
+  "quest.total": "共 {count} 個",
+  "quest.reward": "獎勵",
+  "quest.xp": "+{xp} XP",
+  "quest.notStarted": "尚未開始"
+}
