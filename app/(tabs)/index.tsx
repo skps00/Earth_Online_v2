@@ -35,11 +35,11 @@ export default function HomeScreen() {
           LVL {companion?.level ?? 1} {companion?.species?.toUpperCase() ?? 'DRAGON'}
         </Text>
         <View style={styles.statsRow}>
-          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>STR {companion?.strength ?? 0}</Text>
-          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>AGI {companion?.agility ?? 0}</Text>
-          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>INT {companion?.intelligence ?? 0}</Text>
-          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>CHA {companion?.charisma ?? 0}</Text>
-          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>VIT {companion?.vitality ?? 0}</Text>
+          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>{t('companion.strengthShort')} {companion?.strength ?? 0}</Text>
+          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>{t('companion.agilityShort')} {companion?.agility ?? 0}</Text>
+          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>{t('companion.intelligenceShort')} {companion?.intelligence ?? 0}</Text>
+          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>{t('companion.charismaShort')} {companion?.charisma ?? 0}</Text>
+          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>{t('companion.vitalityShort')} {companion?.vitality ?? 0}</Text>
         </View>
       </View>
 
