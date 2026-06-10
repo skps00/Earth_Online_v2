@@ -1,15 +1,62 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { useTheme } from '@/theme/ThemeProvider';
+import { useTranslation } from '@/i18n';
+import { useAtom, useAtomValue } from 'jotai';
+import { activeCategoryAtom, achievementsAtom, isAchievementsLoadingAtom } from '@/stores/achievementStore';
+import { CATEGORIES, Category } from '@/types/achievement';
+import { CategoryChip } from '@/components/CategoryChip';
+import { EmptyState } from '@/components/EmptyState';
+import { LoadingSkeleton } from '@/components/LoadingSkeleton';
 
 export default function TrophiesScreen() {
   const { colors } = useTheme();
+  const { t } = useTranslation();
+  const [category, setCategory] = useAtom(activeCategoryAtom);
+  const achievements = useAtomValue(achievementsAtom);
+  const isLoading = useAtomValue(isAchievementsLoadingAtom);
+
+  if (isLoading) return <LoadingSkeleton lines={6} />;
+
+  const filtered = category === 'all' ? achievements : achievements.filter(a => a.category === category);
+
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <Text style={{ color: colors.onSurface, fontSize: 24 }}>Trophies</Text>
+      <Text style={[styles.title, { color: colors.primaryContainer }]}>{t('trophies.title')}</Text>
+      <Text style={[styles.progress, { color: colors.onSurfaceVariant }]}>
+        {t('trophies.progress', { unlocked: 0, total: 0 })}
+      </Text>
+
+      <FlatList
+        horizontal
+        data={['all' as const, ...CATEGORIES]}
+        keyExtractor={c => c}
+        renderItem={({ item }) => (
+          <CategoryChip category={item} active={item === category} onPress={() => setCategory(item)} />
+        )}
+        style={styles.chips}
+        showsHorizontalScrollIndicator={false}
+      />
+
+      {filtered.length === 0 ? (
+        <EmptyState message="No achievements seeded yet — framework ready" />
+      ) : (
+        <FlatList
+          data={filtered}
+          keyExtractor={a => a.id}
+          renderItem={({ item }) => (
+            <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.outlineVariant }]}>
+              <Text style={{ color: colors.onSurface }}>{item.title}</Text>
+            </View>
+          )}
+        />
+      )}
     </View>
   );
 }
-
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  container: { flex: 1, padding: 16 },
+  title: { fontSize: 24, fontWeight: '700', textAlign: 'center', marginTop: 20 },
+  progress: { fontSize: 12, textAlign: 'center', marginVertical: 8 },
+  chips: { maxHeight: 44, marginBottom: 16 },
+  card: { padding: 16, borderRadius: 12, borderWidth: 1, marginBottom: 8 },
 });
