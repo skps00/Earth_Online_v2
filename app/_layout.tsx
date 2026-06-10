@@ -9,10 +9,12 @@ import { CheckInRepository } from '@/repositories/CheckInRepository';
 import { resetDailyQuests } from '@/services/DailyResetService';
 import { reconcile } from '@/engine/reconcile';
 import { Logger } from '@/utils/logger';
+import { useSettings } from '@/hooks/useSettings';
 
-export default function RootLayout() {
+function AppInitializer({ children }: { children: React.ReactNode }) {
+  useSettings();
+
   useEffect(() => {
-    // Initialize DI for production
     initCheckIn({
       locationService: new LocationService(),
       checkInRepo: new CheckInRepository(),
@@ -25,14 +27,20 @@ export default function RootLayout() {
     });
   }, []);
 
+  return <>{children}</>;
+}
+
+export default function RootLayout() {
   return (
     <JotaiProvider>
       <ThemeProvider>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="camera" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
-          <Stack.Screen name="onboarding" options={{ presentation: 'modal', animation: 'fade' }} />
-        </Stack>
+        <AppInitializer>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="camera" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
+            <Stack.Screen name="onboarding" options={{ presentation: 'modal', animation: 'fade' }} />
+          </Stack>
+        </AppInitializer>
       </ThemeProvider>
     </JotaiProvider>
   );
