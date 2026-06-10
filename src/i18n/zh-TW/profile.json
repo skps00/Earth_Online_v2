@@ -1,17 +1,19 @@
 {
-  "profile.title": "設定",
-  "profile.theme": "主題",
-  "profile.dark": "深色",
-  "profile.light": "淺色",
-  "profile.language": "語言",
-  "profile.backup": "備份",
-  "profile.backupExport": "匯出備份",
-  "profile.backupImport": "匯入備份",
-  "profile.backupSuccess": "備份完成",
-  "profile.memories": "回憶",
-  "profile.settings": "設定",
-  "profile.sound": "音效",
-  "profile.permissions": "權限提醒",
-  "profile.privacy": "隱私權政策",
-  "profile.clearData": "清除所有資料"
+  "profile": {
+    "title": "設定",
+    "theme": "主題",
+    "dark": "深色",
+    "light": "淺色",
+    "language": "語言",
+    "backup": "備份",
+    "backupExport": "匯出備份",
+    "backupImport": "匯入備份",
+    "backupSuccess": "備份完成",
+    "memories": "回憶",
+    "settings": "設定",
+    "sound": "音效",
+    "permissions": "權限提醒",
+    "privacy": "隱私權政策",
+    "clearData": "清除所有資料"
+  }
 }

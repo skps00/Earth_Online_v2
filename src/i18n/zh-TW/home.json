@@ -1,14 +1,16 @@
 {
-  "home.title": "地球 Online",
-  "home.level": "LVL {level} 冒險者",
-  "home.checkin": "同步位置",
-  "home.latestUnlock": "最新解鎖",
-  "home.nextAchievement": "下一個成就",
-  "home.movement": "活動",
-  "home.walking": "走路",
-  "home.cycling": "騎行",
-  "home.screenTime": "螢幕時間",
-  "home.reduction": "-{pct}% 今日減少",
-  "home.focusXp": "+{xp} 專注 XP",
-  "home.activeQuest": "活躍任務"
+  "home": {
+    "title": "地球 Online",
+    "level": "LVL {level} 冒險者",
+    "checkin": "同步位置",
+    "latestUnlock": "最新解鎖",
+    "nextAchievement": "下一個成就",
+    "movement": "活動",
+    "walking": "走路",
+    "cycling": "騎行",
+    "screenTime": "螢幕時間",
+    "reduction": "-{pct}% 今日減少",
+    "focusXp": "+{xp} 專注 XP",
+    "activeQuest": "活躍任務"
+  }
 }

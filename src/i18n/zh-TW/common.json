@@ -1,12 +1,14 @@
 {
-  "common.ok": "確定",
-  "common.cancel": "取消",
-  "common.retry": "重試",
-  "common.save": "儲存",
-  "common.delete": "刪除",
-  "common.share": "分享",
-  "common.close": "關閉",
-  "common.loading": "載入中...",
-  "common.empty": "這裡還沒有東西",
-  "common.goSettings": "前往設定"
+  "common": {
+    "ok": "確定",
+    "cancel": "取消",
+    "retry": "重試",
+    "save": "儲存",
+    "delete": "刪除",
+    "share": "分享",
+    "close": "關閉",
+    "loading": "載入中...",
+    "empty": "這裡還沒有東西",
+    "goSettings": "前往設定"
+  }
 }

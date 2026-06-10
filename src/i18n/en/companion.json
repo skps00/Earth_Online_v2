@@ -1,12 +1,14 @@
 {
-  "companion.title": "Companion",
-  "companion.evolution": "Next Evolution",
-  "companion.strength": "Strength (STR)",
-  "companion.agility": "Agility (AGI)",
-  "companion.intelligence": "Intelligence (INT)",
-  "companion.vitality": "Vitality (VIT)",
-  "companion.collection": "Collection",
-  "companion.change": "Change Companion",
-  "companion.rename": "Rename",
-  "companion.ready": "Ready for adventure!"
+  "companion": {
+    "title": "Companion",
+    "evolution": "Next Evolution",
+    "strength": "Strength (STR)",
+    "agility": "Agility (AGI)",
+    "intelligence": "Intelligence (INT)",
+    "vitality": "Vitality (VIT)",
+    "collection": "Collection",
+    "change": "Change Companion",
+    "rename": "Rename",
+    "ready": "Ready for adventure!"
+  }
 }

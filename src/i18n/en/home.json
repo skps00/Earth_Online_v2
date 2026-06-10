@@ -1,14 +1,16 @@
 {
-  "home.title": "Earth Online",
-  "home.level": "LVL {level} ADVENTURER",
-  "home.checkin": "Synchronize Location",
-  "home.latestUnlock": "Latest Unlock",
-  "home.nextAchievement": "Next Achievement",
-  "home.movement": "Movement",
-  "home.walking": "Walking",
-  "home.cycling": "Cycling",
-  "home.screenTime": "Screen Time",
-  "home.reduction": "-{pct}% Reduction Today",
-  "home.focusXp": "+{xp} Focus XP",
-  "home.activeQuest": "Active Realm Quest"
+  "home": {
+    "title": "Earth Online",
+    "level": "LVL {level} ADVENTURER",
+    "checkin": "Synchronize Location",
+    "latestUnlock": "Latest Unlock",
+    "nextAchievement": "Next Achievement",
+    "movement": "Movement",
+    "walking": "Walking",
+    "cycling": "Cycling",
+    "screenTime": "Screen Time",
+    "reduction": "-{pct}% Reduction Today",
+    "focusXp": "+{xp} Focus XP",
+    "activeQuest": "Active Realm Quest"
+  }
 }

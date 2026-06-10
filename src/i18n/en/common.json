@@ -1,12 +1,14 @@
 {
-  "common.ok": "OK",
-  "common.cancel": "Cancel",
-  "common.retry": "Retry",
-  "common.save": "Save",
-  "common.delete": "Delete",
-  "common.share": "Share",
-  "common.close": "Close",
-  "common.loading": "Loading...",
-  "common.empty": "Nothing here yet",
-  "common.goSettings": "Open Settings"
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "retry": "Retry",
+    "save": "Save",
+    "delete": "Delete",
+    "share": "Share",
+    "close": "Close",
+    "loading": "Loading...",
+    "empty": "Nothing here yet",
+    "goSettings": "Open Settings"
+  }
 }
