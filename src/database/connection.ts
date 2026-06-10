@@ -12,10 +12,16 @@ export async function getDatabase(): Promise<SQLite.SQLiteDatabase> {
 }
 
 async function runMigrations(database: SQLite.SQLiteDatabase): Promise<void> {
-  const result = await database.getFirstAsync<{ value: string }>(
-    `SELECT value FROM app_settings WHERE key = 'schema_version'`
-  );
-  const currentVersion = result ? parseInt(result.value, 10) : 0;
+  let currentVersion = 0;
+  try {
+    const result = await database.getFirstAsync<{ value: string }>(
+      `SELECT value FROM app_settings WHERE key = 'schema_version'`
+    );
+    currentVersion = result ? parseInt(result.value, 10) : 0;
+  } catch {
+    // app_settings table does not exist yet — first run
+    currentVersion = 0;
+  }
 
   if (currentVersion >= SCHEMA_VERSION) return;
 
