@@ -14,6 +14,10 @@
     "sound": "Sound Effects",
     "permissions": "Permission Reminders",
     "privacy": "Privacy Policy",
-    "clearData": "Clear All Data"
+    "clearData": "Clear All Data",
+    "deleteConfirmMessage": "This will delete all check-ins, achievements, and companion data. This action cannot be undone.",
+    "noMemories": "No memories yet",
+    "english": "English",
+    "chinese": "繁體中文"
   }
 }

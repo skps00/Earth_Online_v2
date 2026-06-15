@@ -7,14 +7,16 @@
     "intelligence": "智力 (INT)",
     "charisma": "魅力 (CHA)",
     "vitality": "體力 (VIT)",
-    "strengthShort": "力量",
-    "agilityShort": "敏捷",
-    "intelligenceShort": "智力",
-    "charismaShort": "魅力",
-    "vitalityShort": "體力",
+    "strengthShort": "力",
+    "agilityShort": "敏",
+    "intelligenceShort": "智",
+    "charismaShort": "魅",
+    "vitalityShort": "體",
     "collection": "收藏",
     "change": "更換夥伴",
     "rename": "重新命名",
-    "ready": "準備好冒險了嗎！"
+    "ready": "準備好冒險了嗎！",
+    "coreAttributes": "核心屬性",
+    "levelFormat": "LVL {{level}} {{species}}"
   }
 }

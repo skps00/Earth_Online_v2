@@ -13,7 +13,6 @@
       "expo-camera",
       "expo-sensors",
       "expo-background-fetch",
-      "expo-audio",
       "expo-file-system"
     ],
     "experiments": {
@@ -22,7 +21,12 @@
     "extra": {
       "OPENWEATHERMAP_API_KEY": "",
       "GOOGLE_CLIENT_ID": "",
-      "router": { "origin": false }
+      "router": {
+        "origin": false
+      }
+    },
+    "android": {
+      "package": "com.anonymous.earthonline"
     }
   }
 }

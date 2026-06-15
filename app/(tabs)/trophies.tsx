@@ -1,5 +1,6 @@
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, ScrollView, StyleSheet } from 'react-native';
 import { useEffect } from 'react';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
@@ -16,6 +17,7 @@ const achievementRepo = new AchievementRepository();
 export default function TrophiesScreen() {
   const { colors } = useTheme();
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const [category, setCategory] = useAtom(activeCategoryAtom);
   const achievements = useAtomValue(achievementsAtom);
   const isLoading = useAtomValue(isAchievementsLoadingAtom);
@@ -23,6 +25,8 @@ export default function TrophiesScreen() {
   const setUnlocked = useSetAtom(unlockedIdsAtom);
   const setLoading = useSetAtom(isAchievementsLoadingAtom);
   const lang = useAtomValue(langAtom);
+
+  const bottomPadding = insets.bottom + 100;
 
   useEffect(() => {
     (async () => {
@@ -40,28 +44,39 @@ export default function TrophiesScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <Text style={[styles.title, { color: colors.primaryContainer }]}>{t('trophies.title')}</Text>
-      <Text style={[styles.progress, { color: colors.onSurfaceVariant }]}>
-        {t('trophies.progress', { unlocked: 0, total: 0 })}
-      </Text>
 
-      <FlatList
-        horizontal
-        data={['all' as const, ...CATEGORIES]}
-        keyExtractor={c => c}
-        renderItem={({ item }) => (
-          <CategoryChip category={item} active={item === category} onPress={() => setCategory(item)} />
-        )}
-        style={styles.chips}
-        showsHorizontalScrollIndicator={false}
-      />
+      {/* Tier 1: Fixed Header */}
+      <View style={styles.header}>
+        <Text style={[styles.title, { color: colors.primaryContainer }]}>{t('trophies.title')}</Text>
+        <Text style={[styles.progress, { color: colors.onSurfaceVariant }]}>
+          {t('trophies.progress', { unlocked: 0, total: 0 })}
+        </Text>
 
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.chipsContent}
+        >
+          {['all' as const, ...CATEGORIES].map(cat => (
+            <CategoryChip
+              key={cat}
+              category={cat}
+              active={cat === category}
+              onPress={() => setCategory(cat)}
+            />
+          ))}
+        </ScrollView>
+      </View>
+
+      {/* Tier 2: Scrollable List */}
       {filtered.length === 0 ? (
-        <EmptyState message="No achievements seeded yet — framework ready" />
+        <EmptyState message={t('trophies.empty')} />
       ) : (
         <FlatList
           data={filtered}
           keyExtractor={a => a.id}
+          style={{ flex: 1 }}
+          contentContainerStyle={{ paddingBottom: bottomPadding }}
           renderItem={({ item }) => (
             <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.outlineVariant }]}>
               <Text style={{ color: colors.onSurface }}>{item.title}</Text>
@@ -72,10 +87,12 @@ export default function TrophiesScreen() {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16 },
+  header: { paddingBottom: 12 },
   title: { fontSize: 24, fontWeight: '700', textAlign: 'center', marginTop: 20 },
   progress: { fontSize: 12, textAlign: 'center', marginVertical: 8 },
-  chips: { maxHeight: 44, marginBottom: 16 },
+  chipsContent: { paddingVertical: 4 },
   card: { padding: 16, borderRadius: 12, borderWidth: 1, marginBottom: 8 },
 });

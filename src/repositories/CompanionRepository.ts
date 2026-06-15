@@ -14,8 +14,9 @@ export class CompanionRepository {
 
   async updateStats(stats: Partial<Companion>): Promise<void> {
     const db = await getDatabase();
-    const fields = Object.keys(stats).filter(k => k !== 'id').map(k => `${k} = ?`).join(', ');
-    const values = Object.values(stats);
+    const entries = Object.entries(stats).filter(([k]) => k !== 'id');
+    const fields = entries.map(([k]) => `${k} = ?`).join(', ');
+    const values: (string | number)[] = entries.map(([k, v]) => k === 'collection' ? JSON.stringify(v) : v as string | number);
     await db.runAsync(`UPDATE companion SET ${fields} WHERE id = 1`, values);
   }
 
@@ -27,6 +28,11 @@ export class CompanionRepository {
   async levelUp(): Promise<void> {
     const db = await getDatabase();
     await db.runAsync(`UPDATE companion SET level = level + 1, xp = 0 WHERE id = 1`);
+  }
+
+  async addCoins(amount: number): Promise<void> {
+    const db = await getDatabase();
+    await db.runAsync(`UPDATE companion SET coins = coins + ? WHERE id = 1`, [amount]);
   }
 
   async addToCollection(species: Species): Promise<void> {

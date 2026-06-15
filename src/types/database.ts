@@ -78,3 +78,9 @@ export interface AppSettingRow {
   key: string;
   value: string;
 }
+
+export interface TriggerMapRow {
+  achievement_id: string;
+  event_type: string;
+  condition_json: string | null;
+}

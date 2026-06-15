@@ -34,6 +34,12 @@ async function runMigrations(database: SQLite.SQLiteDatabase): Promise<void> {
     try { await database.execAsync(`ALTER TABLE companion ADD COLUMN charisma INTEGER DEFAULT 10`); } catch { /* column may already exist */ }
   }
 
+  // Migration v2 → v3: add coins column
+  if (currentVersion < 3) {
+    try { await database.execAsync(`ALTER TABLE companion ADD COLUMN coins INTEGER DEFAULT 100`); } catch { /* column may already exist */ }
+    try { await database.execAsync(`UPDATE companion SET coins = 100 WHERE coins IS NULL`); } catch { /* no rows yet */ }
+  }
+
   await database.runAsync(
     `INSERT OR REPLACE INTO app_settings (key, value) VALUES ('schema_version', ?)`,
     [String(SCHEMA_VERSION)]

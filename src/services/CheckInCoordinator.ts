@@ -33,8 +33,16 @@ function deps(): CheckInDependencies {
   return _deps;
 }
 
+const MAX_CHECKINS_PER_DAY = 10;
+
 export async function performCheckIn(): Promise<CheckInResult> {
   const { locationService, checkInRepo } = deps();
+
+  const todayCount = await checkInRepo.countToday();
+  if (todayCount >= MAX_CHECKINS_PER_DAY) {
+    throw new Error('DAILY_LIMIT_REACHED');
+  }
+
   const loc = await locationService.getCurrentPosition();
 
   await checkInRepo.save(loc.latitude, loc.longitude, loc.country, loc.continent, loc.address);

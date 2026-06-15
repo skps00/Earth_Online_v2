@@ -15,6 +15,8 @@
     "collection": "Collection",
     "change": "Change Companion",
     "rename": "Rename",
-    "ready": "Ready for adventure!"
+    "ready": "Ready for adventure!",
+    "coreAttributes": "Core Attributes",
+    "levelFormat": "LVL {{level}} {{species}}"
   }
 }

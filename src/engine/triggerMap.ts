@@ -1,10 +1,10 @@
 import { getDatabase } from '@/database/connection';
-import type { GameEvent } from '@/types/events';
+import type { TriggerMapRow } from '@/types/database';
 
-export async function getAchievementsForEvent(eventType: GameEvent['type']): Promise<string[]> {
+export async function getTriggersForEvent(eventType: string): Promise<TriggerMapRow[]> {
   const db = await getDatabase();
-  const rows = await db.getAllAsync<{ achievement_id: string }>(
-    `SELECT achievement_id FROM trigger_map WHERE event_type = ?`, [eventType]
+  return db.getAllAsync<TriggerMapRow>(
+    `SELECT achievement_id, event_type, condition_json FROM trigger_map WHERE event_type = ?`,
+    [eventType]
   );
-  return rows.map(r => r.achievement_id);
 }

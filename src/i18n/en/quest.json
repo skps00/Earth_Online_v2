@@ -6,6 +6,8 @@
     "total": "{{count}} Total",
     "reward": "Reward",
     "xp": "+{{xp}} XP",
-    "notStarted": "Not started"
+    "notStarted": "Not started",
+    "empty": "Daily quests will appear here",
+    "completedBadge": "COMPLETED"
   }
 }

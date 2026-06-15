@@ -6,6 +6,7 @@
     "DB_WRITE_FAILED": "Save failed. Check device storage.",
     "CAMERA_PERM_DENIED": "Camera permission required. Please enable in Settings.",
     "SYNC_CONFLICT": "Newer cloud data detected. Choose which to keep.",
-    "SENSOR_UNAVAILABLE": "Your device does not support this feature."
+    "SENSOR_UNAVAILABLE": "Your device does not support this feature.",
+    "DAILY_LIMIT_REACHED": "Daily check-in limit reached (10/day). Try again tomorrow."
   }
 }

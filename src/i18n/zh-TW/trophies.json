@@ -7,9 +7,11 @@
       "exploration": "探索",
       "collection": "收集",
       "social": "社交",
-      "mastery": "精通"
+      "mastery": "精通",
+      "all": "全部"
     },
     "completed": "已完成",
-    "prerequisiteHint": "需先完成 {{name}}"
+    "prerequisiteHint": "需先完成 {{name}}",
+    "empty": "尚無成就資料"
   }
 }

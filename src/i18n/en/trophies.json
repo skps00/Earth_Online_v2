@@ -7,9 +7,11 @@
       "exploration": "Exploration",
       "collection": "Collection",
       "social": "Social",
-      "mastery": "Mastery"
+      "mastery": "Mastery",
+      "all": "All"
     },
     "completed": "Completed",
-    "prerequisiteHint": "Complete {{name}} first"
+    "prerequisiteHint": "Complete {{name}} first",
+    "empty": "No achievements seeded yet"
   }
 }

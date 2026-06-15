@@ -9,6 +9,20 @@
     "close": "關閉",
     "loading": "載入中...",
     "empty": "這裡還沒有東西",
-    "goSettings": "前往設定"
+    "goSettings": "前往設定",
+    "allow": "允許",
+    "deleteAll": "全部刪除",
+    "on": "開",
+    "off": "關",
+    "tryAgain": "再試一次",
+    "backupSaved": "備份已儲存至 {{path}}",
+    "backupFailed": "備份失敗",
+    "somethingWrong": "發生錯誤",
+    "tabHome": "首頁",
+    "tabTrophies": "成就",
+    "tabQuest": "任務",
+    "tabCompanion": "夥伴",
+    "tabProfile": "設定",
+    "petSystem": "寵物系統"
   }
 }

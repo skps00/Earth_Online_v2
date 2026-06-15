@@ -1,5 +1,4 @@
 import * as FileSystem from 'expo-file-system';
-import * as Sharing from 'expo-sharing';
 import { getDatabase } from '@/database/connection';
 import { Logger } from '@/utils/logger';
 import { z } from 'zod';
@@ -23,6 +22,7 @@ const BackupSchema = z.object({
     level: z.number(), xp: z.number(),
     strength: z.number(), agility: z.number(),
     intelligence: z.number(), charisma: z.number(), vitality: z.number(),
+    coins: z.number(),
     collection: z.string(),
   }).nullable(),
 });
@@ -46,8 +46,7 @@ export async function exportBackup(): Promise<string> {
   const json = JSON.stringify(data, null, 2);
   const path = FileSystem.documentDirectory + BACKUP_FILENAME;
   await FileSystem.writeAsStringAsync(path, json);
-
-  await Sharing.shareAsync(path, { mimeType: 'application/json', dialogTitle: 'Export Backup' });
+  Logger.info('Backup', `Backup saved to ${path}`);
   return path;
 }
 
@@ -73,8 +72,8 @@ export async function importBackup(jsonString: string): Promise<boolean> {
 
   if (data.companion) {
     await db.runAsync(
-      `INSERT OR REPLACE INTO companion (id, name, species, emoji, level, xp, strength, agility, intelligence, vitality, collection) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [data.companion.name, data.companion.species, data.companion.emoji, data.companion.level, data.companion.xp, data.companion.strength, data.companion.agility, data.companion.intelligence, data.companion.vitality, data.companion.collection]
+      `INSERT OR REPLACE INTO companion (id, name, species, emoji, level, xp, strength, agility, intelligence, charisma, vitality, coins, collection) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [data.companion.name, data.companion.species, data.companion.emoji, data.companion.level, data.companion.xp, data.companion.strength, data.companion.agility, data.companion.intelligence, data.companion.charisma, data.companion.vitality, data.companion.coins, data.companion.collection]
     );
   }
 

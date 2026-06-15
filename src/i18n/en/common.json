@@ -9,6 +9,20 @@
     "close": "Close",
     "loading": "Loading...",
     "empty": "Nothing here yet",
-    "goSettings": "Open Settings"
+    "goSettings": "Open Settings",
+    "allow": "Allow",
+    "deleteAll": "Delete All",
+    "on": "ON",
+    "off": "OFF",
+    "tryAgain": "Try Again",
+    "backupSaved": "Backup saved to {{path}}",
+    "backupFailed": "Backup failed",
+    "somethingWrong": "Something went wrong",
+    "tabHome": "Home",
+    "tabTrophies": "Trophies",
+    "tabQuest": "Quest",
+    "tabCompanion": "Companion",
+    "tabProfile": "Profile",
+    "petSystem": "Pet System"
   }
 }

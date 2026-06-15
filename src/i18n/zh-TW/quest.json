@@ -6,6 +6,8 @@
     "total": "共 {{count}} 個",
     "reward": "獎勵",
     "xp": "+{{xp}} XP",
-    "notStarted": "尚未開始"
+    "notStarted": "尚未開始",
+    "empty": "每日任務將會顯示於此",
+    "completedBadge": "已完成"
   }
 }

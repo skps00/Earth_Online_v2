@@ -1,5 +1,6 @@
 import { Stack } from 'expo-router';
 import { Provider as JotaiProvider } from 'jotai';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 import { useEffect } from 'react';
 import { seedDatabase } from '@/database/seed';
@@ -33,6 +34,7 @@ function AppInitializer({ children }: { children: React.ReactNode }) {
 export default function RootLayout() {
   return (
     <JotaiProvider>
+      <SafeAreaProvider>
       <ThemeProvider>
         <AppInitializer>
           <Stack screenOptions={{ headerShown: false }}>
@@ -42,6 +44,7 @@ export default function RootLayout() {
           </Stack>
         </AppInitializer>
       </ThemeProvider>
+      </SafeAreaProvider>
     </JotaiProvider>
   );
 }

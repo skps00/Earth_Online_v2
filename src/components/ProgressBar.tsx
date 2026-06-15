@@ -12,4 +12,4 @@ export function ProgressBar({ progress, max = 100, height = 12 }: Props) {
     </View>
   );
 }
-const styles = StyleSheet.create({ track: { overflow: 'hidden', width: '100%' }, fill: {} });
+const styles = StyleSheet.create({ track: { overflow: 'hidden', flex: 1 }, fill: {} });

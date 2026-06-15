@@ -1,4 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { useEffect, useState } from 'react';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
 import { useCheckIn } from '@/hooks/useCheckIn';
@@ -7,25 +9,44 @@ import { useAtomValue } from 'jotai';
 import { isCheckingInAtom, lastCheckInAtom, checkInErrorAtom } from '@/stores/checkInStore';
 import { companionAtom } from '@/stores/companionStore';
 import { coinsAtom } from '@/stores/currencyStore';
+import { PermissionDialog } from '@/components/PermissionDialog';
+import { CheckInRepository } from '@/repositories/CheckInRepository';
+
+const checkInRepo = new CheckInRepository();
 
 export default function HomeScreen() {
   const { colors } = useTheme();
   const { t } = useTranslation();
-  const { checkIn } = useCheckIn();
+  const { requestCheckIn, showPermission, handlePermissionAllow, handlePermissionDeny } = useCheckIn();
   useCompanion();
+  const insets = useSafeAreaInsets();
   const isCheckingIn = useAtomValue(isCheckingInAtom);
   const lastCheckIn = useAtomValue(lastCheckInAtom);
   const error = useAtomValue(checkInErrorAtom);
   const companion = useAtomValue(companionAtom);
   const coins = useAtomValue(coinsAtom);
+  const [stats, setStats] = useState({ locations: 0, countries: 0, continents: 0 });
+
+  useEffect(() => {
+    (async () => {
+      const [locations, countries, continents] = await Promise.all([
+        checkInRepo.countUniqueLocations(),
+        checkInRepo.countUniqueCountries(),
+        checkInRepo.countUniqueContinents(),
+      ]);
+      setStats({ locations, countries, continents });
+    })();
+  }, [lastCheckIn]);
+
+  const bottomPadding = insets.bottom + 100;
 
   return (
-    <ScrollView style={[styles.container, { backgroundColor: colors.background }]} contentContainerStyle={styles.content}>
+    <ScrollView style={[styles.container, { backgroundColor: colors.background }]} contentContainerStyle={[styles.content, { paddingBottom: bottomPadding }]}>
       <Text style={[styles.title, { color: colors.primaryContainer }]}>{t('home.title')}</Text>
       <Text style={[styles.level, { color: colors.onSurfaceVariant }]}>{t('home.level', { level: companion?.level ?? 1 })}</Text>
 
       <View style={[styles.currencyRow, { borderColor: colors.outlineVariant }]}>
-        <Text style={[styles.coins, { color: colors.primaryContainer }]}>🪙 {coins}</Text>
+        <Text style={[styles.coins, { color: colors.primaryContainer, minWidth: 60, textAlign: 'center' }]}>🪙 {coins ?? 0}</Text>
       </View>
 
       <View style={[styles.petCard, { backgroundColor: colors.surface, borderColor: colors.primaryContainer }]}>
@@ -34,17 +55,11 @@ export default function HomeScreen() {
         <Text style={[styles.petLevel, { color: colors.secondary }]}>
           LVL {companion?.level ?? 1} {companion?.species?.toUpperCase() ?? 'DRAGON'}
         </Text>
-        <View style={styles.statsRow}>
-          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>{t('companion.strengthShort')} {companion?.strength ?? 0}</Text>
-          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>{t('companion.agilityShort')} {companion?.agility ?? 0}</Text>
-          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>{t('companion.intelligenceShort')} {companion?.intelligence ?? 0}</Text>
-          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>{t('companion.charismaShort')} {companion?.charisma ?? 0}</Text>
-          <Text style={[styles.statText, { color: colors.onSurfaceVariant }]}>{t('companion.vitalityShort')} {companion?.vitality ?? 0}</Text>
-        </View>
+        <Text style={[styles.comingSoonSmall, { color: colors.outline }]}>{t('home.comingSoon')}</Text>
       </View>
 
       <TouchableOpacity
-        onPress={checkIn}
+        onPress={requestCheckIn}
         disabled={isCheckingIn}
         style={[styles.checkinBtn, { backgroundColor: colors.primaryContainer }]}
       >
@@ -54,22 +69,45 @@ export default function HomeScreen() {
       </TouchableOpacity>
 
       {lastCheckIn && (
-        <Text style={[styles.result, { color: colors.secondary }]}>
+        <Text style={[styles.result, { color: colors.secondary }]} numberOfLines={3}>
           📍 {lastCheckIn.location.address ?? `${lastCheckIn.location.lat.toFixed(2)}, ${lastCheckIn.location.lng.toFixed(2)}`}
-          {lastCheckIn.unlockedAchievements.length > 0 && `\n🏆 ${lastCheckIn.unlockedAchievements.length} achievement${lastCheckIn.unlockedAchievements.length > 1 ? 's' : ''} unlocked!`}
+          {lastCheckIn.unlockedAchievements.length > 0 && `\n🏆 ${lastCheckIn.unlockedAchievements.length === 1 ? t('home.achievementUnlocked', { count: lastCheckIn.unlockedAchievements.length }) : t('home.achievementsUnlocked', { count: lastCheckIn.unlockedAchievements.length })}`}
         </Text>
       )}
       {error && <Text style={[styles.error, { color: colors.error }]}>❌ {error}</Text>}
 
       <View style={[styles.section, { backgroundColor: colors.surface, borderColor: colors.outlineVariant }]}>
-        <Text style={[styles.sectionTitle, { color: colors.onSurface }]}>🚶 {t('home.movement')}</Text>
-        <Text style={[styles.sectionText, { color: colors.onSurfaceVariant }]}>Walking: -- | Cycling: --</Text>
+        <Text style={[styles.sectionTitle, { color: colors.onSurface }]}>🌍 {t('home.adventureStats')}</Text>
+        <View style={styles.statsGrid}>
+          <View style={styles.statItem}>
+            <Text style={[styles.statNumber, { color: colors.primaryContainer }]}>{stats.locations}</Text>
+            <Text style={[styles.statLabel, { color: colors.onSurfaceVariant }]}>{t('home.locations')}</Text>
+          </View>
+          <View style={styles.statItem}>
+            <Text style={[styles.statNumber, { color: colors.primaryContainer }]}>{stats.countries}</Text>
+            <Text style={[styles.statLabel, { color: colors.onSurfaceVariant }]}>{t('home.countries')}</Text>
+          </View>
+          <View style={styles.statItem}>
+            <Text style={[styles.statNumber, { color: colors.primaryContainer }]}>{stats.continents}</Text>
+            <Text style={[styles.statLabel, { color: colors.onSurfaceVariant }]}>{t('home.continents')}</Text>
+          </View>
+        </View>
       </View>
 
       <View style={[styles.section, { backgroundColor: colors.surface, borderColor: colors.outlineVariant }]}>
         <Text style={[styles.sectionTitle, { color: colors.onSurface }]}>⏱️ {t('home.screenTime')}</Text>
-        <Text style={[styles.sectionText, { color: colors.onSurfaceVariant }]}>--</Text>
+        <View style={styles.comingSoonBadge}>
+          <Text style={[styles.comingSoonText, { color: colors.outline }]}>{t('home.comingSoon')}</Text>
+        </View>
       </View>
+
+      <PermissionDialog
+        visible={showPermission}
+        title={t('home.locationPermissionTitle')}
+        message={t('home.locationPermissionMessage')}
+        onAllow={handlePermissionAllow}
+        onDeny={handlePermissionDeny}
+      />
     </ScrollView>
   );
 }
@@ -85,8 +123,7 @@ const styles = StyleSheet.create({
   petEmoji: { fontSize: 64 },
   petName: { fontSize: 20, fontWeight: '700' },
   petLevel: { fontSize: 12 },
-  statsRow: { flexDirection: 'row', gap: 24, marginTop: 8 },
-  statText: { fontSize: 12 },
+  comingSoonSmall: { fontSize: 10, fontStyle: 'italic', marginTop: 4 },
   checkinBtn: { paddingVertical: 16, borderRadius: 12, alignItems: 'center' },
   checkinText: { fontSize: 18, fontWeight: '700' },
   result: { fontSize: 13, textAlign: 'center', lineHeight: 20 },
@@ -94,4 +131,10 @@ const styles = StyleSheet.create({
   section: { padding: 16, borderRadius: 12, borderWidth: 1, gap: 8 },
   sectionTitle: { fontSize: 16, fontWeight: '700' },
   sectionText: { fontSize: 13 },
+  statsGrid: { flexDirection: 'row', justifyContent: 'space-around', paddingTop: 8 },
+  statItem: { alignItems: 'center' },
+  statNumber: { fontSize: 24, fontWeight: '700' },
+  statLabel: { fontSize: 11, marginTop: 2 },
+  comingSoonBadge: { paddingVertical: 8, alignItems: 'center' },
+  comingSoonText: { fontSize: 12, fontStyle: 'italic' },
 });

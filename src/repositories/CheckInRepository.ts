@@ -27,6 +27,16 @@ export class CheckInRepository {
     );
   }
 
+  async countToday(): Promise<number> {
+    const db = await getDatabase();
+    const today = new Date().toISOString().slice(0, 10);
+    const result = await db.getFirstAsync<{ cnt: number }>(
+      `SELECT COUNT(*) as cnt FROM check_ins WHERE user_id = 'local' AND date(created_at) = ?`,
+      [today]
+    );
+    return result?.cnt ?? 0;
+  }
+
   async countUniqueLocations(): Promise<number> {
     const db = await getDatabase();
     const result = await db.getFirstAsync<{ cnt: number }>(

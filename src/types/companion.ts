@@ -12,6 +12,7 @@ export interface Companion {
   intelligence: number;
   charisma: number;
   vitality: number;
+  coins: number;
   collection: Species[];
 }
 
