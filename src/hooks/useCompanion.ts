@@ -13,10 +13,16 @@ export function useCompanion() {
 
   useEffect(() => {
     (async () => {
-      const data = await repo.get();
-      setCompanion(data);
-      if (data) setCoins(data.coins);
-      setLoading(false);
+      try {
+        const data = await repo.get();
+        console.log('[useCompanion] data:', JSON.stringify(data));
+        setCompanion(data);
+        if (data) setCoins(data.coins);
+        setLoading(false);
+      } catch (e) {
+        console.error('[useCompanion] error:', e);
+        setLoading(false);
+      }
     })();
   }, []);
 }

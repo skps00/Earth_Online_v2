@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Alert, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Alert, Modal, Platform } from 'react-native';
 import { useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -137,8 +137,8 @@ const styles = StyleSheet.create({
   container: { flex: 1, padding: 16 },
   title: { fontSize: 24, fontWeight: '700', textAlign: 'center', marginTop: 20, marginBottom: 24 },
   row: { flexDirection: 'row', alignItems: 'center', paddingVertical: 16, borderBottomWidth: 1, paddingHorizontal: 12 },
-  label: { fontSize: 16, lineHeight: 22, flex: 1, flexShrink: 0 },
-  value: { fontSize: 14, lineHeight: 20, flexShrink: 0, minWidth: 80, textAlign: 'right' },
+  label: { fontSize: 16, lineHeight: 22, flex: 1, flexShrink: 0, fontFamily: Platform.OS === 'android' ? 'sans-serif' : undefined },
+  value: { fontSize: 14, lineHeight: 20, flexShrink: 0, minWidth: 80, textAlign: 'right', fontFamily: Platform.OS === 'android' ? 'sans-serif' : undefined },
   section: { marginTop: 24, padding: 16, borderRadius: 12, borderWidth: 1, gap: 12 },
   sectionTitle: { fontSize: 16, fontWeight: '700' },
   empty: { fontSize: 13, textAlign: 'center', paddingVertical: 12 },
@@ -151,6 +151,6 @@ const styles = StyleSheet.create({
   dropdown: { width: '80%', borderRadius: 12, borderWidth: 1, padding: 16 },
   dropdownTitle: { fontSize: 18, fontWeight: '700', marginBottom: 12 },
   dropdownItem: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 14, paddingHorizontal: 12, borderBottomWidth: 1 },
-  dropdownText: { fontSize: 16, lineHeight: 22, flexShrink: 0 },
+  dropdownText: { fontSize: 16, lineHeight: 22, flexShrink: 0, fontFamily: Platform.OS === 'android' ? 'sans-serif' : undefined },
   dropdownCheck: { fontSize: 18, fontWeight: '700' },
 });

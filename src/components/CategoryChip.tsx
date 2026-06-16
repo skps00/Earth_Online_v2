@@ -1,4 +1,4 @@
-import { Text } from 'react-native';
+import { Text, Platform } from 'react-native';
 import { useTheme } from '@/theme/ThemeProvider';
 import { Category } from '@/types/achievement';
 import { useTranslation } from '@/i18n';
@@ -23,6 +23,7 @@ export function CategoryChip({ category, active, onPress }: Props) {
         color: active ? colors.onPrimaryContainer : colors.onSurfaceVariant,
         fontSize: 13,
         lineHeight: 20,
+        fontFamily: Platform.OS === 'android' ? 'sans-serif' : undefined,
         paddingHorizontal: 16,
         paddingVertical: 6,
         marginRight: 8,

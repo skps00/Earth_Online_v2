@@ -40,19 +40,25 @@ export default function HomeScreen() {
 
   const bottomPadding = insets.bottom + 100;
 
+  useEffect(() => {
+    console.log('[Home] companion:', JSON.stringify(companion));
+    console.log('[Home] coins:', coins);
+  }, [companion, coins]);
+
   return (
     <ScrollView style={[styles.container, { backgroundColor: colors.background }]} contentContainerStyle={[styles.content, { paddingBottom: bottomPadding }]}>
       <Text style={[styles.title, { color: colors.primaryContainer }]}>{t('home.title')}</Text>
       <Text style={[styles.level, { color: colors.onSurfaceVariant }]}>{t('home.level', { level: companion?.level ?? 1 })}</Text>
 
       <View style={[styles.currencyRow, { borderColor: colors.outlineVariant }]}>
-        <Text style={[styles.coins, { color: colors.primaryContainer, minWidth: 60, textAlign: 'center' }]}>🪙 {coins ?? 0}</Text>
+        <Text style={{ fontSize: 18 }}>🪙 </Text>
+        <Text style={{ fontSize: 18, color: '#FFD700', fontWeight: 'bold' }}>{coins ?? 0}</Text>
       </View>
 
       <View style={[styles.petCard, { backgroundColor: colors.surface, borderColor: colors.primaryContainer }]}>
         <Text style={styles.petEmoji}>{companion?.emoji ?? '🐉'}</Text>
-        <Text style={[styles.petName, { color: colors.onSurface }]}>{companion?.name ?? 'Ryujin'}</Text>
-        <Text style={[styles.petLevel, { color: colors.secondary }]}>
+        <Text style={{ fontSize: 20, color: '#FFFFFF', fontWeight: 'bold' }}>{companion?.name ?? 'Ryujin'}</Text>
+        <Text style={{ fontSize: 12, color: '#50C878' }}>
           LVL {companion?.level ?? 1} {companion?.species?.toUpperCase() ?? 'DRAGON'}
         </Text>
         <Text style={[styles.comingSoonSmall, { color: colors.outline }]}>{t('home.comingSoon')}</Text>
@@ -121,7 +127,7 @@ const styles = StyleSheet.create({
   coins: { fontSize: 18 },
   petCard: { padding: 20, borderRadius: 12, borderWidth: 1, alignItems: 'center', gap: 8 },
   petEmoji: { fontSize: 64 },
-  petName: { fontSize: 20, fontWeight: '700' },
+  petName: { fontSize: 20 },
   petLevel: { fontSize: 12 },
   comingSoonSmall: { fontSize: 10, fontStyle: 'italic', marginTop: 4 },
   checkinBtn: { paddingVertical: 16, borderRadius: 12, alignItems: 'center' },
@@ -129,7 +135,7 @@ const styles = StyleSheet.create({
   result: { fontSize: 13, textAlign: 'center', lineHeight: 20 },
   error: { fontSize: 13, textAlign: 'center' },
   section: { padding: 16, borderRadius: 12, borderWidth: 1, gap: 8 },
-  sectionTitle: { fontSize: 16, fontWeight: '700' },
+  sectionTitle: { fontSize: 16 },
   sectionText: { fontSize: 13 },
   statsGrid: { flexDirection: 'row', justifyContent: 'space-around', paddingTop: 8 },
   statItem: { alignItems: 'center' },
