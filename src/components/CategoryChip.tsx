@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text } from 'react-native';
+import { Text } from 'react-native';
 import { useTheme } from '@/theme/ThemeProvider';
 import { Category } from '@/types/achievement';
 import { useTranslation } from '@/i18n';
@@ -11,25 +11,25 @@ export function CategoryChip({ category, active, onPress }: Props) {
   const label = category === 'all' ? t('trophies.categories.all') : t(`trophies.categories.${category.toLowerCase()}`);
 
   return (
-    <TouchableOpacity
+    <Text
       onPress={onPress}
+      textBreakStrategy="simple"
+      allowFontScaling={false}
       style={{
         backgroundColor: active ? colors.primaryContainer : colors.surfaceHigh,
         borderColor: active ? colors.primaryContainer : colors.outlineVariant,
         borderWidth: 1,
         borderRadius: 8,
-        paddingHorizontal: 14,
-        paddingVertical: 8,
-        marginRight: 8,
-      }}
-    >
-      <Text style={{
         color: active ? colors.onPrimaryContainer : colors.onSurfaceVariant,
         fontSize: 13,
-        includeFontPadding: false,
-      }}>
-        {label}
-      </Text>
-    </TouchableOpacity>
+        lineHeight: 20,
+        paddingHorizontal: 16,
+        paddingVertical: 6,
+        marginRight: 8,
+        flexShrink: 0,
+      }}
+    >
+      {label}
+    </Text>
   );
 }

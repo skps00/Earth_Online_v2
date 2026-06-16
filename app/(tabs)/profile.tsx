@@ -64,8 +64,8 @@ export default function ProfileScreen() {
 
   const SettingRow = ({ label, onPress, value }: { label: string; onPress: () => void; value: string }) => (
     <TouchableOpacity onPress={onPress} style={[styles.row, { borderColor: colors.outlineVariant }]}>
-      <Text style={[styles.label, { color: colors.onSurface }]}>{label}</Text>
-      <Text style={[styles.value, { color: colors.onSurfaceVariant }]}>{value}</Text>
+      <Text style={[styles.label, { color: colors.onSurface }]} allowFontScaling={false} textBreakStrategy="simple">{label}</Text>
+      <Text style={[styles.value, { color: colors.onSurfaceVariant }]} allowFontScaling={false} textBreakStrategy="simple">{value}</Text>
     </TouchableOpacity>
   );
 
@@ -123,7 +123,7 @@ export default function ProfileScreen() {
               onPress={() => { persistLang(opt.code); setLangDropdownVisible(false); }}
               style={[styles.dropdownItem, { borderBottomColor: colors.outlineVariant, backgroundColor: lang === opt.code ? colors.primaryContainer + '20' : 'transparent' }]}
             >
-              <Text style={[styles.dropdownText, { color: lang === opt.code ? colors.primaryContainer : colors.onSurface }]}>{opt.label}</Text>
+              <Text style={[styles.dropdownText, { color: lang === opt.code ? colors.primaryContainer : colors.onSurface }]} allowFontScaling={false} textBreakStrategy="simple">{opt.label}</Text>
               {lang === opt.code && <Text style={[styles.dropdownCheck, { color: colors.primaryContainer }]}>✓</Text>}
             </TouchableOpacity>
           ))}
@@ -137,8 +137,8 @@ const styles = StyleSheet.create({
   container: { flex: 1, padding: 16 },
   title: { fontSize: 24, fontWeight: '700', textAlign: 'center', marginTop: 20, marginBottom: 24 },
   row: { flexDirection: 'row', alignItems: 'center', paddingVertical: 16, borderBottomWidth: 1, paddingHorizontal: 12 },
-  label: { fontSize: 16, flex: 1 },
-  value: { fontSize: 14, flexShrink: 0, minWidth: 80, textAlign: 'right' },
+  label: { fontSize: 16, lineHeight: 22, flex: 1, flexShrink: 0 },
+  value: { fontSize: 14, lineHeight: 20, flexShrink: 0, minWidth: 80, textAlign: 'right' },
   section: { marginTop: 24, padding: 16, borderRadius: 12, borderWidth: 1, gap: 12 },
   sectionTitle: { fontSize: 16, fontWeight: '700' },
   empty: { fontSize: 13, textAlign: 'center', paddingVertical: 12 },
@@ -151,6 +151,6 @@ const styles = StyleSheet.create({
   dropdown: { width: '80%', borderRadius: 12, borderWidth: 1, padding: 16 },
   dropdownTitle: { fontSize: 18, fontWeight: '700', marginBottom: 12 },
   dropdownItem: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 14, paddingHorizontal: 12, borderBottomWidth: 1 },
-  dropdownText: { fontSize: 16, flexShrink: 0 },
+  dropdownText: { fontSize: 16, lineHeight: 22, flexShrink: 0 },
   dropdownCheck: { fontSize: 18, fontWeight: '700' },
 });
