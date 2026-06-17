@@ -25,16 +25,17 @@ export default function HomeScreen() {
   const error = useAtomValue(checkInErrorAtom);
   const companion = useAtomValue(companionAtom);
   const coins = useAtomValue(coinsAtom);
-  const [stats, setStats] = useState({ locations: 0, countries: 0, continents: 0 });
+  const [stats, setStats] = useState({ locations: 0, countries: 0, continents: 0, totalCheckins: 0 });
 
   useEffect(() => {
     (async () => {
-      const [locations, countries, continents] = await Promise.all([
+      const [locations, countries, continents, totalCheckins] = await Promise.all([
         checkInRepo.countUniqueLocations(),
         checkInRepo.countUniqueCountries(),
         checkInRepo.countUniqueContinents(),
+        checkInRepo.countTotal(),
       ]);
-      setStats({ locations, countries, continents });
+      setStats({ locations, countries, continents, totalCheckins });
     })();
   }, [lastCheckIn]);
 
@@ -52,15 +53,13 @@ export default function HomeScreen() {
 
       <View style={[styles.currencyRow, { borderColor: colors.outlineVariant }]}>
         <Text style={{ fontSize: 18 }}>🪙 </Text>
-        <Text style={{ fontSize: 18, color: '#FFD700', fontWeight: 'bold' }}>{coins ?? 0}</Text>
+        <Text style={{ fontSize: 18, color: colors.primaryContainer, fontWeight: 'bold' }}>{coins ?? 0}</Text>
       </View>
 
       <View style={[styles.petCard, { backgroundColor: colors.surface, borderColor: colors.primaryContainer }]}>
         <Text style={styles.petEmoji}>{companion?.emoji ?? '🐉'}</Text>
-        <Text style={{ fontSize: 20, color: '#FFFFFF', fontWeight: 'bold' }}>{companion?.name ?? 'Ryujin'}</Text>
-        <Text style={{ fontSize: 12, color: '#50C878' }}>
-          LVL {companion?.level ?? 1} {companion?.species?.toUpperCase() ?? 'DRAGON'}
-        </Text>
+        <Text style={{ fontSize: 20, color: colors.onSurface, fontWeight: 'bold' }}>{companion?.name ?? 'Ryujin'}</Text>
+        <Text style={{ fontSize: 12, color: colors.secondary, fontWeight: 'bold' }}>LVL {companion?.level ?? 1} {companion?.species?.toUpperCase() ?? 'DRAGON'}</Text>
         <Text style={[styles.comingSoonSmall, { color: colors.outline }]}>{t('home.comingSoon')}</Text>
       </View>
 
@@ -96,6 +95,10 @@ export default function HomeScreen() {
           <View style={styles.statItem}>
             <Text style={[styles.statNumber, { color: colors.primaryContainer }]}>{stats.continents}</Text>
             <Text style={[styles.statLabel, { color: colors.onSurfaceVariant }]}>{t('home.continents')}</Text>
+          </View>
+          <View style={styles.statItem}>
+            <Text style={[styles.statNumber, { color: colors.primaryContainer }]}>{stats.totalCheckins}</Text>
+            <Text style={[styles.statLabel, { color: colors.onSurfaceVariant }]}>{t('home.totalCheckins')}</Text>
           </View>
         </View>
       </View>

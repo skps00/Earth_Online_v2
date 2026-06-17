@@ -3,9 +3,11 @@ import { CREATE_TABLES, SCHEMA_VERSION } from './schema';
 
 let db: SQLite.SQLiteDatabase | null = null;
 
+const DB_NAME = 'earth_online_v2.db';
+
 export async function getDatabase(): Promise<SQLite.SQLiteDatabase> {
   if (db) return db;
-  db = await SQLite.openDatabaseAsync('earth_online_v2.db');
+  db = await SQLite.openDatabaseAsync(DB_NAME);
   await db.execAsync(`PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON;`);
   await runMigrations(db);
   return db;

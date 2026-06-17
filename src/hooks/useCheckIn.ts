@@ -3,6 +3,7 @@ import { useSetAtom } from 'jotai';
 import { isCheckingInAtom, lastCheckInAtom, checkInErrorAtom } from '@/stores/checkInStore';
 import { photoPromptAtom } from '@/stores/photoPromptStore';
 import { questVersionAtom } from '@/stores/questStore';
+import { achievementVersionAtom } from '@/stores/achievementStore';
 import { companionAtom } from '@/stores/companionStore';
 import { coinsAtom } from '@/stores/currencyStore';
 import { performCheckIn } from '@/services/CheckInCoordinator';
@@ -18,6 +19,7 @@ export function useCheckIn() {
   const setError = useSetAtom(checkInErrorAtom);
   const setPhotoPrompt = useSetAtom(photoPromptAtom);
   const setQuestVersion = useSetAtom(questVersionAtom);
+  const setAchievementVersion = useSetAtom(achievementVersionAtom);
   const setCompanion = useSetAtom(companionAtom);
   const setCoins = useSetAtom(coinsAtom);
   const [showPermission, setShowPermission] = useState(false);
@@ -47,6 +49,7 @@ export function useCheckIn() {
       setLastCheckIn(result);
       await reloadCompanion();
       setQuestVersion(v => v + 1);
+      setAchievementVersion(v => v + 1);
     } catch (e: any) {
       Logger.error('CheckIn', e.message, e);
       setError(e.code ?? e.message ?? 'UNKNOWN');

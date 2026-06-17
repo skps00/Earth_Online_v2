@@ -4,7 +4,7 @@ export const darkColors = {
   surfaceBright: '#3d392c',
   surfaceHigh: '#2e2a1e',
   surfaceHighest: '#393528',
-  onSurface: '#eae2cf',
+  onSurface: '#FFFFFF',
   onSurfaceVariant: '#d0c6ab',
 
   primary: '#fff6df',
@@ -12,7 +12,7 @@ export const darkColors = {
   onPrimary: '#3a3000',
   onPrimaryContainer: '#705e00',
 
-  secondary: '#66dd8b',
+  secondary: '#50C878',
   secondaryContainer: '#25a55a',
   onSecondary: '#003919',
 

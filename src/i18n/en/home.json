@@ -17,6 +17,7 @@
     "countries": "Countries",
     "continents": "Continents",
     "comingSoon": "Coming Soon",
+    "totalCheckins": "Check-ins",
     "locationPermissionTitle": "Location Permission",
     "locationPermissionMessage": "Earth Online needs your location to record check-ins. All data is stored locally on your device and never uploaded.",
     "achievementUnlocked": "{{count}} achievement unlocked!",

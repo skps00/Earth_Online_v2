@@ -37,6 +37,14 @@ export class CheckInRepository {
     return result?.cnt ?? 0;
   }
 
+  async countTotal(): Promise<number> {
+    const db = await getDatabase();
+    const result = await db.getFirstAsync<{ cnt: number }>(
+      `SELECT COUNT(*) as cnt FROM check_ins WHERE user_id = 'local'`
+    );
+    return result?.cnt ?? 0;
+  }
+
   async countUniqueLocations(): Promise<number> {
     const db = await getDatabase();
     const result = await db.getFirstAsync<{ cnt: number }>(
