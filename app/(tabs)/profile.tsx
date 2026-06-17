@@ -7,6 +7,8 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { themeAtom, langAtom, soundEnabledAtom } from '@/stores/settingsStore';
 import { useSettings } from '@/hooks/useSettings';
 import { exportBackup } from '@/services/BackupService';
+import { useCloudSync } from '@/hooks/useCloudSync';
+import { syncStatusAtom } from '@/stores/syncStore';
 import { getDatabase } from '@/database/connection';
 import { seedDatabase } from '@/database/seed';
 import { achievementsAtom, unlockedIdsAtom } from '@/stores/achievementStore';
@@ -23,7 +25,10 @@ export default function ProfileScreen() {
   const lang = useAtomValue(langAtom);
   const sound = useAtomValue(soundEnabledAtom);
   const { persistTheme, persistLang, persistSound } = useSettings();
+  const { isAuthenticated, checkAuth, authenticate, logout, sync } = useCloudSync();
+  const syncStatus = useAtomValue(syncStatusAtom);
   const [backupMessage, setBackupMessage] = useState<string | null>(null);
+  const [syncMessage, setSyncMessage] = useState<string | null>(null);
   const setAchievements = useSetAtom(achievementsAtom);
   const setUnlocked = useSetAtom(unlockedIdsAtom);
   const setCompanion = useSetAtom(companionAtom);
@@ -99,7 +104,44 @@ export default function ProfileScreen() {
           <Text style={[styles.btnText, { color: colors.primaryContainer }]}>{t('profile.backupExport')}</Text>
         </TouchableOpacity>
         {backupMessage && (
-          <Text style={[styles.backupMsg, { color: colors.secondary }]}>{backupMessage}</Text>
+          <Text style={[styles.backupMsg, { color: '#50C878' }]}>{backupMessage}</Text>
+        )}
+      </View>
+
+      <View style={[styles.section, { borderColor: colors.outlineVariant }]}>
+        <Text style={[styles.sectionTitle, { color: colors.onSurface }]}>☁️ Cloud Sync</Text>
+        {isAuthenticated ? (
+          <>
+            <TouchableOpacity
+              onPress={async () => {
+                try {
+                  setSyncMessage('Syncing...');
+                  const result = await sync();
+                  setSyncMessage(`Sync complete (${result.uploaded}↑ ${result.downloaded}↓)`);
+                } catch (e) {
+                  setSyncMessage('Sync failed');
+                }
+              }}
+              style={[styles.btn, { borderColor: colors.primaryContainer }]}
+            >
+              <Text style={[styles.btnText, { color: colors.primaryContainer }]}>
+                {syncStatus === 'syncing' ? 'Syncing...' : 'Sync Now'}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={logout} style={[styles.btn, { borderColor: colors.outlineVariant }]}>
+              <Text style={[styles.btnText, { color: colors.onSurfaceVariant }]}>Sign Out</Text>
+            </TouchableOpacity>
+          </>
+        ) : (
+          <TouchableOpacity
+            onPress={authenticate}
+            style={[styles.btn, { borderColor: colors.primaryContainer }]}
+          >
+            <Text style={[styles.btnText, { color: colors.primaryContainer }]}>Sign in with Google</Text>
+          </TouchableOpacity>
+        )}
+        {syncMessage && (
+          <Text style={[styles.backupMsg, { color: '#50C878' }]}>{syncMessage}</Text>
         )}
       </View>
 
