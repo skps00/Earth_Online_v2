@@ -2,7 +2,7 @@ import { Stack } from 'expo-router';
 import { Provider as JotaiProvider } from 'jotai';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from '@/theme/ThemeProvider';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { seedDatabase } from '@/database/seed';
 import { initCheckIn } from '@/services/CheckInCoordinator';
 import { LocationService } from '@/services/LocationService';
@@ -12,6 +12,8 @@ import { reconcile } from '@/engine/reconcile';
 import { Logger } from '@/utils/logger';
 import { useSettings } from '@/hooks/useSettings';
 import { registerBackgroundSync } from '@/services/BackgroundSyncService';
+import { isSignedIn } from '@/services/GoogleAuthService';
+import { LoginScreen } from '@/components/LoginScreen';
 
 function AppInitializer({ children }: { children: React.ReactNode }) {
   useSettings();
@@ -34,6 +36,26 @@ function AppInitializer({ children }: { children: React.ReactNode }) {
 }
 
 export default function RootLayout() {
+  const [isAuth, setIsAuth] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    isSignedIn().then(setIsAuth);
+  }, []);
+
+  if (isAuth === null) return null; // Loading
+
+  if (!isAuth) {
+    return (
+      <JotaiProvider>
+        <SafeAreaProvider>
+          <ThemeProvider>
+            <LoginScreen onLogin={() => setIsAuth(true)} onSkip={() => setIsAuth(true)} />
+          </ThemeProvider>
+        </SafeAreaProvider>
+      </JotaiProvider>
+    );
+  }
+
   return (
     <JotaiProvider>
       <SafeAreaProvider>

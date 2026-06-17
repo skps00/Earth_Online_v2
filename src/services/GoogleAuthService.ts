@@ -1,9 +1,9 @@
 import * as AuthSession from 'expo-auth-session';
 import * as SecureStore from 'expo-secure-store';
-import Constants from 'expo-constants';
+import { Platform } from 'react-native';
 import { Logger } from '@/utils/logger';
 
-const CLIENT_ID = Constants.expoConfig?.extra?.GOOGLE_CLIENT_ID ?? '';
+const CLIENT_ID = '335492280709-70e7rgnsjp4uj41gaj9sek08jtg5b4hv.apps.googleusercontent.com';
 const SCHEME = 'earthonline';
 
 const DISCOVERY = {
@@ -23,7 +23,12 @@ export interface AuthTokens {
 const TOKEN_KEY = 'google_auth_tokens';
 
 export async function signIn(): Promise<AuthTokens> {
-  const redirectUri = AuthSession.makeRedirectUri({ scheme: SCHEME });
+  const redirectUri = AuthSession.makeRedirectUri({
+    scheme: SCHEME,
+    useProxy: true,
+  });
+  Logger.info('Auth', `Redirect URI: ${redirectUri}`);
+
   const request = new AuthSession.AuthRequest({
     clientId: CLIENT_ID,
     scopes: SCOPES,
