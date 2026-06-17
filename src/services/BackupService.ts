@@ -1,4 +1,4 @@
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
 import { getDatabase } from '@/database/connection';
 import { Logger } from '@/utils/logger';
 import { z } from 'zod';

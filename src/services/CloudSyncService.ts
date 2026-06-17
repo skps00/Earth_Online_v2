@@ -2,7 +2,7 @@ import { getDatabase } from '@/database/connection';
 import { exportBackup, importBackup } from './BackupService';
 import { uploadToDrive, downloadFromDrive } from './DriveService';
 import { Logger } from '@/utils/logger';
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
 
 const SYNC_LOG_KEY = 'last_sync_at';
 const DEBOUNCE_MINUTES = 30;
