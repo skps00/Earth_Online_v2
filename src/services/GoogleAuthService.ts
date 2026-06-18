@@ -23,27 +23,20 @@ export interface AuthTokens {
 const TOKEN_KEY = 'google_auth_tokens';
 
 export async function signIn(): Promise<AuthTokens> {
-  const redirectUri = AuthSession.makeRedirectUri({
-    scheme: SCHEME,
-    useProxy: true,
-  });
+  const redirectUri = 'https://auth.expo.io/@skps00/earth-online';
   Logger.info('Auth', `Redirect URI: ${redirectUri}`);
 
-  const request = new AuthSession.AuthRequest({
-    clientId: CLIENT_ID,
-    scopes: SCOPES,
-    redirectUri,
-    responseType: AuthSession.ResponseType.Code,
-    codeChallengeMethod: AuthSession.CodeChallengeMethod.S256,
+  const result = await AuthSession.startAsync({
+    authUrl: `${DISCOVERY.authorizationEndpoint}?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=${encodeURIComponent(SCOPES.join(' '))}&access_type=offline`,
+    returnUrl: redirectUri,
   });
 
-  const result = await request.promptAsync(DISCOVERY);
   if (result.type !== 'success') {
     throw new Error(`OAuth failed: ${result.type}`);
   }
 
   const tokenResponse = await AuthSession.exchangeCodeAsync(
-    { code: result.params.code, clientId: CLIENT_ID, redirectUri, extraParams: { code_verifier: request.codeVerifier ?? '' } },
+    { code: result.params.code, clientId: CLIENT_ID, redirectUri },
     DISCOVERY
   );
 
