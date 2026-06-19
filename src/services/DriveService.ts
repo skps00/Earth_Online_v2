@@ -11,23 +11,35 @@ async function getAuthHeader(): Promise<string> {
 
 export async function uploadToDrive(jsonContent: string): Promise<void> {
   const authHeader = await getAuthHeader();
+  Logger.info('Drive', `Auth header: ${authHeader.substring(0, 20)}...`);
   const existingFile = await findBackupFile();
+  Logger.info('Drive', `Existing file: ${existingFile}`);
 
   if (existingFile) {
+    Logger.info('Drive', 'Updating existing file');
     const response = await fetch(`https://www.googleapis.com/upload/drive/v3/files/${existingFile}?uploadType=media`, {
       method: 'PATCH',
       headers: { Authorization: authHeader, 'Content-Type': 'application/json' },
       body: jsonContent,
     });
-    if (!response.ok) throw new Error(`Upload failed: ${response.status}`);
+    if (!response.ok) {
+      const errorText = await response.text();
+      Logger.error('Drive', `Upload error: ${response.status} - ${errorText}`);
+      throw new Error(`Upload failed: ${response.status}`);
+    }
   } else {
+    Logger.info('Drive', 'Creating new file');
     const metadata = { name: BACKUP_FILENAME, parents: ['appDataFolder'] };
     const response = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
       method: 'POST',
       headers: { Authorization: authHeader, 'Content-Type': 'application/json' },
       body: JSON.stringify({ metadata, file: jsonContent }),
     });
-    if (!response.ok) throw new Error(`Upload failed: ${response.status}`);
+    if (!response.ok) {
+      const errorText = await response.text();
+      Logger.error('Drive', `Upload error: ${response.status} - ${errorText}`);
+      throw new Error(`Upload failed: ${response.status}`);
+    }
   }
   Logger.info('Drive', 'Backup uploaded successfully');
 }

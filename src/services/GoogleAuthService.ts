@@ -7,6 +7,7 @@ GoogleSignin.configure({
   webClientId: WEB_CLIENT_ID,
   scopes: ['https://www.googleapis.com/auth/drive.appdata'],
   offlineAccess: true,
+  forceCodeForRefreshToken: true,
 });
 
 export interface AuthTokens {
@@ -22,7 +23,7 @@ export async function signIn(): Promise<AuthTokens> {
     Logger.info('Auth', 'Google sign-in response received');
 
     const tokens = await GoogleSignin.getTokens();
-    Logger.info('Auth', 'Tokens received');
+    Logger.info('Auth', `Token scopes check - access token length: ${tokens.accessToken.length}`);
 
     return {
       accessToken: tokens.accessToken,
