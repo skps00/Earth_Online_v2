@@ -26,17 +26,21 @@ export async function signIn(): Promise<AuthTokens> {
   const redirectUri = 'https://auth.expo.io/@skps00/earth-online';
   Logger.info('Auth', `Redirect URI: ${redirectUri}`);
 
-  const result = await AuthSession.startAsync({
-    authUrl: `${DISCOVERY.authorizationEndpoint}?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=${encodeURIComponent(SCOPES.join(' '))}&access_type=offline`,
-    returnUrl: redirectUri,
+  const request = new AuthSession.AuthRequest({
+    clientId: CLIENT_ID,
+    scopes: SCOPES,
+    redirectUri,
+    responseType: AuthSession.ResponseType.Code,
+    usePKCE: true,
   });
 
+  const result = await request.promptAsync(DISCOVERY);
   if (result.type !== 'success') {
     throw new Error(`OAuth failed: ${result.type}`);
   }
 
   const tokenResponse = await AuthSession.exchangeCodeAsync(
-    { code: result.params.code, clientId: CLIENT_ID, redirectUri },
+    { code: result.params.code, clientId: CLIENT_ID, redirectUri, codeVerifier: request.codeVerifier ?? '' },
     DISCOVERY
   );
 
