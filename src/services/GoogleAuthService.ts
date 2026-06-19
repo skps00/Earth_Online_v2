@@ -31,7 +31,7 @@ export async function signIn(): Promise<AuthTokens> {
     scopes: SCOPES,
     redirectUri,
     responseType: AuthSession.ResponseType.Code,
-    usePKCE: true,
+    usePKCE: false,
   });
 
   const result = await request.promptAsync(DISCOVERY, { returnUrl: 'earthonline://' });
@@ -40,7 +40,7 @@ export async function signIn(): Promise<AuthTokens> {
   }
 
   const tokenResponse = await AuthSession.exchangeCodeAsync(
-    { code: result.params.code, clientId: CLIENT_ID, redirectUri, codeVerifier: request.codeVerifier ?? '' },
+    { code: result.params.code, clientId: CLIENT_ID, redirectUri },
     DISCOVERY
   );
 
