@@ -1,18 +1,13 @@
-import * as AuthSession from 'expo-auth-session';
-import * as SecureStore from 'expo-secure-store';
-import { Platform } from 'react-native';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { Logger } from '@/utils/logger';
 
-const CLIENT_ID = '335492280709-70e7rgnsjp4uj41gaj9sek08jtg5b4hv.apps.googleusercontent.com';
-const SCHEME = 'earthonline';
+const WEB_CLIENT_ID = '335492280709-70e7rgnsjp4uj41gaj9sek08jtg5b4hv.apps.googleusercontent.com';
 
-const DISCOVERY = {
-  authorizationEndpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
-  tokenEndpoint: 'https://oauth2.googleapis.com/token',
-  revocationEndpoint: 'https://oauth2.googleapis.com/revoke',
-};
-
-const SCOPES = ['https://www.googleapis.com/auth/drive.appdata'];
+GoogleSignin.configure({
+  webClientId: WEB_CLIENT_ID,
+  scopes: ['https://www.googleapis.com/auth/drive.appdata'],
+  offlineAccess: true,
+});
 
 export interface AuthTokens {
   accessToken: string;
@@ -20,74 +15,62 @@ export interface AuthTokens {
   expiresAt: number;
 }
 
-const TOKEN_KEY = 'google_auth_tokens';
-
 export async function signIn(): Promise<AuthTokens> {
-  const redirectUri = 'https://auth.expo.io/@skps00/earth-online';
-  const returnUrl = AuthSession.makeRedirectUri({ scheme: SCHEME });
-  Logger.info('Auth', `Redirect URI: ${redirectUri}, Return URL: ${returnUrl}`);
+  try {
+    await GoogleSignin.hasPlayServices();
+    const userInfo = await GoogleSignin.signIn();
+    const tokens = await GoogleSignin.getTokens();
 
-  const request = new AuthSession.AuthRequest({
-    clientId: CLIENT_ID,
-    scopes: SCOPES,
-    redirectUri,
-    responseType: AuthSession.ResponseType.Code,
-    usePKCE: false,
-  });
+    Logger.info('Auth', `Google sign-in successful: ${userInfo.user.email}`);
 
-  const result = await request.promptAsync(DISCOVERY, { returnUrl });
-  if (result.type !== 'success') {
-    throw new Error(`OAuth failed: ${result.type}`);
+    return {
+      accessToken: tokens.accessToken,
+      refreshToken: '',
+      expiresAt: Date.now() + 3600 * 1000,
+    };
+  } catch (error: any) {
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      throw new Error('User cancelled login');
+    } else if (error.code === statusCodes.IN_PROGRESS) {
+      throw new Error('Login already in progress');
+    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      throw new Error('Google Play Services not available');
+    }
+    throw error;
   }
-
-  const tokenResponse = await AuthSession.exchangeCodeAsync(
-    { code: result.params.code, clientId: CLIENT_ID, redirectUri },
-    DISCOVERY
-  );
-
-  const tokens: AuthTokens = {
-    accessToken: tokenResponse.accessToken,
-    refreshToken: tokenResponse.refreshToken ?? '',
-    expiresAt: Date.now() + (tokenResponse.expiresIn ?? 3600) * 1000,
-  };
-
-  await SecureStore.setItemAsync(TOKEN_KEY, JSON.stringify(tokens));
-  Logger.info('Auth', 'Google sign-in successful');
-  return tokens;
 }
 
 export async function getTokens(): Promise<AuthTokens | null> {
-  const stored = await SecureStore.getItemAsync(TOKEN_KEY);
-  if (!stored) return null;
-  const tokens: AuthTokens = JSON.parse(stored);
-  if (Date.now() > tokens.expiresAt - 60000) {
-    return await refreshTokens(tokens.refreshToken);
-  }
-  return tokens;
-}
+  try {
+    const userInfo = await GoogleSignin.signInSilently();
+    if (!userInfo) return null;
 
-async function refreshTokens(refreshToken: string): Promise<AuthTokens> {
-  const response = await fetch('https://oauth2.googleapis.com/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `client_id=${CLIENT_ID}&refresh_token=${refreshToken}&grant_type=refresh_token`,
-  });
-  const data = await response.json();
-  const tokens: AuthTokens = {
-    accessToken: data.access_token,
-    refreshToken: data.refresh_token ?? refreshToken,
-    expiresAt: Date.now() + (data.expires_in ?? 3600) * 1000,
-  };
-  await SecureStore.setItemAsync(TOKEN_KEY, JSON.stringify(tokens));
-  return tokens;
+    const tokens = await GoogleSignin.getTokens();
+    return {
+      accessToken: tokens.accessToken,
+      refreshToken: '',
+      expiresAt: Date.now() + 3600 * 1000,
+    };
+  } catch {
+    return null;
+  }
 }
 
 export async function signOut(): Promise<void> {
-  await SecureStore.deleteItemAsync(TOKEN_KEY);
-  Logger.info('Auth', 'Google sign-out');
+  try {
+    await GoogleSignin.revokeAccess();
+    await GoogleSignin.signOut();
+    Logger.info('Auth', 'Google sign-out');
+  } catch (error) {
+    Logger.error('Auth', 'Sign-out error', error);
+  }
 }
 
 export async function isSignedIn(): Promise<boolean> {
-  const tokens = await getTokens();
-  return tokens !== null;
+  try {
+    const userInfo = await GoogleSignin.signInSilently();
+    return userInfo !== null;
+  } catch {
+    return false;
+  }
 }
