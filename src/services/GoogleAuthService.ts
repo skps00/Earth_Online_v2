@@ -18,10 +18,11 @@ export interface AuthTokens {
 export async function signIn(): Promise<AuthTokens> {
   try {
     await GoogleSignin.hasPlayServices();
-    const userInfo = await GoogleSignin.signIn();
-    const tokens = await GoogleSignin.getTokens();
+    const response = await GoogleSignin.signIn();
+    Logger.info('Auth', 'Google sign-in response received');
 
-    Logger.info('Auth', `Google sign-in successful: ${userInfo.user.email}`);
+    const tokens = await GoogleSignin.getTokens();
+    Logger.info('Auth', 'Tokens received');
 
     return {
       accessToken: tokens.accessToken,
