@@ -12,6 +12,17 @@ async function getAuthHeader(): Promise<string> {
 export async function uploadToDrive(jsonContent: string): Promise<void> {
   const authHeader = await getAuthHeader();
   Logger.info('Drive', `Auth header: ${authHeader.substring(0, 20)}...`);
+
+  // Verify token scopes
+  try {
+    const tokenInfo = await fetch(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${authHeader.replace('Bearer ', '')}`);
+    const tokenData = await tokenInfo.json();
+    Logger.info('Drive', `Token scopes: ${tokenData.scope}`);
+    Logger.info('Drive', `Token audience: ${tokenData.audience}`);
+  } catch (e) {
+    Logger.error('Drive', 'Failed to verify token', e);
+  }
+
   const existingFile = await findBackupFile();
   Logger.info('Drive', `Existing file: ${existingFile}`);
 
