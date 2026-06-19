@@ -34,7 +34,7 @@ export async function signIn(): Promise<AuthTokens> {
     usePKCE: true,
   });
 
-  const result = await request.promptAsync(DISCOVERY);
+  const result = await request.promptAsync(DISCOVERY, { returnUrl: 'earthonline://' });
   if (result.type !== 'success') {
     throw new Error(`OAuth failed: ${result.type}`);
   }
