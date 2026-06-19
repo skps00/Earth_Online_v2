@@ -24,7 +24,8 @@ const TOKEN_KEY = 'google_auth_tokens';
 
 export async function signIn(): Promise<AuthTokens> {
   const redirectUri = 'https://auth.expo.io/@skps00/earth-online';
-  Logger.info('Auth', `Redirect URI: ${redirectUri}`);
+  const returnUrl = AuthSession.makeRedirectUri({ scheme: SCHEME });
+  Logger.info('Auth', `Redirect URI: ${redirectUri}, Return URL: ${returnUrl}`);
 
   const request = new AuthSession.AuthRequest({
     clientId: CLIENT_ID,
@@ -34,7 +35,7 @@ export async function signIn(): Promise<AuthTokens> {
     usePKCE: false,
   });
 
-  const result = await request.promptAsync(DISCOVERY, { returnUrl: 'earthonline://' });
+  const result = await request.promptAsync(DISCOVERY, { returnUrl });
   if (result.type !== 'success') {
     throw new Error(`OAuth failed: ${result.type}`);
   }
