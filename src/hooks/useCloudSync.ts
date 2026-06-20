@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSetAtom } from 'jotai';
 import { syncStatusAtom, lastSyncAtom } from '@/stores/syncStore';
 import { signIn, signOut, isSignedIn } from '@/services/GoogleAuthService';
@@ -9,6 +9,10 @@ export function useCloudSync() {
   const setSyncStatus = useSetAtom(syncStatusAtom);
   const setLastSync = useSetAtom(lastSyncAtom);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
   const checkAuth = async () => {
     const signedIn = await isSignedIn();
