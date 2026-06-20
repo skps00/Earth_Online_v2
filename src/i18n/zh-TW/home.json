@@ -21,6 +21,8 @@
     "locationPermissionTitle": "位置權限",
     "locationPermissionMessage": "《地球 Online》需要您的位置來記錄打卡地點。所有資料僅存於本機，不會上傳。",
     "achievementUnlocked": "{{count}} 項成就已解鎖！",
-    "achievementsUnlocked": "{{count}} 項成就已解鎖！"
+    "achievementsUnlocked": "{{count}} 項成就已解鎖！",
+    "checkinCount": "{{count}}/10 今日打卡",
+    "checkinLimitReached": "今日打卡已達上限，明天再試"
   }
 }

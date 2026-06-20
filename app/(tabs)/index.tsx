@@ -26,16 +26,19 @@ export default function HomeScreen() {
   const companion = useAtomValue(companionAtom);
   const coins = useAtomValue(coinsAtom);
   const [stats, setStats] = useState({ locations: 0, countries: 0, continents: 0, totalCheckins: 0 });
+  const [todayCount, setTodayCount] = useState(0);
 
   useEffect(() => {
     (async () => {
-      const [locations, countries, continents, totalCheckins] = await Promise.all([
+      const [locations, countries, continents, totalCheckins, today] = await Promise.all([
         checkInRepo.countUniqueLocations(),
         checkInRepo.countUniqueCountries(),
         checkInRepo.countUniqueContinents(),
         checkInRepo.countTotal(),
+        checkInRepo.countToday(),
       ]);
       setStats({ locations, countries, continents, totalCheckins });
+      setTodayCount(today);
     })();
   }, [lastCheckIn]);
 
@@ -65,13 +68,22 @@ export default function HomeScreen() {
 
       <TouchableOpacity
         onPress={requestCheckIn}
-        disabled={isCheckingIn}
-        style={[styles.checkinBtn, { backgroundColor: colors.primaryContainer }]}
+        disabled={isCheckingIn || todayCount >= 10}
+        style={[styles.checkinBtn, { backgroundColor: todayCount >= 10 ? colors.outlineVariant : colors.primaryContainer }]}
       >
-        <Text style={[styles.checkinText, { color: colors.onPrimaryContainer }]}>
+        <Text style={[styles.checkinText, { color: todayCount >= 10 ? colors.outline : colors.onPrimaryContainer }]}>
           {isCheckingIn ? '📍 ' + t('common.loading') : '📍 ' + t('home.checkin')}
         </Text>
       </TouchableOpacity>
+
+      <View style={styles.checkinProgress}>
+        <View style={[styles.progressBar, { backgroundColor: colors.outlineVariant }]}>
+          <View style={[styles.progressFill, { backgroundColor: colors.primaryContainer, width: `${Math.min(todayCount / 10 * 100, 100)}%` }]} />
+        </View>
+        <Text style={[styles.checkinCount, { color: todayCount >= 10 ? colors.error : colors.onSurfaceVariant }]}>
+          {todayCount >= 10 ? t('home.checkinLimitReached') : t('home.checkinCount', { count: todayCount })}
+        </Text>
+      </View>
 
       {lastCheckIn && (
         <Text style={[styles.result, { color: colors.secondary }]} numberOfLines={3}>
@@ -135,6 +147,10 @@ const styles = StyleSheet.create({
   comingSoonSmall: { fontSize: 10, fontStyle: 'italic', marginTop: 4 },
   checkinBtn: { paddingVertical: 16, borderRadius: 12, alignItems: 'center' },
   checkinText: { fontSize: 18, fontWeight: '700' },
+  checkinProgress: { gap: 6 },
+  progressBar: { height: 6, borderRadius: 3, overflow: 'hidden' },
+  progressFill: { height: '100%', borderRadius: 3 },
+  checkinCount: { fontSize: 12, textAlign: 'center' },
   result: { fontSize: 13, textAlign: 'center', lineHeight: 20 },
   error: { fontSize: 13, textAlign: 'center' },
   section: { padding: 16, borderRadius: 12, borderWidth: 1, gap: 8 },

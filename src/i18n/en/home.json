@@ -21,6 +21,8 @@
     "locationPermissionTitle": "Location Permission",
     "locationPermissionMessage": "Earth Online needs your location to record check-ins. All data is stored locally on your device and never uploaded.",
     "achievementUnlocked": "{{count}} achievement unlocked!",
-    "achievementsUnlocked": "{{count}} achievements unlocked!"
+    "achievementsUnlocked": "{{count}} achievements unlocked!",
+    "checkinCount": "{{count}}/10 today",
+    "checkinLimitReached": "Daily limit reached. Try tomorrow!"
   }
 }
