@@ -82,3 +82,12 @@ export async function isSignedIn(): Promise<boolean> {
     return false;
   }
 }
+
+export async function getUserEmail(): Promise<string | null> {
+  try {
+    const userInfo = await GoogleSignin.signInSilently();
+    return userInfo?.data?.user?.email ?? null;
+  } catch {
+    return null;
+  }
+}

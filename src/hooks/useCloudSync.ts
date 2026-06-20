@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSetAtom } from 'jotai';
 import { syncStatusAtom, lastSyncAtom } from '@/stores/syncStore';
-import { signIn, signOut, isSignedIn } from '@/services/GoogleAuthService';
+import { signIn, signOut, isSignedIn, getUserEmail } from '@/services/GoogleAuthService';
 import { syncToCloud } from '@/services/CloudSyncService';
 import { Logger } from '@/utils/logger';
 
@@ -9,6 +9,7 @@ export function useCloudSync() {
   const setSyncStatus = useSetAtom(syncStatusAtom);
   const setLastSync = useSetAtom(lastSyncAtom);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
 
   useEffect(() => {
     checkAuth();
@@ -17,6 +18,10 @@ export function useCloudSync() {
   const checkAuth = async () => {
     const signedIn = await isSignedIn();
     setIsAuthenticated(signedIn);
+    if (signedIn) {
+      const email = await getUserEmail();
+      setUserEmail(email);
+    }
     return signedIn;
   };
 
@@ -24,6 +29,8 @@ export function useCloudSync() {
     try {
       await signIn();
       setIsAuthenticated(true);
+      const email = await getUserEmail();
+      setUserEmail(email);
       return true;
     } catch (e) {
       Logger.error('Auth', 'Sign-in failed', e);
@@ -50,5 +57,5 @@ export function useCloudSync() {
     }
   };
 
-  return { isAuthenticated, checkAuth, authenticate, logout, sync };
+  return { isAuthenticated, userEmail, checkAuth, authenticate, logout, sync };
 }

@@ -25,7 +25,7 @@ export default function ProfileScreen() {
   const lang = useAtomValue(langAtom);
   const sound = useAtomValue(soundEnabledAtom);
   const { persistTheme, persistLang, persistSound } = useSettings();
-  const { isAuthenticated, checkAuth, authenticate, logout, sync } = useCloudSync();
+  const { isAuthenticated, userEmail, checkAuth, authenticate, logout, sync } = useCloudSync();
   const syncStatus = useAtomValue(syncStatusAtom);
   const [backupMessage, setBackupMessage] = useState<string | null>(null);
   const [syncMessage, setSyncMessage] = useState<string | null>(null);
@@ -110,6 +110,9 @@ export default function ProfileScreen() {
 
       <View style={[styles.section, { borderColor: colors.outlineVariant }]}>
         <Text style={[styles.sectionTitle, { color: colors.onSurface }]}>☁️ Cloud Sync</Text>
+        {userEmail && (
+          <Text style={{ fontSize: 13, color: colors.secondary }}>👤 {userEmail}</Text>
+        )}
         {isAuthenticated ? (
           <>
             <TouchableOpacity
