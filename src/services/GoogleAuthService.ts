@@ -45,7 +45,10 @@ export async function signIn(): Promise<AuthTokens> {
 export async function getTokens(): Promise<AuthTokens | null> {
   try {
     const userInfo = await GoogleSignin.signInSilently();
-    if (!userInfo) return null;
+    if (!userInfo) {
+      Logger.info('Auth', 'getTokens: signInSilently returned null');
+      return null;
+    }
 
     const tokens = await GoogleSignin.getTokens();
     return {
@@ -53,7 +56,8 @@ export async function getTokens(): Promise<AuthTokens | null> {
       refreshToken: '',
       expiresAt: Date.now() + 3600 * 1000,
     };
-  } catch {
+  } catch (e) {
+    Logger.error('Auth', 'getTokens failed', e);
     return null;
   }
 }
@@ -71,8 +75,10 @@ export async function signOut(): Promise<void> {
 export async function isSignedIn(): Promise<boolean> {
   try {
     const userInfo = await GoogleSignin.signInSilently();
+    Logger.info('Auth', `signInSilently result: ${userInfo ? 'signed in' : 'null'}`);
     return userInfo !== null;
-  } catch {
+  } catch (e) {
+    Logger.error('Auth', 'signInSilently failed', e);
     return false;
   }
 }
