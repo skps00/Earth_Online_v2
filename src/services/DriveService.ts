@@ -84,10 +84,25 @@ export async function downloadFromDrive(): Promise<string | null> {
 async function findBackupFile(): Promise<string | null> {
   const authHeader = await getAuthHeader();
   const response = await fetch(
-    `https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name='${BACKUP_FILENAME}'&fields=files(id,name)`,
+    `https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&q=name='${BACKUP_FILENAME}'&fields=files(id,name,modifiedTime,size)`,
     { headers: { Authorization: authHeader } }
   );
   if (!response.ok) return null;
   const data = await response.json();
+  Logger.info('Drive', `Found ${data.files?.length ?? 0} backup files`);
   return data.files?.[0]?.id ?? null;
+}
+
+export async function listDriveFiles(): Promise<void> {
+  const authHeader = await getAuthHeader();
+  const response = await fetch(
+    'https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&fields=files(id,name,modifiedTime,size)',
+    { headers: { Authorization: authHeader } }
+  );
+  if (!response.ok) {
+    Logger.error('Drive', `List failed: ${response.status}`);
+    return;
+  }
+  const data = await response.json();
+  Logger.info('Drive', `AppData files: ${JSON.stringify(data.files, null, 2)}`);
 }
