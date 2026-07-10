@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSetAtom } from 'jotai';
 import { syncStatusAtom, lastSyncAtom } from '@/stores/syncStore';
-import { signIn, signOut, isSignedIn, getUserEmail } from '@/services/GoogleAuthService';
+import { signIn, signOut, isSignedIn, getUserEmail, isGoogleSigninNativeAvailable } from '@/services/GoogleAuthService';
 import { syncToCloud } from '@/services/CloudSyncService';
 import { Logger } from '@/utils/logger';
 
@@ -57,5 +57,5 @@ export function useCloudSync() {
     }
   };
 
-  return { isAuthenticated, userEmail, checkAuth, authenticate, logout, sync };
+  return { isAuthenticated, userEmail, checkAuth, authenticate, logout, sync, googleSigninAvailable: isGoogleSigninNativeAvailable() };
 }

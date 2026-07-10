@@ -15,8 +15,14 @@
     "permissions": "權限提醒",
     "privacy": "隱私權政策",
     "clearData": "清除所有資料",
-    "deleteConfirmMessage": "這將刪除所有打卡記錄、成就以及夥伴資料。此操作無法復原。",
+    "deleteConfirmMessage": "這將刪除此裝置上的打卡、成就、夥伴、分析事件與應用設定。此操作無法復原。",
+    "privacyUnavailable": "尚未設定隱私權政策網址。正式上架前請在 app.json 設定 PRIVACY_POLICY_URL。",
     "noMemories": "尚無回憶",
+    "shop": "商店",
+    "shopHint": "正式版將連接 Play Billing。金幣包 scaffold 已就緒。",
+    "buyCoins": "金幣包 (100)",
+    "purchaseSuccess": "購買完成！",
+    "purchasePending": "IAP 待 Play Console 設定",
     "english": "English",
     "chinese": "繁體中文"
   }

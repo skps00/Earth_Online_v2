@@ -87,6 +87,21 @@ export class AchievementRepository {
     return result?.progress ?? 0;
   }
 
+  async setProgress(achievementId: string, progress: number, userId: string = 'local'): Promise<number> {
+    const db = await getDatabase();
+    await db.runAsync(
+      `INSERT INTO user_achievements (user_id, achievement_id, progress, is_unlocked, unlocked_at)
+       VALUES (?, ?, ?, 0, NULL)
+       ON CONFLICT(user_id, achievement_id) DO UPDATE SET progress = MAX(progress, ?)`,
+      [userId, achievementId, progress, progress]
+    );
+    const result = await db.getFirstAsync<{ progress: number }>(
+      `SELECT progress FROM user_achievements WHERE user_id = ? AND achievement_id = ?`,
+      [userId, achievementId]
+    );
+    return result?.progress ?? 0;
+  }
+
   async getTotalUnlockedCount(): Promise<number> {
     const db = await getDatabase();
     const result = await db.getFirstAsync<{ cnt: number }>(
@@ -106,5 +121,35 @@ export class AchievementRepository {
       [prereq.prerequisite_id]
     );
     return unlocked ? unlocked.is_unlocked === 1 : false;
+  }
+
+  async isManualAchievement(achievementId: string): Promise<boolean> {
+    const db = await getDatabase();
+    const row = await db.getFirstAsync<{ trigger_type: string }>(
+      `SELECT trigger_type FROM achievement_definitions WHERE id = ?`,
+      [achievementId]
+    );
+    if (row?.trigger_type === 'manual') return true;
+    const trigger = await db.getFirstAsync<{ event_type: string }>(
+      `SELECT event_type FROM trigger_map WHERE achievement_id = ? AND event_type = 'manual_confirm' LIMIT 1`,
+      [achievementId]
+    );
+    return !!trigger;
+  }
+
+  async getById(id: string, lang: Language): Promise<AchievementDisplay | null> {
+    const db = await getDatabase();
+    return db.getFirstAsync<AchievementDisplay>(
+      `SELECT a.*, tt.value as title, td.value as description,
+              COALESCE(u.progress, 0) as progress,
+              COALESCE(u.is_unlocked, 0) as is_unlocked,
+              u.unlocked_at
+       FROM achievement_definitions a
+       LEFT JOIN translations tt ON a.id = tt.entity_id AND tt.lang = ? AND tt.field = 'title'
+       LEFT JOIN translations td ON a.id = td.entity_id AND td.lang = ? AND td.field = 'description'
+       LEFT JOIN user_achievements u ON a.id = u.achievement_id AND u.user_id = 'local'
+       WHERE a.id = ?`,
+      [lang, lang, id]
+    );
   }
 }

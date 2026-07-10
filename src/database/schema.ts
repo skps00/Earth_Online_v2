@@ -1,4 +1,4 @@
-export const SCHEMA_VERSION = 3;
+export const SCHEMA_VERSION = 4;
 
 export const CREATE_TABLES = [
   `CREATE TABLE IF NOT EXISTS achievement_definitions (
@@ -104,5 +104,12 @@ export const CREATE_TABLES = [
     event_type TEXT NOT NULL,
     condition_json TEXT,
     PRIMARY KEY (achievement_id, event_type)
+  )`,
+
+  `CREATE TABLE IF NOT EXISTS analytics_events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    event_name TEXT NOT NULL,
+    params_json TEXT,
+    created_at TEXT DEFAULT (datetime('now'))
   )`,
 ];

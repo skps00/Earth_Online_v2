@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { useTheme } from '@/theme/ThemeProvider';
-import { signIn } from '@/services/GoogleAuthService';
+import { signIn, isGoogleSigninNativeAvailable, GOOGLE_SIGNIN_UNAVAILABLE } from '@/services/GoogleAuthService';
 import { useState } from 'react';
 import { Logger } from '@/utils/logger';
 
@@ -13,6 +13,7 @@ export function LoginScreen({ onLogin, onSkip }: Props) {
   const { colors } = useTheme();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const googleAvailable = isGoogleSigninNativeAvailable();
 
   const handleLogin = async () => {
     setLoading(true);
@@ -20,9 +21,12 @@ export function LoginScreen({ onLogin, onSkip }: Props) {
     try {
       await signIn();
       onLogin();
-    } catch (e: any) {
+    } catch (e: unknown) {
       Logger.error('Login', 'Login failed', e);
-      setError(e.message || 'Login failed');
+      const message = e instanceof Error ? e.message : 'Login failed';
+      setError(message === GOOGLE_SIGNIN_UNAVAILABLE
+        ? 'Google Sign-In requires Dev Client (not Expo Go). Use dev.bat option 5 to build, or tap Skip.'
+        : message);
     } finally {
       setLoading(false);
     }
@@ -49,10 +53,16 @@ export function LoginScreen({ onLogin, onSkip }: Props) {
         </Text>
       </View>
 
+      {!googleAvailable && (
+        <Text style={[styles.hint, { color: colors.onSurfaceVariant }]}>
+          Google 登入需要 Dev Client（Expo Go 不支援）。請用 dev.bat → 選 5 建置，或按 Skip 繼續。
+        </Text>
+      )}
+
       <TouchableOpacity
         onPress={handleLogin}
-        disabled={loading}
-        style={[styles.btn, { backgroundColor: colors.primaryContainer }]}
+        disabled={loading || !googleAvailable}
+        style={[styles.btn, { backgroundColor: googleAvailable ? colors.primaryContainer : colors.outlineVariant }]}
       >
         {loading ? (
           <ActivityIndicator color={colors.onPrimaryContainer} />
@@ -85,5 +95,6 @@ const styles = StyleSheet.create({
   btnText: { fontSize: 18, fontWeight: '700' },
   skipBtn: { marginTop: 16, paddingVertical: 12 },
   skipText: { fontSize: 14 },
+  hint: { fontSize: 12, textAlign: 'center', marginBottom: 16, lineHeight: 18 },
   error: { fontSize: 13, marginTop: 16, textAlign: 'center' },
 });

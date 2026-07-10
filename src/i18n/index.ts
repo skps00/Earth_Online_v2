@@ -9,6 +9,7 @@ import enQuest from './en/quest.json';
 import enCompanion from './en/companion.json';
 import enProfile from './en/profile.json';
 import enErrors from './en/errors.json';
+import enOnboarding from './en/onboarding.json';
 import zhCommon from './zh-TW/common.json';
 import zhHome from './zh-TW/home.json';
 import zhTrophies from './zh-TW/trophies.json';
@@ -16,10 +17,11 @@ import zhQuest from './zh-TW/quest.json';
 import zhCompanion from './zh-TW/companion.json';
 import zhProfile from './zh-TW/profile.json';
 import zhErrors from './zh-TW/errors.json';
+import zhOnboarding from './zh-TW/onboarding.json';
 
 const i18n = new I18n({
-  en: { ...enCommon, ...enHome, ...enTrophies, ...enQuest, ...enCompanion, ...enProfile, ...enErrors },
-  'zh-TW': { ...zhCommon, ...zhHome, ...zhTrophies, ...zhQuest, ...zhCompanion, ...zhProfile, ...zhErrors },
+  en: { ...enCommon, ...enHome, ...enTrophies, ...enQuest, ...enCompanion, ...enProfile, ...enErrors, ...enOnboarding },
+  'zh-TW': { ...zhCommon, ...zhHome, ...zhTrophies, ...zhQuest, ...zhCompanion, ...zhProfile, ...zhErrors, ...zhOnboarding },
 });
 
 i18n.enableFallback = true;

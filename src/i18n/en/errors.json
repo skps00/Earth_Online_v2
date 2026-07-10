@@ -1,6 +1,8 @@
 {
   "errors": {
     "GPS_DENIED": "Location permission denied. Please enable in Settings.",
+    "GPS_DISABLED": "Location services are disabled. Enable them in system Settings.",
+    "GPS_UNAVAILABLE": "Cannot get GPS fix. Move outdoors or set a mock location in the emulator.",
     "GPS_TIMEOUT": "GPS signal weak. Move to an open area and try again.",
     "NETWORK_OFFLINE": "No network connection. Some features are paused.",
     "DB_WRITE_FAILED": "Save failed. Check device storage.",

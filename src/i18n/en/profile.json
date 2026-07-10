@@ -15,8 +15,14 @@
     "permissions": "Permission Reminders",
     "privacy": "Privacy Policy",
     "clearData": "Clear All Data",
-    "deleteConfirmMessage": "This will delete all check-ins, achievements, and companion data. This action cannot be undone.",
+    "deleteConfirmMessage": "This will delete all check-ins, achievements, companion data, analytics events, and app settings on this device. This action cannot be undone.",
+    "privacyUnavailable": "Privacy policy URL is not configured yet. Set PRIVACY_POLICY_URL in app.json before release.",
     "noMemories": "No memories yet",
+    "shop": "Shop",
+    "shopHint": "Connect Play Billing in production. Scaffold ready for coin packs.",
+    "buyCoins": "Coin Pack (100)",
+    "purchaseSuccess": "Purchase complete!",
+    "purchasePending": "IAP pending Play Console setup",
     "english": "English",
     "chinese": "繁體中文"
   }

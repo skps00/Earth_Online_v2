@@ -12,17 +12,23 @@ export function useCompanion() {
   const setCoins = useSetAtom(coinsAtom);
 
   useEffect(() => {
+    let cancelled = false;
+
     (async () => {
       try {
         const data = await repo.get();
-        console.log('[useCompanion] data:', JSON.stringify(data));
+        if (cancelled) return;
         setCompanion(data);
         if (data) setCoins(data.coins);
         setLoading(false);
       } catch (e) {
         console.error('[useCompanion] error:', e);
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     })();
-  }, []);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [setCompanion, setCoins, setLoading]);
 }

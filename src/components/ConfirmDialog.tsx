@@ -9,9 +9,10 @@ interface Props {
   onConfirm: () => void;
   onCancel: () => void;
   confirmLabel?: string;
+  cancelLabel?: string;
 }
 
-export function ConfirmDialog({ visible, title, message, onConfirm, onCancel, confirmLabel }: Props) {
+export function ConfirmDialog({ visible, title, message, onConfirm, onCancel, confirmLabel, cancelLabel }: Props) {
   const { colors } = useTheme();
   const { t } = useTranslation();
   return (
@@ -22,7 +23,7 @@ export function ConfirmDialog({ visible, title, message, onConfirm, onCancel, co
           <Text style={[styles.msg, { color: colors.onSurfaceVariant }]}>{message}</Text>
           <View style={styles.buttons}>
             <TouchableOpacity onPress={onCancel} style={[styles.btn, { borderColor: colors.outline }]}>
-              <Text style={{ color: colors.onSurface }}>{t('common.cancel')}</Text>
+              <Text style={{ color: colors.onSurface }}>{cancelLabel ?? t('common.cancel')}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={onConfirm} style={[styles.btn, { backgroundColor: colors.primaryContainer }]}>
               <Text style={{ color: colors.onPrimaryContainer, fontWeight: '700' }}>{confirmLabel ?? t('common.ok')}</Text>

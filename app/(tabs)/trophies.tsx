@@ -1,10 +1,17 @@
-import { View, Text, FlatList, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, FlatList, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { useEffect } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { activeCategoryAtom, achievementsAtom, isAchievementsLoadingAtom, unlockedIdsAtom, achievementVersionAtom } from '@/stores/achievementStore';
+import {
+  activeCategoryAtom,
+  achievementsAtom,
+  isAchievementsLoadingAtom,
+  unlockedIdsAtom,
+  achievementVersionAtom,
+  selectedAchievementAtom,
+} from '@/stores/achievementStore';
 import { langAtom } from '@/stores/settingsStore';
 import { AchievementRepository } from '@/repositories/AchievementRepository';
 import { CATEGORIES, rarityColors } from '@/types/achievement';
@@ -25,6 +32,7 @@ export default function TrophiesScreen() {
   const setUnlocked = useSetAtom(unlockedIdsAtom);
   const unlockedIds = useAtomValue(unlockedIdsAtom);
   const setLoading = useSetAtom(isAchievementsLoadingAtom);
+  const setSelected = useSetAtom(selectedAchievementAtom);
   const lang = useAtomValue(langAtom);
   const achievementVersion = useAtomValue(achievementVersionAtom);
 
@@ -84,6 +92,10 @@ export default function TrophiesScreen() {
             const rarityColor = rarityColors(item.rarity as any);
             const borderColor = unlocked ? rarityColor : colors.outlineVariant;
             return (
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => setSelected(item)}
+              >
               <View style={[styles.card, { backgroundColor: colors.surface, borderColor }]}>
                 <View style={styles.cardHeader}>
                   {item.icon ? <Text style={styles.cardIcon}>{item.icon}</Text> : null}
@@ -108,6 +120,7 @@ export default function TrophiesScreen() {
                   </View>
                 ) : null}
               </View>
+              </TouchableOpacity>
             );
           }}
         />

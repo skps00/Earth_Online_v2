@@ -1,35 +1,54 @@
-import * as BackgroundFetch from 'expo-background-fetch';
+import * as BackgroundTask from 'expo-background-task';
 import * as TaskManager from 'expo-task-manager';
 import { isSignedIn } from './GoogleAuthService';
 import { syncToCloud } from './CloudSyncService';
+import { checkWeatherAndEmitEvents } from './WeatherService';
+import { checkEarthquakeAndEmitEvents } from './EarthquakeService';
+import { checkScreenTimeAndEmitEvents } from './ScreenTimeService';
+import { checkEnvironmentAchievements } from './EnvironmentAchievementService';
 import { Logger } from '@/utils/logger';
 
 const TASK_NAME = 'background-sync';
 
 TaskManager.defineTask(TASK_NAME, async () => {
   try {
-    const signedIn = await isSignedIn();
-    if (!signedIn) return BackgroundFetch.BackgroundFetchResult.NoData;
+    const envUnlocked = await checkEnvironmentAchievements();
+    const weatherUnlocked = await checkWeatherAndEmitEvents();
+    const earthquakeUnlocked = await checkEarthquakeAndEmitEvents();
+    const screenTimeUnlocked = await checkScreenTimeAndEmitEvents();
+    const total =
+      envUnlocked.length +
+      weatherUnlocked.length +
+      earthquakeUnlocked.length +
+      screenTimeUnlocked.length;
+    if (total > 0) {
+      Logger.info(
+        'BackgroundSync',
+        `Achievements: env=${envUnlocked.length} weather=${weatherUnlocked.length} eq=${earthquakeUnlocked.length} screen=${screenTimeUnlocked.length}`,
+      );
+    }
 
-    await syncToCloud();
-    Logger.info('BackgroundSync', 'Background sync completed');
-    return BackgroundFetch.BackgroundFetchResult.NewData;
+    const signedIn = await isSignedIn();
+    if (signedIn) {
+      await syncToCloud();
+      Logger.info('BackgroundSync', 'Cloud sync completed');
+    }
+
+    return BackgroundTask.BackgroundTaskResult.Success;
   } catch (e) {
-    Logger.error('BackgroundSync', 'Background sync failed', e);
-    return BackgroundFetch.BackgroundFetchResult.Failed;
+    Logger.error('BackgroundSync', 'Background task failed', e);
+    return BackgroundTask.BackgroundTaskResult.Failed;
   }
 });
 
 export async function registerBackgroundSync(): Promise<void> {
   try {
-    const status = await BackgroundFetch.getStatusAsync();
-    if (status === BackgroundFetch.BackgroundFetchStatus.Available) {
-      await BackgroundFetch.registerTaskAsync(TASK_NAME, {
-        minimumInterval: 60 * 60 * 24, // 24 hours
-        stopOnTerminate: false,
-        startOnBoot: true,
+    const status = await BackgroundTask.getStatusAsync();
+    if (status === BackgroundTask.BackgroundTaskStatus.Available) {
+      await BackgroundTask.registerTaskAsync(TASK_NAME, {
+        minimumInterval: 60 * 30,
       });
-      Logger.info('BackgroundSync', 'Background sync registered');
+      Logger.info('BackgroundSync', 'Background sync registered (30 min)');
     }
   } catch (e) {
     Logger.error('BackgroundSync', 'Failed to register background sync', e);
@@ -38,7 +57,7 @@ export async function registerBackgroundSync(): Promise<void> {
 
 export async function unregisterBackgroundSync(): Promise<void> {
   try {
-    await BackgroundFetch.unregisterTaskAsync(TASK_NAME);
+    await BackgroundTask.unregisterTaskAsync(TASK_NAME);
     Logger.info('BackgroundSync', 'Background sync unregistered');
   } catch (e) {
     Logger.error('BackgroundSync', 'Failed to unregister background sync', e);

@@ -1,6 +1,8 @@
 {
   "errors": {
     "GPS_DENIED": "位置權限已關閉，請至設定中開啟",
+    "GPS_DISABLED": "裝置定位服務已關閉，請至系統設定開啟",
+    "GPS_UNAVAILABLE": "目前無法取得 GPS 位置，請移至空曠處或開啟模擬器定位",
     "GPS_TIMEOUT": "GPS 訊號微弱，請移至空曠處再試",
     "NETWORK_OFFLINE": "目前無網路連線，部分功能已暫停",
     "DB_WRITE_FAILED": "儲存失敗，請確認裝置儲存空間",

@@ -12,6 +12,13 @@
     },
     "completed": "Completed",
     "prerequisiteHint": "Complete {{name}} first",
-    "empty": "No achievements seeded yet"
+    "empty": "No achievements seeded yet",
+    "confirmComplete": "I Did It",
+    "confirmTitle": "Confirm Achievement",
+    "confirmMessage": "Confirm you honestly completed this real-life milestone?",
+    "confirmFailed": "Could not unlock — check prerequisites or if already unlocked.",
+    "unlockedTitle": "ACHIEVEMENT UNLOCKED",
+    "shareMessage": "I unlocked \"{{title}}\" ({{rarity}}) in Earth Online! 🌍",
+    "unlockedOn": "Unlocked {{date}}"
   }
 }

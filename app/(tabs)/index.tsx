@@ -10,6 +10,8 @@ import { isCheckingInAtom, lastCheckInAtom, checkInErrorAtom } from '@/stores/ch
 import { companionAtom } from '@/stores/companionStore';
 import { coinsAtom } from '@/stores/currencyStore';
 import { PermissionDialog } from '@/components/PermissionDialog';
+import { CompanionCanvas } from '@/components/CompanionCanvas';
+import { xpProgressPercent, xpRequiredForLevel } from '@/services/CompanionService';
 import { CheckInRepository } from '@/repositories/CheckInRepository';
 
 const checkInRepo = new CheckInRepository();
@@ -43,11 +45,8 @@ export default function HomeScreen() {
   }, [lastCheckIn]);
 
   const bottomPadding = insets.bottom + 100;
-
-  useEffect(() => {
-    console.log('[Home] companion:', JSON.stringify(companion));
-    console.log('[Home] coins:', coins);
-  }, [companion, coins]);
+  const xpRequired = xpRequiredForLevel(companion?.level ?? 1);
+  const xpPct = xpProgressPercent(companion?.xp ?? 0, companion?.level ?? 1);
 
   return (
     <ScrollView style={[styles.container, { backgroundColor: colors.background }]} contentContainerStyle={[styles.content, { paddingBottom: bottomPadding }]}>
@@ -60,10 +59,15 @@ export default function HomeScreen() {
       </View>
 
       <View style={[styles.petCard, { backgroundColor: colors.surface, borderColor: colors.primaryContainer }]}>
-        <Text style={styles.petEmoji}>{companion?.emoji ?? '🐉'}</Text>
+        <CompanionCanvas emoji={companion?.emoji ?? '🐉'} size={120} primaryColor={colors.primaryContainer} />
         <Text style={{ fontSize: 20, color: colors.onSurface, fontWeight: 'bold' }}>{companion?.name ?? 'Ryujin'}</Text>
         <Text style={{ fontSize: 12, color: colors.secondary, fontWeight: 'bold' }}>LVL {companion?.level ?? 1} {companion?.species?.toUpperCase() ?? 'DRAGON'}</Text>
-        <Text style={[styles.comingSoonSmall, { color: colors.outline }]}>{t('home.comingSoon')}</Text>
+        <View style={styles.xpRow}>
+          <View style={[styles.xpBar, { backgroundColor: colors.outlineVariant }]}>
+            <View style={[styles.xpFill, { backgroundColor: colors.primaryContainer, width: `${xpPct}%` }]} />
+          </View>
+          <Text style={[styles.xpText, { color: colors.onSurfaceVariant }]}>{companion?.xp ?? 0}/{xpRequired} XP</Text>
+        </View>
       </View>
 
       <TouchableOpacity
@@ -91,7 +95,7 @@ export default function HomeScreen() {
           {lastCheckIn.unlockedAchievements.length > 0 && `\n🏆 ${lastCheckIn.unlockedAchievements.length === 1 ? t('home.achievementUnlocked', { count: lastCheckIn.unlockedAchievements.length }) : t('home.achievementsUnlocked', { count: lastCheckIn.unlockedAchievements.length })}`}
         </Text>
       )}
-      {error && <Text style={[styles.error, { color: colors.error }]}>❌ {error}</Text>}
+      {error && <Text style={[styles.error, { color: colors.error }]}>❌ {t(`errors.${error}`)}</Text>}
 
       <View style={[styles.section, { backgroundColor: colors.surface, borderColor: colors.outlineVariant }]}>
         <Text style={[styles.sectionTitle, { color: colors.onSurface }]}>🌍 {t('home.adventureStats')}</Text>
@@ -141,10 +145,10 @@ const styles = StyleSheet.create({
   currencyRow: { flexDirection: 'row', justifyContent: 'center', paddingVertical: 8, borderBottomWidth: 1 },
   coins: { fontSize: 18 },
   petCard: { padding: 20, borderRadius: 12, borderWidth: 1, alignItems: 'center', gap: 8 },
-  petEmoji: { fontSize: 64 },
-  petName: { fontSize: 20 },
-  petLevel: { fontSize: 12 },
-  comingSoonSmall: { fontSize: 10, fontStyle: 'italic', marginTop: 4 },
+  xpRow: { width: '100%', gap: 4, marginTop: 4 },
+  xpBar: { height: 6, borderRadius: 3, overflow: 'hidden', width: '100%' },
+  xpFill: { height: '100%', borderRadius: 3 },
+  xpText: { fontSize: 10, textAlign: 'center' },
   checkinBtn: { paddingVertical: 16, borderRadius: 12, alignItems: 'center' },
   checkinText: { fontSize: 18, fontWeight: '700' },
   checkinProgress: { gap: 6 },

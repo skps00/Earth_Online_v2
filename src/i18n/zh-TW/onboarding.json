@@ -1,0 +1,16 @@
+{
+  "onboarding": {
+    "welcomeTitle": "歡迎來到地球 Online",
+    "welcomeBody": "把現實生活變成成就。打卡、探索、培養你的夥伴。",
+    "locationTitle": "定位權限",
+    "locationBody": "我們只在裝置上使用 GPS 驗證打卡，原始定位資料不會上傳分析。",
+    "readyTitle": "準備好了",
+    "readyBody": "在首頁點擊打卡開始冒險。許多社交成就需手動確認——誠實最重要！",
+    "next": "繼續",
+    "skip": "暫時跳過",
+    "start": "開始冒險"
+  },
+  "camera": {
+    "permissionNeeded": "需要相機權限才能儲存成就紀念照片。"
+  }
+}

@@ -1,9 +1,12 @@
 import { LocationService } from './LocationService';
+import { emitCheckInGameEvents } from './checkInEvents';
+import { checkWeatherAndEmitEvents } from './WeatherService';
+import { checkEarthquakeAndEmitEvents } from './EarthquakeService';
 import { checkSunEvent } from './SunriseService';
+import { awardCheckInRewards, awardAchievementRewards } from './CompanionService';
 import { CheckInRepository } from '@/repositories/CheckInRepository';
-import { processEvent } from '@/engine/processEvent';
 import { updateQuestProgress } from './QuestService';
-import type { GameEvent } from '@/types/events';
+import { getCheckInQuestTriggers } from './questTriggers';
 
 export interface CheckInDependencies {
   locationService: LocationService;
@@ -51,38 +54,36 @@ export async function performCheckIn(): Promise<CheckInResult> {
   const uniqueCountries = await checkInRepo.countUniqueCountries();
   const uniqueContinents = await checkInRepo.countUniqueContinents();
 
-  const unlocked: string[] = [];
+  const now = new Date();
+  const unlocked = await emitCheckInGameEvents({
+    country: loc.country,
+    continent: loc.continent,
+    latitude: loc.latitude,
+    longitude: loc.longitude,
+    altitudeMeters: loc.altitudeMeters,
+    uniqueLocations,
+    uniqueCountries,
+    uniqueContinents,
+    hour: now.getHours(),
+    weekday: now.getDay(),
+  });
 
-  if (loc.country) {
-    const results = await processEvent({
-      type: 'checkin_completed',
-      country: loc.country,
-      continent: loc.continent ?? '',
-    });
-    unlocked.push(...results);
-  }
+  const weatherUnlocked = await checkWeatherAndEmitEvents();
+  unlocked.push(...weatherUnlocked);
 
-  const countResults = await processEvent({ type: 'checkin_count', uniqueLocations });
-  unlocked.push(...countResults);
-
-  const countryResults = await processEvent({ type: 'country_count', uniqueCountries });
-  unlocked.push(...countryResults);
-
-  const continentResults = await processEvent({ type: 'continent_count', uniqueContinents });
-  unlocked.push(...continentResults);
+  const earthquakeUnlocked = await checkEarthquakeAndEmitEvents();
+  unlocked.push(...earthquakeUnlocked);
 
   const sun = checkSunEvent(loc.latitude, loc.longitude);
-  if (sun.phase) {
-    const sunResults = await processEvent({
-      type: 'sunrise_sunset',
-      phase: sun.phase,
-      localTime: sun.localTime ?? '',
-    });
-    unlocked.push(...sunResults);
+  const completedQuests: string[] = [];
+  for (const trigger of getCheckInQuestTriggers(now.getHours())) {
+    completedQuests.push(...(await updateQuestProgress(trigger, 1)));
   }
 
-  // Update daily quest progress
-  const completedQuests = await updateQuestProgress('checkin', 1);
+  await awardCheckInRewards();
+  if (unlocked.length > 0) {
+    await awardAchievementRewards(unlocked.length);
+  }
 
   return {
     success: true,

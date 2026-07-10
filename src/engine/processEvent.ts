@@ -7,6 +7,17 @@ import { getRuleForEvent } from './eventRules';
 
 const achievementRepo = new AchievementRepository();
 
+function getProgressValue(event: GameEvent): number {
+  switch (event.type) {
+    case 'checkin_count': return event.uniqueLocations;
+    case 'country_count': return event.uniqueCountries;
+    case 'continent_count': return event.uniqueContinents;
+    case 'steps_daily': return event.count;
+    case 'activity_updated': return event.minutes;
+    default: return 1;
+  }
+}
+
 export async function processEvent(event: GameEvent): Promise<string[]> {
   const db = await getDatabase();
   const unlockedIds: string[] = [];
@@ -37,7 +48,8 @@ export async function processEvent(event: GameEvent): Promise<string[]> {
       await achievementRepo.unlockAchievement(def.id);
       unlockedIds.push(def.id);
     } else if (rule.action === 'progress') {
-      const newProgress = await achievementRepo.incrementProgress(def.id, 1);
+      const value = getProgressValue(event);
+      const newProgress = await achievementRepo.setProgress(def.id, value);
       if (newProgress >= def.trigger_goal) {
         await achievementRepo.unlockAchievement(def.id);
         unlockedIds.push(def.id);

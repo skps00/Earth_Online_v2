@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Logger } from '@/utils/logger';
 
 interface Props {
   children: React.ReactNode;
@@ -19,23 +20,26 @@ export class ErrorBoundary extends React.Component<Props, State> {
   }
 
   componentDidCatch(error: Error, info: React.ErrorInfo) {
-    if (__DEV__) console.error('[ErrorBoundary]', error.message, info.componentStack);
+    Logger.error('ErrorBoundary', `${error.message} ${info.componentStack ?? ''}`);
   }
+
+  handleRetry = () => {
+    this.setState({ hasError: false, error: null });
+  };
 
   render() {
     if (this.state.hasError) {
-      return this.props.fallback ?? (
-        <View style={styles.container}>
-          <Text style={styles.icon}>⚠️</Text>
-          <Text style={styles.title}>Something went wrong</Text>
-          <Text style={styles.message}>{this.state.error?.message}</Text>
-          <TouchableOpacity
-            onPress={() => this.setState({ hasError: false, error: null })}
-            style={styles.btn}
-          >
-            <Text style={styles.btnText}>Try Again</Text>
-          </TouchableOpacity>
-        </View>
+      return (
+        this.props.fallback ?? (
+          <View style={styles.container}>
+            <Text style={styles.icon}>⚠️</Text>
+            <Text style={styles.title}>Something went wrong</Text>
+            <Text style={styles.message}>{this.state.error?.message}</Text>
+            <TouchableOpacity onPress={this.handleRetry} style={styles.btn}>
+              <Text style={styles.btnText}>Try Again</Text>
+            </TouchableOpacity>
+          </View>
+        )
       );
     }
     return this.props.children;

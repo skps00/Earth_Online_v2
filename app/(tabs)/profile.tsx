@@ -8,6 +8,8 @@ import { themeAtom, langAtom, soundEnabledAtom } from '@/stores/settingsStore';
 import { useSettings } from '@/hooks/useSettings';
 import { exportBackup } from '@/services/BackupService';
 import { useCloudSync } from '@/hooks/useCloudSync';
+import { IAP_PRODUCTS, isIAPEnabled, purchaseProduct } from '@/services/IAPService';
+import { openPrivacyPolicy } from '@/utils/legalLinks';
 import { syncStatusAtom } from '@/stores/syncStore';
 import { getDatabase } from '@/database/connection';
 import { seedDatabase } from '@/database/seed';
@@ -25,10 +27,11 @@ export default function ProfileScreen() {
   const lang = useAtomValue(langAtom);
   const sound = useAtomValue(soundEnabledAtom);
   const { persistTheme, persistLang, persistSound } = useSettings();
-  const { isAuthenticated, userEmail, checkAuth, authenticate, logout, sync } = useCloudSync();
+  const { isAuthenticated, userEmail, authenticate, logout, sync, googleSigninAvailable } = useCloudSync();
   const syncStatus = useAtomValue(syncStatusAtom);
   const [backupMessage, setBackupMessage] = useState<string | null>(null);
   const [syncMessage, setSyncMessage] = useState<string | null>(null);
+  const [iapMessage, setIapMessage] = useState<string | null>(null);
   const setAchievements = useSetAtom(achievementsAtom);
   const setUnlocked = useSetAtom(unlockedIdsAtom);
   const setCompanion = useSetAtom(companionAtom);
@@ -53,6 +56,8 @@ export default function ProfileScreen() {
             await db.execAsync(`DELETE FROM user_daily_quests`);
             await db.execAsync(`DELETE FROM memories`);
             await db.execAsync(`DELETE FROM companion`);
+            await db.execAsync(`DELETE FROM analytics_events`);
+            await db.execAsync(`DELETE FROM app_settings`);
             setAchievements([]);
             setUnlocked(new Set());
             setCompanion(null);
@@ -87,6 +92,16 @@ export default function ProfileScreen() {
       <SettingRow label={t('profile.theme')} value={theme === 'dark' ? t('profile.dark') : t('profile.light')} onPress={() => persistTheme(theme === 'dark' ? 'light' : 'dark')} />
       <SettingRow label={t('profile.language')} value={lang === 'en' ? 'English' : '繁體中文'} onPress={() => setLangDropdownVisible(true)} />
       <SettingRow label={t('profile.sound')} value={sound ? t('common.on') : t('common.off')} onPress={() => persistSound(!sound)} />
+      <TouchableOpacity
+        onPress={async () => {
+          const opened = await openPrivacyPolicy();
+          if (!opened) Alert.alert(t('profile.privacy'), t('profile.privacyUnavailable'));
+        }}
+        style={[styles.row, { borderColor: colors.outlineVariant }]}
+      >
+        <Text style={[styles.label, { color: colors.onSurface }]} allowFontScaling={false} textBreakStrategy="simple">{t('profile.privacy')}</Text>
+        <Text style={[styles.value, { color: colors.primaryContainer }]} allowFontScaling={false} textBreakStrategy="simple">→</Text>
+      </TouchableOpacity>
 
       <View style={[styles.section, { borderColor: colors.outlineVariant }]}>
         <Text style={[styles.sectionTitle, { color: colors.onSurface }]}>{t('profile.backup')}</Text>
@@ -110,6 +125,11 @@ export default function ProfileScreen() {
 
       <View style={[styles.section, { borderColor: colors.outlineVariant }]}>
         <Text style={[styles.sectionTitle, { color: colors.onSurface }]}>☁️ Cloud Sync</Text>
+        {!googleSigninAvailable && (
+          <Text style={{ fontSize: 12, color: colors.onSurfaceVariant, lineHeight: 18 }}>
+            Google 登入需要 Dev Client。請用 dev.bat → 選 5 建置並安裝後再試。
+          </Text>
+        )}
         {userEmail && (
           <Text style={{ fontSize: 13, color: colors.secondary }}>👤 {userEmail}</Text>
         )}
@@ -135,18 +155,35 @@ export default function ProfileScreen() {
               <Text style={[styles.btnText, { color: colors.onSurfaceVariant }]}>Sign Out</Text>
             </TouchableOpacity>
           </>
-        ) : (
+        ) : googleSigninAvailable ? (
           <TouchableOpacity
             onPress={authenticate}
             style={[styles.btn, { borderColor: colors.primaryContainer }]}
           >
             <Text style={[styles.btnText, { color: colors.primaryContainer }]}>Sign in with Google</Text>
           </TouchableOpacity>
-        )}
+        ) : null}
         {syncMessage && (
           <Text style={[styles.backupMsg, { color: '#50C878' }]}>{syncMessage}</Text>
         )}
       </View>
+
+      {isIAPEnabled && (
+      <View style={[styles.section, { borderColor: colors.outlineVariant }]}>
+        <Text style={[styles.sectionTitle, { color: colors.onSurface }]}>{t('profile.shop')}</Text>
+        <Text style={[styles.empty, { color: colors.outline }]}>{t('profile.shopHint')}</Text>
+        <TouchableOpacity
+          onPress={async () => {
+            const r = await purchaseProduct(IAP_PRODUCTS.COIN_PACK_SMALL);
+            setIapMessage(r.success ? t('profile.purchaseSuccess') : t('profile.purchasePending'));
+          }}
+          style={[styles.btn, { borderColor: colors.primaryContainer }]}
+        >
+          <Text style={[styles.btnText, { color: colors.primaryContainer }]}>{t('profile.buyCoins')}</Text>
+        </TouchableOpacity>
+        {iapMessage && <Text style={[styles.backupMsg, { color: colors.secondary }]}>{iapMessage}</Text>}
+      </View>
+      )}
 
       <View style={[styles.section, { borderColor: colors.outlineVariant }]}>
         <Text style={[styles.sectionTitle, { color: colors.onSurface }]}>{t('profile.memories')}</Text>

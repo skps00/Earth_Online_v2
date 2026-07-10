@@ -12,6 +12,13 @@
     },
     "completed": "已完成",
     "prerequisiteHint": "需先完成 {{name}}",
-    "empty": "尚無成就資料"
+    "empty": "尚無成就資料",
+    "confirmComplete": "我完成了",
+    "confirmTitle": "確認成就",
+    "confirmMessage": "誠實確認你已完成這個現實里程碑？",
+    "confirmFailed": "無法解鎖——請檢查前置成就或是否已解鎖。",
+    "unlockedTitle": "成就解鎖",
+    "shareMessage": "我在地球 Online 解鎖了「{{title}}」（{{rarity}}）！🌍",
+    "unlockedOn": "解鎖於 {{date}}"
   }
 }
