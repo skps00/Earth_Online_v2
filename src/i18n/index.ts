@@ -10,6 +10,8 @@ import enCompanion from './en/companion.json';
 import enProfile from './en/profile.json';
 import enErrors from './en/errors.json';
 import enOnboarding from './en/onboarding.json';
+import enStartup from './en/startup.json';
+import enAuth from './en/auth.json';
 import zhCommon from './zh-TW/common.json';
 import zhHome from './zh-TW/home.json';
 import zhTrophies from './zh-TW/trophies.json';
@@ -18,10 +20,12 @@ import zhCompanion from './zh-TW/companion.json';
 import zhProfile from './zh-TW/profile.json';
 import zhErrors from './zh-TW/errors.json';
 import zhOnboarding from './zh-TW/onboarding.json';
+import zhStartup from './zh-TW/startup.json';
+import zhAuth from './zh-TW/auth.json';
 
 const i18n = new I18n({
-  en: { ...enCommon, ...enHome, ...enTrophies, ...enQuest, ...enCompanion, ...enProfile, ...enErrors, ...enOnboarding },
-  'zh-TW': { ...zhCommon, ...zhHome, ...zhTrophies, ...zhQuest, ...zhCompanion, ...zhProfile, ...zhErrors, ...zhOnboarding },
+  en: { ...enCommon, ...enHome, ...enTrophies, ...enQuest, ...enCompanion, ...enProfile, ...enErrors, ...enOnboarding, ...enStartup, ...enAuth },
+  'zh-TW': { ...zhCommon, ...zhHome, ...zhTrophies, ...zhQuest, ...zhCompanion, ...zhProfile, ...zhErrors, ...zhOnboarding, ...zhStartup, ...zhAuth },
 });
 
 i18n.enableFallback = true;

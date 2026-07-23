@@ -22,7 +22,7 @@ export function ShareCard({ achievement, companionEmoji = '🐉', scale = 0.3 }:
   return (
     <View style={[styles.outer, { width: size, height: size, backgroundColor: colors.background }]}>
       <View style={[styles.inner, { borderColor: rarityColor }]}>
-        <Text style={[styles.brand, { color: colors.primaryContainer }]}>地球 Online</Text>
+        <Text style={[styles.brand, { color: colors.primaryContainer }]}>{t('common.appName')}</Text>
         <CompanionCanvas emoji={achievement.icon ?? companionEmoji} size={size * 0.35} primaryColor={rarityColor} />
         <Text style={[styles.title, { color: colors.onSurface, fontSize: size * 0.05 }]}>{achievement.title}</Text>
         <Text style={[styles.rarity, { color: rarityColor, fontSize: size * 0.028 }]}>{achievement.rarity}</Text>

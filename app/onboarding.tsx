@@ -1,4 +1,5 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Platform, ScrollView, Alert } from 'react-native';
+import { AppText } from '@/components/AppText';
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -24,59 +25,78 @@ export default function OnboardingScreen() {
   };
 
   const requestLocation = async () => {
-    await Location.requestForegroundPermissionsAsync();
-    setStep(2);
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status === Location.PermissionStatus.GRANTED) {
+      setStep(2);
+      return;
+    }
+    Alert.alert(t('onboarding.locationTitle'), t('errors.GPS_DENIED'));
   };
 
   const current = STEPS[step];
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <ScrollView
+      contentContainerStyle={[styles.container, { backgroundColor: colors.background }]}
+      keyboardShouldPersistTaps="handled"
+    >
       {current === 'welcome' && (
         <>
-          <Text style={styles.emoji}>🌍</Text>
-          <Text style={[styles.title, { color: colors.primaryContainer }]}>{t('onboarding.welcomeTitle')}</Text>
-          <Text style={[styles.body, { color: colors.onSurfaceVariant }]}>{t('onboarding.welcomeBody')}</Text>
+          <AppText style={styles.emoji}>🌍</AppText>
+          <AppText style={[styles.title, { color: colors.primaryContainer }]}>{t('onboarding.welcomeTitle')}</AppText>
+          <AppText style={[styles.body, { color: colors.onSurfaceVariant }]}>{t('onboarding.welcomeBody')}</AppText>
           <TouchableOpacity style={[styles.btn, { backgroundColor: colors.primaryContainer }]} onPress={() => setStep(1)}>
-            <Text style={[styles.btnText, { color: colors.onPrimaryContainer }]}>{t('onboarding.next')}</Text>
+            <AppText style={[styles.btnText, { color: colors.onPrimaryContainer }]}>{t('onboarding.next')}</AppText>
           </TouchableOpacity>
         </>
       )}
 
       {current === 'permissions' && (
         <>
-          <Text style={styles.emoji}>📍</Text>
-          <Text style={[styles.title, { color: colors.primaryContainer }]}>{t('onboarding.locationTitle')}</Text>
-          <Text style={[styles.body, { color: colors.onSurfaceVariant }]}>{t('onboarding.locationBody')}</Text>
+          <AppText style={styles.emoji}>📍</AppText>
+          <AppText style={[styles.title, { color: colors.primaryContainer }]}>{t('onboarding.locationTitle')}</AppText>
+          <AppText style={[styles.body, { color: colors.onSurfaceVariant }]}>{t('onboarding.locationBody')}</AppText>
           <TouchableOpacity style={[styles.btn, { backgroundColor: colors.primaryContainer }]} onPress={requestLocation}>
-            <Text style={[styles.btnText, { color: colors.onPrimaryContainer }]}>{t('common.allow')}</Text>
+            <AppText style={[styles.btnText, { color: colors.onPrimaryContainer }]}>{t('common.allow')}</AppText>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setStep(2)} style={styles.skip}>
-            <Text style={{ color: colors.outline }}>{t('onboarding.skip')}</Text>
+          <TouchableOpacity onPress={() => setStep(2)} style={styles.skip} accessibilityRole="button">
+            <AppText
+              style={[styles.skipText, { color: colors.outline }]}
+              textBreakStrategy="simple"
+              allowFontScaling={false}
+            >
+              {t('onboarding.skip')}
+            </AppText>
           </TouchableOpacity>
         </>
       )}
 
       {current === 'ready' && (
         <>
-          <Text style={styles.emoji}>🏆</Text>
-          <Text style={[styles.title, { color: colors.primaryContainer }]}>{t('onboarding.readyTitle')}</Text>
-          <Text style={[styles.body, { color: colors.onSurfaceVariant }]}>{t('onboarding.readyBody')}</Text>
+          <AppText style={styles.emoji}>🏆</AppText>
+          <AppText style={[styles.title, { color: colors.primaryContainer }]}>{t('onboarding.readyTitle')}</AppText>
+          <AppText style={[styles.body, { color: colors.onSurfaceVariant }]}>{t('onboarding.readyBody')}</AppText>
           <TouchableOpacity style={[styles.btn, { backgroundColor: colors.primaryContainer }]} onPress={finish}>
-            <Text style={[styles.btnText, { color: colors.onPrimaryContainer }]}>{t('onboarding.start')}</Text>
+            <AppText style={[styles.btnText, { color: colors.onPrimaryContainer }]}>{t('onboarding.start')}</AppText>
           </TouchableOpacity>
         </>
       )}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32 },
+  container: { flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 32, paddingVertical: 48 },
   emoji: { fontSize: 72, marginBottom: 24 },
   title: { fontSize: 26, fontWeight: '700', textAlign: 'center', marginBottom: 16 },
   body: { fontSize: 15, textAlign: 'center', lineHeight: 22, marginBottom: 32 },
   btn: { paddingVertical: 14, paddingHorizontal: 40, borderRadius: 12 },
   btnText: { fontSize: 16, fontWeight: '700' },
-  skip: { marginTop: 16, padding: 8 },
+  skip: { marginTop: 16, paddingVertical: 12, paddingHorizontal: 16, alignSelf: 'stretch', alignItems: 'center' },
+  skipText: {
+    fontSize: 14,
+    lineHeight: 22,
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'android' ? 'sans-serif' : undefined,
+  },
 });

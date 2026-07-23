@@ -8,6 +8,12 @@
     "xp": "+{{xp}} XP",
     "notStarted": "尚未開始",
     "empty": "每日任務將會顯示於此",
-    "completedBadge": "已完成"
+    "completedBadge": "已完成",
+    "takePhoto": "拍照",
+    "rewardXp": "+{{xp}} XP",
+    "rewardXpCoins": "+{{xp}} XP · +{{coins}} 金幣",
+    "completeTitle": "任務完成！",
+    "completeRewardXp": "+{{xp}} XP",
+    "completeReward": "+{{xp}} XP · +{{coins}} 金幣"
   }
 }

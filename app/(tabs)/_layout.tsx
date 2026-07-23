@@ -2,13 +2,13 @@ import { Tabs } from 'expo-router';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from '@/i18n';
-import { Text } from 'react-native';
+import { AppText } from '@/components/AppText';
 
 function TabIcon({ name, focused }: { name: string; focused: boolean }) {
   const icons: Record<string, string> = {
     index: '🏠', trophies: '🏆', quest: '📋', companion: '🐉', profile: '👤',
   };
-  return <Text style={{ fontSize: 22, opacity: focused ? 1 : 0.5 }}>{icons[name] ?? '●'}</Text>;
+  return <AppText style={{ fontSize: 22, opacity: focused ? 1 : 0.5 }}>{icons[name] ?? '●'}</AppText>;
 }
 
 export default function TabLayout() {
@@ -23,7 +23,7 @@ export default function TabLayout() {
       tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.outlineVariant, paddingBottom: Math.max(insets.bottom, 4), height: tabHeight },
       tabBarActiveTintColor: colors.primaryContainer,
       tabBarInactiveTintColor: colors.outline,
-      tabBarLabelStyle: { fontSize: 10 },
+      tabBarLabelStyle: { fontSize: 10, lineHeight: 14 },
     }}>
       <Tabs.Screen name="index" options={{ tabBarLabel: t('common.tabHome'), tabBarIcon: ({ focused }) => <TabIcon name="index" focused={focused} /> }} />
       <Tabs.Screen name="trophies" options={{ tabBarLabel: t('common.tabTrophies'), tabBarIcon: ({ focused }) => <TabIcon name="trophies" focused={focused} /> }} />

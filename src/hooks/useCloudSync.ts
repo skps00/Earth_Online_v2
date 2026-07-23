@@ -41,6 +41,7 @@ export function useCloudSync() {
   const logout = async () => {
     await signOut();
     setIsAuthenticated(false);
+    setUserEmail(null);
   };
 
   const sync = async () => {

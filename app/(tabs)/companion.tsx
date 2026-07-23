@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { AppText } from '@/components/AppText';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
@@ -33,30 +34,40 @@ export default function CompanionScreen() {
   const xpPct = xpProgressPercent(companion.xp, companion.level);
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background, paddingBottom: bottomPadding }]}>
-      <Text style={[styles.title, { color: colors.primaryContainer }]}>{t('companion.title')}</Text>
+    <ScrollView
+      style={[styles.container, { backgroundColor: colors.background }]}
+      contentContainerStyle={[styles.content, { paddingBottom: bottomPadding }]}
+    >
+      <AppText style={[styles.title, { color: colors.primaryContainer }]}>{t('companion.title')}</AppText>
 
       <CompanionCanvas emoji={companion.emoji} size={180} primaryColor={colors.primaryContainer} />
 
-      <Text style={[styles.name, { color: colors.onSurface }]}>{companion.name}</Text>
-      <Text style={[styles.species, { color: colors.secondary }]}>
+      <AppText style={[styles.name, { color: colors.onSurface }]}>{companion.name}</AppText>
+      <AppText style={[styles.species, { color: colors.secondary }]}>
         {t('companion.levelFormat', { level: companion.level, species: companion.species.toUpperCase() })}
-      </Text>
-      <Text style={[styles.ready, { color: colors.onSurfaceVariant }]}>{t('companion.ready')}</Text>
+      </AppText>
+      <AppText style={[styles.ready, { color: colors.onSurfaceVariant }]}>{t('companion.ready')}</AppText>
 
       <View style={[styles.xpCard, { backgroundColor: colors.surface, borderColor: colors.outlineVariant }]}>
         <View style={styles.xpHeader}>
-          <Text style={[styles.xpLabel, { color: colors.onSurface }]}>XP</Text>
-          <Text style={[styles.xpValue, { color: colors.onSurfaceVariant }]}>{companion.xp} / {xpRequired}</Text>
+          <AppText style={[styles.xpLabel, { color: colors.onSurface }]}>XP</AppText>
+          <AppText
+            style={[styles.xpValue, { color: colors.onSurfaceVariant }]}
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.85}
+          >
+            {t('companion.xpFormat', { current: companion.xp, max: xpRequired })}
+          </AppText>
         </View>
         <View style={[styles.progressBar, { backgroundColor: colors.outlineVariant }]}>
           <View style={[styles.progressFill, { backgroundColor: colors.primaryContainer, width: `${xpPct}%` }]} />
         </View>
-        <Text style={[styles.evolution, { color: colors.secondary }]}>{t('companion.evolution')}</Text>
+        <AppText style={[styles.evolution, { color: colors.secondary }]}>{t('companion.evolution')}</AppText>
       </View>
 
       <View style={[styles.statsCard, { backgroundColor: colors.surface, borderColor: colors.outlineVariant }]}>
-        <Text style={[styles.statsTitle, { color: colors.onSurface }]}>{t('companion.coreAttributes')}</Text>
+        <AppText style={[styles.statsTitle, { color: colors.onSurface }]}>{t('companion.coreAttributes')}</AppText>
         <CompanionRadarChart
           stats={{
             strength: companion.strength,
@@ -73,23 +84,29 @@ export default function CompanionScreen() {
           ) as Record<CompanionStatKey, string>}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, gap: 12, alignItems: 'center' },
+  container: { flex: 1 },
+  content: { padding: 16, gap: 12, alignItems: 'center' },
   title: { fontSize: 24, fontWeight: '700', textAlign: 'center', marginTop: 20 },
   name: { fontSize: 28, fontWeight: '700', textAlign: 'center' },
-  species: { fontSize: 14, textAlign: 'center' },
-  ready: { fontSize: 13, textAlign: 'center', fontStyle: 'italic' },
+  species: { fontSize: 14, textAlign: 'center', lineHeight: 20 },
+  ready: { fontSize: 13, textAlign: 'center', fontStyle: 'italic', lineHeight: 18 },
   xpCard: { width: '100%', padding: 16, borderRadius: 12, borderWidth: 1, gap: 8 },
-  xpHeader: { flexDirection: 'row', justifyContent: 'space-between' },
-  xpLabel: { fontSize: 14, fontWeight: '700' },
-  xpValue: { fontSize: 12 },
-  progressBar: { height: 8, borderRadius: 4, overflow: 'hidden' },
+  xpHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  xpLabel: { fontSize: 14, fontWeight: '700', flexShrink: 0 },
+  xpValue: { fontSize: 12, lineHeight: 18, flexShrink: 1, textAlign: 'right' },
+  progressBar: { height: 8, borderRadius: 4, overflow: 'hidden', width: '100%' },
   progressFill: { height: '100%', borderRadius: 4 },
-  evolution: { fontSize: 11, textAlign: 'center' },
+  evolution: { fontSize: 11, textAlign: 'center', lineHeight: 16 },
   statsCard: { width: '100%', padding: 16, borderRadius: 12, borderWidth: 1, gap: 12, alignItems: 'center' },
   statsTitle: { fontSize: 16, fontWeight: '700', alignSelf: 'flex-start' },
 });

@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { AppText } from '@/components/AppText';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
 
@@ -7,8 +8,8 @@ export function EmptyState({ message }: { message?: string }) {
   const { t } = useTranslation();
   return (
     <View style={styles.container}>
-      <Text style={[styles.icon, { color: colors.outline }]}>📭</Text>
-      <Text style={[styles.text, { color: colors.outline }]}>{message ?? t('common.empty')}</Text>
+      <AppText style={[styles.icon, { color: colors.outline }]}>📭</AppText>
+      <AppText style={[styles.text, { color: colors.outline }]}>{message ?? t('common.empty')}</AppText>
     </View>
   );
 }

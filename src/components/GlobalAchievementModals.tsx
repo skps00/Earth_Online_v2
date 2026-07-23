@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import {
   unlockQueueAtom,
   selectedAchievementAtom,
   achievementVersionAtom,
   unlockedIdsAtom,
+  achievementCelebrationActiveAtom,
 } from '@/stores/achievementStore';
 import { langAtom } from '@/stores/settingsStore';
 import { companionAtom } from '@/stores/companionStore';
@@ -25,6 +26,10 @@ export function GlobalAchievementModals() {
   const companion = useAtomValue(companionAtom);
   const setAchievementVersion = useSetAtom(achievementVersionAtom);
   const setUnlocked = useSetAtom(unlockedIdsAtom);
+  const setCelebrationActive = useSetAtom(achievementCelebrationActiveAtom);
+
+  const langRef = useRef(lang);
+  langRef.current = lang;
 
   const popNext = useCallback(async () => {
     setQueue(prev => {
@@ -34,6 +39,7 @@ export function GlobalAchievementModals() {
         const ach = await achievementRepo.getById(nextId, lang);
         if (ach) {
           setCurrentUnlock(ach);
+          setCelebrationActive(true);
           await trackEvent('achievement_unlock', { achievementId: nextId });
         } else if (rest.length > 0) {
           setQueue(rest);
@@ -48,22 +54,34 @@ export function GlobalAchievementModals() {
       const nextId = queue[0];
       setQueue(queue.slice(1));
       void (async () => {
-        const ach = await achievementRepo.getById(nextId, lang);
+        const ach = await achievementRepo.getById(nextId, langRef.current);
         if (ach) {
           setCurrentUnlock(ach);
+          setCelebrationActive(true);
           await trackEvent('achievement_unlock', { achievementId: nextId });
         }
       })();
     }
-  }, [queue, currentUnlock, lang, setQueue]);
+  }, [queue, currentUnlock, setQueue, setCelebrationActive]);
+
+  useEffect(() => {
+    if (currentUnlock) {
+      void achievementRepo.getById(currentUnlock.id, lang).then((ach) => {
+        if (ach) setCurrentUnlock(ach);
+      });
+    }
+  }, [lang, currentUnlock?.id]);
 
   useEffect(() => {
     if (!selected) {
       setIsManual(false);
       return;
     }
+    void achievementRepo.getById(selected.id, lang).then((ach) => {
+      if (ach) setSelected(ach);
+    });
     achievementRepo.isManualAchievement(selected.id).then(setIsManual);
-  }, [selected]);
+  }, [selected?.id, lang, setSelected]);
 
   const handleUnlocked = async (ids: string[]) => {
     setAchievementVersion(v => v + 1);
@@ -72,7 +90,10 @@ export function GlobalAchievementModals() {
     setQueue(prev => [...prev, ...ids.filter(id => !prev.includes(id) && !unlocked.has(id))]);
   };
 
-  const dismissUnlock = () => setCurrentUnlock(null);
+  const dismissUnlock = () => {
+    setCurrentUnlock(null);
+    setCelebrationActive(false);
+  };
 
   return (
     <>

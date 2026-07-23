@@ -8,6 +8,13 @@
     "backup": "Backup",
     "backupExport": "Export Backup",
     "backupImport": "Import Backup",
+    "backupImportConfirm": "This will replace your current check-ins, achievements, and companion data with the backup. Continue?",
+    "backupImportSource": "Choose where to load the backup from.",
+    "backupImportPickFile": "Pick JSON file",
+    "backupImportLocal": "Use last export on device",
+    "backupImportSuccess": "Backup imported successfully",
+    "backupImportFailed": "Import failed — check the file format",
+    "backupImportNotFound": "No local backup found. Export first, or pick a JSON file.",
     "backupSuccess": "Backup completed",
     "memories": "Memories",
     "settings": "Settings",
@@ -24,6 +31,13 @@
     "purchaseSuccess": "Purchase complete!",
     "purchasePending": "IAP pending Play Console setup",
     "english": "English",
-    "chinese": "繁體中文"
+    "chinese": "繁體中文",
+    "googleAccount": "Google Account",
+    "googleSignedIn": "Signed in",
+    "googleNotSignedIn": "Not signed in",
+    "googleTapToSignIn": "Tap to sign in",
+    "googleSignOutTitle": "Sign out?",
+    "googleSignOutMessage": "You can sign in again anytime. Cloud sync will stop until you sign back in.",
+    "googleSignInFailed": "Google sign-in failed. Try again or use a Dev Client build."
   }
 }

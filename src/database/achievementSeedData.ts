@@ -23,7 +23,7 @@ export interface TriggerSeedRow {
 export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   {
     "id": "checkin_1",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "checkin_count",
@@ -35,7 +35,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "checkin_3",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "checkin_count",
@@ -47,7 +47,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "checkin_5",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "checkin_count",
@@ -59,7 +59,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "checkin_10",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "checkin_count",
@@ -71,7 +71,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "checkin_25",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "checkin_count",
@@ -83,7 +83,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "checkin_50",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "checkin_count",
@@ -95,7 +95,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_7continents",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Legendary",
     "trigger_type": "auto_track",
@@ -107,7 +107,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_50countries",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Legendary",
     "trigger_type": "auto_track",
@@ -119,7 +119,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_10countries",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "auto_track",
@@ -131,7 +131,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_5countries",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -143,7 +143,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_3continents",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "auto_track",
@@ -155,10 +155,10 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_dateline",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
-    "trigger_type": "manual",
+    "trigger_type": "auto_track",
     "trigger_goal": 1,
     "reward_points": 100,
     "is_hidden": 0,
@@ -167,7 +167,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_missed_flight",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -179,7 +179,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_island",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -191,7 +191,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_mountain",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -203,7 +203,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_solo",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -215,7 +215,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_ocean",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -227,10 +227,10 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_first_abroad",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
-    "trigger_type": "manual",
+    "trigger_type": "auto_track",
     "trigger_goal": 1,
     "reward_points": 50,
     "is_hidden": 0,
@@ -239,7 +239,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_japan",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -251,7 +251,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_europe",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -263,7 +263,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_africa",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -275,7 +275,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_south_america",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -287,7 +287,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_antarctica",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "auto_track",
@@ -299,7 +299,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_australia",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -311,7 +311,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_asia",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -323,7 +323,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_north_america",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -335,7 +335,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_oceania",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -347,7 +347,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_capital",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -359,7 +359,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_unesco",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -371,7 +371,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_temple",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -383,7 +383,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_night_market",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -395,7 +395,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_hot_spring",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -407,7 +407,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_beach",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -419,7 +419,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_museum",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -431,7 +431,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_airport",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -443,7 +443,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_cruise",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -455,10 +455,10 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_border",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
-    "trigger_type": "manual",
+    "trigger_type": "auto_track",
     "trigger_goal": 1,
     "reward_points": 50,
     "is_hidden": 0,
@@ -467,7 +467,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_canyon",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -479,7 +479,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_volcano",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -491,7 +491,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_lake",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -503,7 +503,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_tower",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -515,7 +515,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_tokyo_tower",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -527,7 +527,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_great_wall",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -539,7 +539,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_venice",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -551,7 +551,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "ocean_pacific",
-    "category": "Collection",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -563,7 +563,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "ocean_atlantic",
-    "category": "Collection",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -575,7 +575,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "ocean_indian",
-    "category": "Collection",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -587,7 +587,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "ocean_arctic",
-    "category": "Collection",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -599,7 +599,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "ocean_southern",
-    "category": "Collection",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -611,7 +611,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_phd",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -623,7 +623,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_graduate",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -635,7 +635,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_house",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -647,7 +647,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_first_job",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -659,7 +659,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_365_ontime",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -671,7 +671,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_masters",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -683,7 +683,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_bachelor",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -695,7 +695,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_fired",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -707,7 +707,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_promotion",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -719,7 +719,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_startup",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -731,7 +731,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_raise",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -743,7 +743,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_quit",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -755,7 +755,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_meeting_hell",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -767,7 +767,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_lottery",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -779,7 +779,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_social",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -791,7 +791,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_pets",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -803,7 +803,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_earlybird",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "auto_track",
@@ -815,7 +815,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_cook",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -827,7 +827,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_binge",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -839,7 +839,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_allnighter",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "auto_track",
@@ -851,7 +851,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_exercise_30",
-    "category": "Social",
+    "category": "Health",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -863,7 +863,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_read_10",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -875,7 +875,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_no_phone",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -887,7 +887,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_stranger",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -898,20 +898,8 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
     "icon": "☀️"
   },
   {
-    "id": "daily_umbrella",
-    "category": "Social",
-    "prerequisite_id": null,
-    "rarity": "Common",
-    "trigger_type": "manual",
-    "trigger_goal": 1,
-    "reward_points": 10,
-    "is_hidden": 0,
-    "prompt_photo": 0,
-    "icon": "☀️"
-  },
-  {
     "id": "daily_puzzle",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -923,7 +911,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_late",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -935,7 +923,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_spicy",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -947,7 +935,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_karaoke",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -959,7 +947,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_fall_down",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -971,7 +959,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "epic_eclipse",
-    "category": "Combat",
+    "category": "Natural",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -983,7 +971,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "epic_survive",
-    "category": "Combat",
+    "category": "Milestone",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -995,7 +983,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "epic_newborn",
-    "category": "Combat",
+    "category": "Milestone",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -1007,7 +995,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "epic_northernlights",
-    "category": "Combat",
+    "category": "Natural",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -1019,7 +1007,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "epic_milkyway",
-    "category": "Combat",
+    "category": "Natural",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -1031,7 +1019,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "epic_earthquake",
-    "category": "Combat",
+    "category": "Natural",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -1043,7 +1031,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "weather_storm",
-    "category": "Combat",
+    "category": "Natural",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -1055,7 +1043,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "weather_rain",
-    "category": "Combat",
+    "category": "Natural",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "auto_track",
@@ -1067,7 +1055,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "weather_extreme_heat",
-    "category": "Combat",
+    "category": "Natural",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -1079,7 +1067,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "weather_lightning",
-    "category": "Combat",
+    "category": "Natural",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "auto_track",
@@ -1091,7 +1079,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "epic_double_rainbow",
-    "category": "Combat",
+    "category": "Natural",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -1103,7 +1091,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "epic_meteor",
-    "category": "Combat",
+    "category": "Natural",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -1115,7 +1103,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "epic_first_date",
-    "category": "Combat",
+    "category": "Milestone",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1127,7 +1115,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "epic_concert",
-    "category": "Combat",
+    "category": "Milestone",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1139,7 +1127,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "health_marathon",
-    "category": "Mastery",
+    "category": "Health",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -1151,7 +1139,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "health_blood",
-    "category": "Mastery",
+    "category": "Health",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1163,7 +1151,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "health_10k",
-    "category": "Mastery",
+    "category": "Health",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1175,7 +1163,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "health_no_sugar",
-    "category": "Mastery",
+    "category": "Health",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1187,7 +1175,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "health_meditate",
-    "category": "Mastery",
+    "category": "Health",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1199,7 +1187,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "health_gym",
-    "category": "Mastery",
+    "category": "Health",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -1211,7 +1199,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "health_pushup_50",
-    "category": "Mastery",
+    "category": "Health",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1223,7 +1211,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "health_weight_loss",
-    "category": "Mastery",
+    "category": "Health",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -1235,7 +1223,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "health_sleep_8h",
-    "category": "Mastery",
+    "category": "Health",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1247,7 +1235,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "transport_license",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1259,7 +1247,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "transport_first_car",
-    "category": "Exploration",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1271,7 +1259,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "transport_bike",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1283,7 +1271,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "transport_roadtrip",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1295,7 +1283,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "transport_no_accident",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1307,7 +1295,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "transport_uber_100",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1319,7 +1307,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "transport_bike_100",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1331,7 +1319,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "health_yoga",
-    "category": "Mastery",
+    "category": "Health",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -1343,7 +1331,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "health_vegan",
-    "category": "Mastery",
+    "category": "Health",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1355,7 +1343,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "health_plank_5min",
-    "category": "Mastery",
+    "category": "Health",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1367,7 +1355,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_look_up",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -1379,7 +1367,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_suntan",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -1391,7 +1379,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_chopsticks",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1403,7 +1391,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_overtime_hell",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1415,7 +1403,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "career_presentation",
-    "category": "Mastery",
+    "category": "Career",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1427,7 +1415,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_bucket_list",
-    "category": "Exploration",
+    "category": "Milestone",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -1439,7 +1427,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_sky_lantern",
-    "category": "Exploration",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1451,10 +1439,10 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_snow",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
-    "trigger_type": "manual",
+    "trigger_type": "auto_track",
     "trigger_goal": 1,
     "reward_points": 50,
     "is_hidden": 0,
@@ -1463,7 +1451,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_desert",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1475,7 +1463,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_jungle",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -1487,7 +1475,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_underwater",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Epic",
     "trigger_type": "manual",
@@ -1499,7 +1487,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "explore_camping",
-    "category": "Exploration",
+    "category": "Travel",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1511,7 +1499,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_diy",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Common",
     "trigger_type": "manual",
@@ -1523,7 +1511,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_fix",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1535,7 +1523,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_plant",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1547,7 +1535,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_tattoo",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1559,7 +1547,7 @@ export const ACHIEVEMENT_SEED: AchievementSeedRow[] = [
   },
   {
     "id": "daily_photo_album",
-    "category": "Social",
+    "category": "Daily",
     "prerequisite_id": null,
     "rarity": "Rare",
     "trigger_type": "manual",
@@ -1629,8 +1617,8 @@ export const TRIGGER_SEED: TriggerSeedRow[] = [
   },
   {
     "achievement_id": "explore_dateline",
-    "event_type": "manual_confirm",
-    "condition_json": null
+    "event_type": "checkin_completed",
+    "condition_json": "{\"crossedDateline\":true}"
   },
   {
     "achievement_id": "explore_missed_flight",
@@ -1659,8 +1647,8 @@ export const TRIGGER_SEED: TriggerSeedRow[] = [
   },
   {
     "achievement_id": "explore_first_abroad",
-    "event_type": "manual_confirm",
-    "condition_json": null
+    "event_type": "checkin_completed",
+    "condition_json": "{\"minUniqueCountries\":2}"
   },
   {
     "achievement_id": "explore_japan",
@@ -1754,8 +1742,8 @@ export const TRIGGER_SEED: TriggerSeedRow[] = [
   },
   {
     "achievement_id": "explore_border",
-    "event_type": "manual_confirm",
-    "condition_json": null
+    "event_type": "checkin_completed",
+    "condition_json": "{\"crossedBorder\":true}"
   },
   {
     "achievement_id": "explore_canyon",
@@ -1934,11 +1922,6 @@ export const TRIGGER_SEED: TriggerSeedRow[] = [
   },
   {
     "achievement_id": "daily_stranger",
-    "event_type": "manual_confirm",
-    "condition_json": null
-  },
-  {
-    "achievement_id": "daily_umbrella",
     "event_type": "manual_confirm",
     "condition_json": null
   },
@@ -2169,8 +2152,8 @@ export const TRIGGER_SEED: TriggerSeedRow[] = [
   },
   {
     "achievement_id": "explore_snow",
-    "event_type": "manual_confirm",
-    "condition_json": null
+    "event_type": "weather_checked",
+    "condition_json": "{\"condition\":\"snow\"}"
   },
   {
     "achievement_id": "explore_desert",
@@ -2225,7 +2208,7 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "checkin_1",
     "en",
     "title",
-    "Checkin 1"
+    "First Check-in"
   ],
   [
     "achievement",
@@ -2253,7 +2236,7 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "checkin_3",
     "en",
     "title",
-    "Checkin 3"
+    "Triple Visit"
   ],
   [
     "achievement",
@@ -2281,7 +2264,7 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "checkin_5",
     "en",
     "title",
-    "Checkin 5"
+    "Five Corners"
   ],
   [
     "achievement",
@@ -2309,7 +2292,7 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "checkin_10",
     "en",
     "title",
-    "Checkin 10"
+    "Perfect Ten"
   ],
   [
     "achievement",
@@ -2337,7 +2320,7 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "checkin_25",
     "en",
     "title",
-    "Checkin 25"
+    "Far and Wide"
   ],
   [
     "achievement",
@@ -2365,7 +2348,7 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "checkin_50",
     "en",
     "title",
-    "Checkin 50"
+    "Check-in King"
   ],
   [
     "achievement",
@@ -2393,14 +2376,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_7continents",
     "en",
     "title",
-    "Explore 7continents"
+    "Seven Continents"
   ],
   [
     "achievement",
     "explore_7continents",
     "en",
     "description",
-    "Visit 7 different continents"
+    "Set foot on all 7 continents"
   ],
   [
     "achievement",
@@ -2421,14 +2404,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_50countries",
     "en",
     "title",
-    "Explore 50countries"
+    "Around the World"
   ],
   [
     "achievement",
     "explore_50countries",
     "en",
     "description",
-    "Visit 50 different countries"
+    "Visit 50 countries"
   ],
   [
     "achievement",
@@ -2449,14 +2432,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_10countries",
     "en",
     "title",
-    "Explore 10countries"
+    "Travel Expert"
   ],
   [
     "achievement",
     "explore_10countries",
     "en",
     "description",
-    "Visit 10 different countries"
+    "Visit 10 countries"
   ],
   [
     "achievement",
@@ -2477,14 +2460,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_5countries",
     "en",
     "title",
-    "Explore 5countries"
+    "Global Traveler"
   ],
   [
     "achievement",
     "explore_5countries",
     "en",
     "description",
-    "Visit 5 different countries"
+    "Visit 5 countries"
   ],
   [
     "achievement",
@@ -2505,14 +2488,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_3continents",
     "en",
     "title",
-    "Explore 3continents"
+    "Cross-Continent Adventure"
   ],
   [
     "achievement",
     "explore_3continents",
     "en",
     "description",
-    "Visit 3 different continents"
+    "Set foot on 3 continents"
   ],
   [
     "achievement",
@@ -2533,14 +2516,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_dateline",
     "en",
     "title",
-    "Explore Dateline"
+    "Date Line Crosser"
   ],
   [
     "achievement",
     "explore_dateline",
     "en",
     "description",
-    "跨越國際換日線"
+    "Cross the International Date Line"
   ],
   [
     "achievement",
@@ -2561,14 +2544,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_missed_flight",
     "en",
     "title",
-    "Explore Missed Flight"
+    "Missed Flight"
   ],
   [
     "achievement",
     "explore_missed_flight",
     "en",
     "description",
-    "錯過一次航班"
+    "Miss a flight once"
   ],
   [
     "achievement",
@@ -2589,14 +2572,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_island",
     "en",
     "title",
-    "Explore Island"
+    "Island Explorer"
   ],
   [
     "achievement",
     "explore_island",
     "en",
     "description",
-    "造訪一座島嶼"
+    "Visit an island"
   ],
   [
     "achievement",
@@ -2617,14 +2600,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_mountain",
     "en",
     "title",
-    "Explore Mountain"
+    "Peak Conqueror"
   ],
   [
     "achievement",
     "explore_mountain",
     "en",
     "description",
-    "攀登一座高山"
+    "Climb a high mountain"
   ],
   [
     "achievement",
@@ -2645,14 +2628,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_solo",
     "en",
     "title",
-    "Explore Solo"
+    "Solo Journey"
   ],
   [
     "achievement",
     "explore_solo",
     "en",
     "description",
-    "完成一次獨自旅行"
+    "Complete a solo trip"
   ],
   [
     "achievement",
@@ -2673,14 +2656,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_ocean",
     "en",
     "title",
-    "Explore Ocean"
+    "Ocean Crossing"
   ],
   [
     "achievement",
     "explore_ocean",
     "en",
     "description",
-    "橫渡一片大洋"
+    "Cross an ocean"
   ],
   [
     "achievement",
@@ -2701,14 +2684,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_first_abroad",
     "en",
     "title",
-    "Explore First Abroad"
+    "First Trip Abroad"
   ],
   [
     "achievement",
     "explore_first_abroad",
     "en",
     "description",
-    "第一次出國旅行"
+    "Take your first trip overseas"
   ],
   [
     "achievement",
@@ -2729,14 +2712,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_japan",
     "en",
     "title",
-    "Explore Japan"
+    "Japan Journey"
   ],
   [
     "achievement",
     "explore_japan",
     "en",
     "description",
-    "造訪日本"
+    "Visit Japan"
   ],
   [
     "achievement",
@@ -2757,14 +2740,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_europe",
     "en",
     "title",
-    "Explore Europe"
+    "European Tour"
   ],
   [
     "achievement",
     "explore_europe",
     "en",
     "description",
-    "造訪歐洲"
+    "Visit Europe"
   ],
   [
     "achievement",
@@ -2785,14 +2768,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_africa",
     "en",
     "title",
-    "Explore Africa"
+    "African Adventure"
   ],
   [
     "achievement",
     "explore_africa",
     "en",
     "description",
-    "造訪非洲"
+    "Visit Africa"
   ],
   [
     "achievement",
@@ -2813,14 +2796,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_south_america",
     "en",
     "title",
-    "Explore South America"
+    "South America Trip"
   ],
   [
     "achievement",
     "explore_south_america",
     "en",
     "description",
-    "造訪南美洲"
+    "Visit South America"
   ],
   [
     "achievement",
@@ -2841,14 +2824,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_antarctica",
     "en",
     "title",
-    "Explore Antarctica"
+    "Antarctic Expedition"
   ],
   [
     "achievement",
     "explore_antarctica",
     "en",
     "description",
-    "造訪南極洲"
+    "Visit Antarctica"
   ],
   [
     "achievement",
@@ -2869,14 +2852,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_australia",
     "en",
     "title",
-    "Explore Australia"
+    "Australian Adventure"
   ],
   [
     "achievement",
     "explore_australia",
     "en",
     "description",
-    "造訪澳洲"
+    "Visit Australia"
   ],
   [
     "achievement",
@@ -2897,14 +2880,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_asia",
     "en",
     "title",
-    "Explore Asia"
+    "Asian Journey"
   ],
   [
     "achievement",
     "explore_asia",
     "en",
     "description",
-    "造訪亞洲"
+    "Visit Asia"
   ],
   [
     "achievement",
@@ -2925,14 +2908,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_north_america",
     "en",
     "title",
-    "Explore North America"
+    "North American Explorer"
   ],
   [
     "achievement",
     "explore_north_america",
     "en",
     "description",
-    "造訪北美洲"
+    "Visit North America"
   ],
   [
     "achievement",
@@ -2953,14 +2936,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_oceania",
     "en",
     "title",
-    "Explore Oceania"
+    "Oceania Trip"
   ],
   [
     "achievement",
     "explore_oceania",
     "en",
     "description",
-    "造訪大洋洲"
+    "Visit Oceania"
   ],
   [
     "achievement",
@@ -2981,14 +2964,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_capital",
     "en",
     "title",
-    "Explore Capital"
+    "Capital Tour"
   ],
   [
     "achievement",
     "explore_capital",
     "en",
     "description",
-    "造訪一個首都城市"
+    "Visit a capital city"
   ],
   [
     "achievement",
@@ -3009,14 +2992,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_unesco",
     "en",
     "title",
-    "Explore Unesco"
+    "World Heritage"
   ],
   [
     "achievement",
     "explore_unesco",
     "en",
     "description",
-    "造訪一個 UNESCO 世界遺產"
+    "Visit a UNESCO World Heritage site"
   ],
   [
     "achievement",
@@ -3037,14 +3020,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_temple",
     "en",
     "title",
-    "Explore Temple"
+    "Temple Visit"
   ],
   [
     "achievement",
     "explore_temple",
     "en",
     "description",
-    "參訪一座寺廟"
+    "Visit a temple"
   ],
   [
     "achievement",
@@ -3065,14 +3048,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_night_market",
     "en",
     "title",
-    "Explore Night Market"
+    "Night Market Feast"
   ],
   [
     "achievement",
     "explore_night_market",
     "en",
     "description",
-    "逛一個夜市"
+    "Visit a night market"
   ],
   [
     "achievement",
@@ -3093,14 +3076,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_hot_spring",
     "en",
     "title",
-    "Explore Hot Spring"
+    "Hot Spring Trip"
   ],
   [
     "achievement",
     "explore_hot_spring",
     "en",
     "description",
-    "泡一次溫泉"
+    "Soak in a hot spring"
   ],
   [
     "achievement",
@@ -3121,14 +3104,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_beach",
     "en",
     "title",
-    "Explore Beach"
+    "Beach Time"
   ],
   [
     "achievement",
     "explore_beach",
     "en",
     "description",
-    "享受一片海灘"
+    "Enjoy a beach"
   ],
   [
     "achievement",
@@ -3149,14 +3132,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_museum",
     "en",
     "title",
-    "Explore Museum"
+    "Museum Day"
   ],
   [
     "achievement",
     "explore_museum",
     "en",
     "description",
-    "參觀一個博物館"
+    "Visit a museum"
   ],
   [
     "achievement",
@@ -3177,14 +3160,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_airport",
     "en",
     "title",
-    "Explore Airport"
+    "Airport Marathon"
   ],
   [
     "achievement",
     "explore_airport",
     "en",
     "description",
-    "在機場待超過 3 小時"
+    "Spend over 3 hours at an airport"
   ],
   [
     "achievement",
@@ -3205,14 +3188,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_cruise",
     "en",
     "title",
-    "Explore Cruise"
+    "Cruise Voyage"
   ],
   [
     "achievement",
     "explore_cruise",
     "en",
     "description",
-    "搭乘一次遊輪"
+    "Take a cruise"
   ],
   [
     "achievement",
@@ -3233,14 +3216,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_border",
     "en",
     "title",
-    "Explore Border"
+    "Border Crossing"
   ],
   [
     "achievement",
     "explore_border",
     "en",
     "description",
-    "跨越一次國境"
+    "Cross a national border"
   ],
   [
     "achievement",
@@ -3261,14 +3244,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_canyon",
     "en",
     "title",
-    "Explore Canyon"
+    "Canyon Explorer"
   ],
   [
     "achievement",
     "explore_canyon",
     "en",
     "description",
-    "造訪一座峽谷"
+    "Visit a canyon"
   ],
   [
     "achievement",
@@ -3289,14 +3272,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_volcano",
     "en",
     "title",
-    "Explore Volcano"
+    "Volcano Quest"
   ],
   [
     "achievement",
     "explore_volcano",
     "en",
     "description",
-    "造訪一座火山"
+    "Visit a volcano"
   ],
   [
     "achievement",
@@ -3317,14 +3300,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_lake",
     "en",
     "title",
-    "Explore Lake"
+    "Lakeside Serenity"
   ],
   [
     "achievement",
     "explore_lake",
     "en",
     "description",
-    "造訪一座湖泊"
+    "Visit a lake"
   ],
   [
     "achievement",
@@ -3345,14 +3328,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_tower",
     "en",
     "title",
-    "Explore Tower"
+    "Scenic Overlook"
   ],
   [
     "achievement",
     "explore_tower",
     "en",
     "description",
-    "登上觀景台"
+    "Reach an observation deck"
   ],
   [
     "achievement",
@@ -3373,14 +3356,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_tokyo_tower",
     "en",
     "title",
-    "Explore Tokyo Tower"
+    "Tokyo Tower"
   ],
   [
     "achievement",
     "explore_tokyo_tower",
     "en",
     "description",
-    "參訪東京鐵塔"
+    "Visit Tokyo Tower"
   ],
   [
     "achievement",
@@ -3401,14 +3384,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_great_wall",
     "en",
     "title",
-    "Explore Great Wall"
+    "Great Wall"
   ],
   [
     "achievement",
     "explore_great_wall",
     "en",
     "description",
-    "親眼目睹長城"
+    "See the Great Wall in person"
   ],
   [
     "achievement",
@@ -3429,14 +3412,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_venice",
     "en",
     "title",
-    "Explore Venice"
+    "City of Water"
   ],
   [
     "achievement",
     "explore_venice",
     "en",
     "description",
-    "造訪威尼斯"
+    "Visit Venice"
   ],
   [
     "achievement",
@@ -3457,14 +3440,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "ocean_pacific",
     "en",
     "title",
-    "Ocean Pacific"
+    "Pacific Ocean"
   ],
   [
     "achievement",
     "ocean_pacific",
     "en",
     "description",
-    "造訪太平洋沿岸"
+    "Visit the Pacific coast"
   ],
   [
     "achievement",
@@ -3492,21 +3475,21 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "ocean_pacific",
     "en",
     "hint",
-    "東亞、美洲西岸的海域"
+    "Coastal waters of East Asia and the Americas"
   ],
   [
     "achievement",
     "ocean_atlantic",
     "en",
     "title",
-    "Ocean Atlantic"
+    "Atlantic Ocean"
   ],
   [
     "achievement",
     "ocean_atlantic",
     "en",
     "description",
-    "造訪大西洋沿岸"
+    "Visit the Atlantic coast"
   ],
   [
     "achievement",
@@ -3534,21 +3517,21 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "ocean_atlantic",
     "en",
     "hint",
-    "歐洲、非洲西岸的海域"
+    "Coastal waters of Europe and West Africa"
   ],
   [
     "achievement",
     "ocean_indian",
     "en",
     "title",
-    "Ocean Indian"
+    "Indian Ocean"
   ],
   [
     "achievement",
     "ocean_indian",
     "en",
     "description",
-    "造訪印度洋沿岸"
+    "Visit the Indian Ocean coast"
   ],
   [
     "achievement",
@@ -3576,21 +3559,21 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "ocean_indian",
     "en",
     "hint",
-    "南亞、東非沿海的海域"
+    "Coastal waters of South Asia and East Africa"
   ],
   [
     "achievement",
     "ocean_arctic",
     "en",
     "title",
-    "Ocean Arctic"
+    "Arctic Ocean"
   ],
   [
     "achievement",
     "ocean_arctic",
     "en",
     "description",
-    "造訪北冰洋沿岸"
+    "Visit the Arctic coast"
   ],
   [
     "achievement",
@@ -3618,21 +3601,21 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "ocean_arctic",
     "en",
     "hint",
-    "極北之地的冰冷海域"
+    "The icy waters of the far north"
   ],
   [
     "achievement",
     "ocean_southern",
     "en",
     "title",
-    "Ocean Southern"
+    "Southern Ocean"
   ],
   [
     "achievement",
     "ocean_southern",
     "en",
     "description",
-    "造訪南冰洋沿岸"
+    "Visit the Southern Ocean coast"
   ],
   [
     "achievement",
@@ -3660,21 +3643,21 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "ocean_southern",
     "en",
     "hint",
-    "環繞南極洲的極寒海域"
+    "The frigid seas surrounding Antarctica"
   ],
   [
     "achievement",
     "career_phd",
     "en",
     "title",
-    "Career Phd"
+    "PhD Degree"
   ],
   [
     "achievement",
     "career_phd",
     "en",
     "description",
-    "獲得博士學位"
+    "Earn a doctorate"
   ],
   [
     "achievement",
@@ -3695,14 +3678,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_graduate",
     "en",
     "title",
-    "Career Graduate"
+    "Graduation Day"
   ],
   [
     "achievement",
     "career_graduate",
     "en",
     "description",
-    "大學畢業"
+    "Graduate from university"
   ],
   [
     "achievement",
@@ -3723,14 +3706,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_house",
     "en",
     "title",
-    "Career House"
+    "Home Owner"
   ],
   [
     "achievement",
     "career_house",
     "en",
     "description",
-    "購買第一間房子"
+    "Buy your first house"
   ],
   [
     "achievement",
@@ -3751,14 +3734,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_first_job",
     "en",
     "title",
-    "Career First Job"
+    "First Job"
   ],
   [
     "achievement",
     "career_first_job",
     "en",
     "description",
-    "獲得第一份工作"
+    "Land your first job"
   ],
   [
     "achievement",
@@ -3779,14 +3762,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_365_ontime",
     "en",
     "title",
-    "Career 365 Ontime"
+    "Perfect Attendance"
   ],
   [
     "achievement",
     "career_365_ontime",
     "en",
     "description",
-    "連續一年準時上班"
+    "Arrive on time every day for a year"
   ],
   [
     "achievement",
@@ -3807,14 +3790,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_masters",
     "en",
     "title",
-    "Career Masters"
+    "Master's Degree"
   ],
   [
     "achievement",
     "career_masters",
     "en",
     "description",
-    "獲得碩士學位"
+    "Earn a master's degree"
   ],
   [
     "achievement",
@@ -3835,14 +3818,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_bachelor",
     "en",
     "title",
-    "Career Bachelor"
+    "Bachelor's Degree"
   ],
   [
     "achievement",
     "career_bachelor",
     "en",
     "description",
-    "獲得學士學位"
+    "Earn a bachelor's degree"
   ],
   [
     "achievement",
@@ -3863,14 +3846,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_fired",
     "en",
     "title",
-    "Career Fired"
+    "Let Go"
   ],
   [
     "achievement",
     "career_fired",
     "en",
     "description",
-    "被公司解僱"
+    "Get fired from a company"
   ],
   [
     "achievement",
@@ -3891,14 +3874,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_promotion",
     "en",
     "title",
-    "Career Promotion"
+    "Promoted"
   ],
   [
     "achievement",
     "career_promotion",
     "en",
     "description",
-    "獲得一次升職"
+    "Receive a promotion"
   ],
   [
     "achievement",
@@ -3919,14 +3902,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_startup",
     "en",
     "title",
-    "Career Startup"
+    "Startup Pioneer"
   ],
   [
     "achievement",
     "career_startup",
     "en",
     "description",
-    "創辦一家公司"
+    "Found a company"
   ],
   [
     "achievement",
@@ -3947,14 +3930,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_raise",
     "en",
     "title",
-    "Career Raise"
+    "Negotiation Master"
   ],
   [
     "achievement",
     "career_raise",
     "en",
     "description",
-    "成功爭取加薪"
+    "Successfully negotiate a raise"
   ],
   [
     "achievement",
@@ -3975,14 +3958,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_quit",
     "en",
     "title",
-    "Career Quit"
+    "Bold Exit"
   ],
   [
     "achievement",
     "career_quit",
     "en",
     "description",
-    "裸辭一次"
+    "Quit a job without another lined up"
   ],
   [
     "achievement",
@@ -4003,14 +3986,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_meeting_hell",
     "en",
     "title",
-    "Career Meeting Hell"
+    "Meeting Hell"
   ],
   [
     "achievement",
     "career_meeting_hell",
     "en",
     "description",
-    "一天開 5 場會"
+    "Attend 5 meetings in one day"
   ],
   [
     "achievement",
@@ -4031,14 +4014,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_lottery",
     "en",
     "title",
-    "Daily Lottery"
+    "Lottery Winner"
   ],
   [
     "achievement",
     "daily_lottery",
     "en",
     "description",
-    "中一次發票"
+    "Win an invoice lottery"
   ],
   [
     "achievement",
@@ -4059,14 +4042,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_social",
     "en",
     "title",
-    "Daily Social"
+    "Social Butterfly"
   ],
   [
     "achievement",
     "daily_social",
     "en",
     "description",
-    "參加一場社交活動"
+    "Attend a social event"
   ],
   [
     "achievement",
@@ -4087,14 +4070,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_pets",
     "en",
     "title",
-    "Daily Pets"
+    "Furry Friends"
   ],
   [
     "achievement",
     "daily_pets",
     "en",
     "description",
-    "養 2 隻寵物"
+    "Own 2 pets"
   ],
   [
     "achievement",
@@ -4115,14 +4098,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_earlybird",
     "en",
     "title",
-    "Daily Earlybird"
+    "Early Bird"
   ],
   [
     "achievement",
     "daily_earlybird",
     "en",
     "description",
-    "清晨 5 點前起床"
+    "Wake up before 5 AM"
   ],
   [
     "achievement",
@@ -4143,14 +4126,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_cook",
     "en",
     "title",
-    "Daily Cook"
+    "Home Cooking"
   ],
   [
     "achievement",
     "daily_cook",
     "en",
     "description",
-    "自己煮一餐"
+    "Cook a meal yourself"
   ],
   [
     "achievement",
@@ -4171,14 +4154,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_binge",
     "en",
     "title",
-    "Daily Binge"
+    "Binge Watcher"
   ],
   [
     "achievement",
     "daily_binge",
     "en",
     "description",
-    "一次看 10 集以上"
+    "Watch 10+ episodes in one sitting"
   ],
   [
     "achievement",
@@ -4199,21 +4182,21 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_allnighter",
     "en",
     "title",
-    "Daily Allnighter"
+    "All-Nighter"
   ],
   [
     "achievement",
     "daily_allnighter",
     "en",
     "description",
-    "通宵一次"
+    "Stay up all night once"
   ],
   [
     "achievement",
     "daily_allnighter",
     "zh-TW",
     "title",
-    "徹夜未眠"
+    "不眠之夜"
   ],
   [
     "achievement",
@@ -4227,14 +4210,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_exercise_30",
     "en",
     "title",
-    "Daily Exercise 30"
+    "Exercise Habit"
   ],
   [
     "achievement",
     "daily_exercise_30",
     "en",
     "description",
-    "連續運動 30 分鐘"
+    "Exercise for 30 minutes straight"
   ],
   [
     "achievement",
@@ -4255,14 +4238,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_read_10",
     "en",
     "title",
-    "Daily Read 10"
+    "Reading Time"
   ],
   [
     "achievement",
     "daily_read_10",
     "en",
     "description",
-    "讀完 10 本書"
+    "Finish 10 books"
   ],
   [
     "achievement",
@@ -4283,14 +4266,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_no_phone",
     "en",
     "title",
-    "Daily No Phone"
+    "Digital Detox"
   ],
   [
     "achievement",
     "daily_no_phone",
     "en",
     "description",
-    "一整天不用手機"
+    "Go a full day without your phone"
   ],
   [
     "achievement",
@@ -4311,14 +4294,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_stranger",
     "en",
     "title",
-    "Daily Stranger"
+    "Kind Stranger"
   ],
   [
     "achievement",
     "daily_stranger",
     "en",
     "description",
-    "幫助一位陌生人"
+    "Help a stranger"
   ],
   [
     "achievement",
@@ -4336,45 +4319,17 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
   ],
   [
     "achievement",
-    "daily_umbrella",
-    "en",
-    "title",
-    "Daily Umbrella"
-  ],
-  [
-    "achievement",
-    "daily_umbrella",
-    "en",
-    "description",
-    "弄丟一把雨傘"
-  ],
-  [
-    "achievement",
-    "daily_umbrella",
-    "zh-TW",
-    "title",
-    "雨傘收藏家"
-  ],
-  [
-    "achievement",
-    "daily_umbrella",
-    "zh-TW",
-    "description",
-    "弄丟一把雨傘"
-  ],
-  [
-    "achievement",
     "daily_puzzle",
     "en",
     "title",
-    "Daily Puzzle"
+    "Puzzle Challenge"
   ],
   [
     "achievement",
     "daily_puzzle",
     "en",
     "description",
-    "完成一個拼圖"
+    "Complete a jigsaw puzzle"
   ],
   [
     "achievement",
@@ -4395,14 +4350,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_late",
     "en",
     "title",
-    "Daily Late"
+    "Time Traveler"
   ],
   [
     "achievement",
     "daily_late",
     "en",
     "description",
-    "遲到超過 30 分鐘"
+    "Arrive over 30 minutes late"
   ],
   [
     "achievement",
@@ -4423,14 +4378,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_spicy",
     "en",
     "title",
-    "Daily Spicy"
+    "Hellfire Challenge"
   ],
   [
     "achievement",
     "daily_spicy",
     "en",
     "description",
-    "吃完一碗麻辣鍋"
+    "Finish a bowl of spicy hot pot"
   ],
   [
     "achievement",
@@ -4451,14 +4406,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_karaoke",
     "en",
     "title",
-    "Daily Karaoke"
+    "Karaoke King"
   ],
   [
     "achievement",
     "daily_karaoke",
     "en",
     "description",
-    "在 KTV 唱完一首歌"
+    "Sing a song at karaoke"
   ],
   [
     "achievement",
@@ -4479,14 +4434,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_fall_down",
     "en",
     "title",
-    "Daily Fall Down"
+    "Public Tumble"
   ],
   [
     "achievement",
     "daily_fall_down",
     "en",
     "description",
-    "在公共場合跌倒"
+    "Fall down in public"
   ],
   [
     "achievement",
@@ -4507,14 +4462,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "epic_eclipse",
     "en",
     "title",
-    "Epic Eclipse"
+    "Solar Eclipse"
   ],
   [
     "achievement",
     "epic_eclipse",
     "en",
     "description",
-    "親眼目睹日蝕或月蝕"
+    "Witness a solar or lunar eclipse"
   ],
   [
     "achievement",
@@ -4542,21 +4497,21 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "epic_eclipse",
     "en",
     "hint",
-    "天空中的光影奇觀"
+    "A celestial light-and-shadow spectacle"
   ],
   [
     "achievement",
     "epic_survive",
     "en",
     "title",
-    "Epic Survive"
+    "Close Call"
   ],
   [
     "achievement",
     "epic_survive",
     "en",
     "description",
-    "經歷一次生死關頭"
+    "Survive a life-threatening situation"
   ],
   [
     "achievement",
@@ -4584,21 +4539,21 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "epic_survive",
     "en",
     "hint",
-    "從最危險的處境中活下來"
+    "Survive the most dangerous ordeal"
   ],
   [
     "achievement",
     "epic_newborn",
     "en",
     "title",
-    "Epic Newborn"
+    "New Life"
   ],
   [
     "achievement",
     "epic_newborn",
     "en",
     "description",
-    "迎接新生兒"
+    "Welcome a newborn"
   ],
   [
     "achievement",
@@ -4626,21 +4581,21 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "epic_newborn",
     "en",
     "hint",
-    "一個小小的生命來到這個世界"
+    "A tiny new life enters the world"
   ],
   [
     "achievement",
     "epic_northernlights",
     "en",
     "title",
-    "Epic Northernlights"
+    "Northern Lights"
   ],
   [
     "achievement",
     "epic_northernlights",
     "en",
     "description",
-    "親眼目睹極光"
+    "Witness the aurora borealis"
   ],
   [
     "achievement",
@@ -4668,21 +4623,21 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "epic_northernlights",
     "en",
     "hint",
-    "高緯度地區的夢幻光幕"
+    "Dreamlike curtains of light at high latitudes"
   ],
   [
     "achievement",
     "epic_milkyway",
     "en",
     "title",
-    "Epic Milkyway"
+    "Milky Way"
   ],
   [
     "achievement",
     "epic_milkyway",
     "en",
     "description",
-    "親眼看見銀河"
+    "See the Milky Way with your own eyes"
   ],
   [
     "achievement",
@@ -4710,21 +4665,21 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "epic_milkyway",
     "en",
     "hint",
-    "遠離光害的星空奇景"
+    "Starry wonders away from light pollution"
   ],
   [
     "achievement",
     "epic_earthquake",
     "en",
     "title",
-    "Epic Earthquake"
+    "Earthquake"
   ],
   [
     "achievement",
     "epic_earthquake",
     "en",
     "description",
-    "經歷一次地震"
+    "Experience an earthquake"
   ],
   [
     "achievement",
@@ -4745,14 +4700,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "weather_storm",
     "en",
     "title",
-    "Weather Storm"
+    "Storm Warning"
   ],
   [
     "achievement",
     "weather_storm",
     "en",
     "description",
-    "所在地區有暴風或颱風警報"
+    "Be in an area with a storm or typhoon warning"
   ],
   [
     "achievement",
@@ -4773,14 +4728,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "weather_rain",
     "en",
     "title",
-    "Weather Rain"
+    "Rainy Walk"
   ],
   [
     "achievement",
     "weather_rain",
     "en",
     "description",
-    "今天下雨了"
+    "Experience rain today"
   ],
   [
     "achievement",
@@ -4801,14 +4756,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "weather_extreme_heat",
     "en",
     "title",
-    "Weather Extreme Heat"
+    "Heat Wave"
   ],
   [
     "achievement",
     "weather_extreme_heat",
     "en",
     "description",
-    "今天最高溫超過 35 度"
+    "Today's high exceeds 35°C"
   ],
   [
     "achievement",
@@ -4829,14 +4784,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "weather_lightning",
     "en",
     "title",
-    "Weather Lightning"
+    "Thunder God"
   ],
   [
     "achievement",
     "weather_lightning",
     "en",
     "description",
-    "所在地區有閃電活動"
+    "Be in an area with lightning activity"
   ],
   [
     "achievement",
@@ -4857,14 +4812,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "epic_double_rainbow",
     "en",
     "title",
-    "Epic Double Rainbow"
+    "Double Rainbow"
   ],
   [
     "achievement",
     "epic_double_rainbow",
     "en",
     "description",
-    "親眼目睹雙彩虹"
+    "Witness a double rainbow"
   ],
   [
     "achievement",
@@ -4885,14 +4840,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "epic_meteor",
     "en",
     "title",
-    "Epic Meteor"
+    "Meteor Shower"
   ],
   [
     "achievement",
     "epic_meteor",
     "en",
     "description",
-    "親眼目睹流星雨"
+    "Witness a meteor shower"
   ],
   [
     "achievement",
@@ -4913,14 +4868,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "epic_first_date",
     "en",
     "title",
-    "Epic First Date"
+    "First Date"
   ],
   [
     "achievement",
     "epic_first_date",
     "en",
     "description",
-    "完成第一次約會"
+    "Go on your first date"
   ],
   [
     "achievement",
@@ -4941,14 +4896,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "epic_concert",
     "en",
     "title",
-    "Epic Concert"
+    "Live Show"
   ],
   [
     "achievement",
     "epic_concert",
     "en",
     "description",
-    "參加一場大型演唱會"
+    "Attend a major concert"
   ],
   [
     "achievement",
@@ -4969,14 +4924,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "health_marathon",
     "en",
     "title",
-    "Health Marathon"
+    "Marathon Runner"
   ],
   [
     "achievement",
     "health_marathon",
     "en",
     "description",
-    "完成一場馬拉松"
+    "Complete a marathon"
   ],
   [
     "achievement",
@@ -4997,14 +4952,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "health_blood",
     "en",
     "title",
-    "Health Blood"
+    "Blood Donor"
   ],
   [
     "achievement",
     "health_blood",
     "en",
     "description",
-    "捐血一次"
+    "Donate blood once"
   ],
   [
     "achievement",
@@ -5025,14 +4980,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "health_10k",
     "en",
     "title",
-    "Health 10k"
+    "10K Challenge"
   ],
   [
     "achievement",
     "health_10k",
     "en",
     "description",
-    "跑完 10 公里"
+    "Run 10 kilometers"
   ],
   [
     "achievement",
@@ -5053,14 +5008,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "health_no_sugar",
     "en",
     "title",
-    "Health No Sugar"
+    "No Sugar Week"
   ],
   [
     "achievement",
     "health_no_sugar",
     "en",
     "description",
-    "連續一週不吃糖"
+    "Go a week without sugar"
   ],
   [
     "achievement",
@@ -5081,14 +5036,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "health_meditate",
     "en",
     "title",
-    "Health Meditate"
+    "Meditation"
   ],
   [
     "achievement",
     "health_meditate",
     "en",
     "description",
-    "連續 30 天冥想"
+    "Meditate for 30 consecutive days"
   ],
   [
     "achievement",
@@ -5109,14 +5064,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "health_gym",
     "en",
     "title",
-    "Health Gym"
+    "Gym Beginner"
   ],
   [
     "achievement",
     "health_gym",
     "en",
     "description",
-    "開始去健身房"
+    "Start going to the gym"
   ],
   [
     "achievement",
@@ -5137,14 +5092,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "health_pushup_50",
     "en",
     "title",
-    "Health Pushup 50"
+    "Push-up Pro"
   ],
   [
     "achievement",
     "health_pushup_50",
     "en",
     "description",
-    "一次完成 50 個伏地挺身"
+    "Do 50 push-ups in one set"
   ],
   [
     "achievement",
@@ -5165,14 +5120,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "health_weight_loss",
     "en",
     "title",
-    "Health Weight Loss"
+    "Weight Loss Win"
   ],
   [
     "achievement",
     "health_weight_loss",
     "en",
     "description",
-    "成功減重 10 公斤"
+    "Lose 10 kg successfully"
   ],
   [
     "achievement",
@@ -5193,14 +5148,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "health_sleep_8h",
     "en",
     "title",
-    "Health Sleep 8h"
+    "Well Rested"
   ],
   [
     "achievement",
     "health_sleep_8h",
     "en",
     "description",
-    "連續一週睡眠滿 8 小時"
+    "Sleep 8 hours every night for a week"
   ],
   [
     "achievement",
@@ -5221,14 +5176,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "transport_license",
     "en",
     "title",
-    "Transport License"
+    "Driver's License"
   ],
   [
     "achievement",
     "transport_license",
     "en",
     "description",
-    "考取駕照"
+    "Obtain a driver's license"
   ],
   [
     "achievement",
@@ -5249,14 +5204,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "transport_first_car",
     "en",
     "title",
-    "Transport First Car"
+    "First Car"
   ],
   [
     "achievement",
     "transport_first_car",
     "en",
     "description",
-    "購買第一輛車"
+    "Buy your first car"
   ],
   [
     "achievement",
@@ -5277,14 +5232,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "transport_bike",
     "en",
     "title",
-    "Transport Bike"
+    "Bike Commuter"
   ],
   [
     "achievement",
     "transport_bike",
     "en",
     "description",
-    "騎單車通勤"
+    "Commute by bicycle"
   ],
   [
     "achievement",
@@ -5305,14 +5260,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "transport_roadtrip",
     "en",
     "title",
-    "Transport Roadtrip"
+    "Road Trip"
   ],
   [
     "achievement",
     "transport_roadtrip",
     "en",
     "description",
-    "完成一次公路旅行"
+    "Complete a road trip"
   ],
   [
     "achievement",
@@ -5333,14 +5288,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "transport_no_accident",
     "en",
     "title",
-    "Transport No Accident"
+    "Safe Driver"
   ],
   [
     "achievement",
     "transport_no_accident",
     "en",
     "description",
-    "一年無事故"
+    "Drive accident-free for a year"
   ],
   [
     "achievement",
@@ -5361,14 +5316,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "transport_uber_100",
     "en",
     "title",
-    "Transport Uber 100"
+    "Ride-Hail King"
   ],
   [
     "achievement",
     "transport_uber_100",
     "en",
     "description",
-    "搭乘 100 次叫車服務"
+    "Take 100 ride-hail trips"
   ],
   [
     "achievement",
@@ -5389,14 +5344,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "transport_bike_100",
     "en",
     "title",
-    "Transport Bike 100"
+    "Century Ride"
   ],
   [
     "achievement",
     "transport_bike_100",
     "en",
     "description",
-    "累積騎行 100 公里"
+    "Cycle 100 km total"
   ],
   [
     "achievement",
@@ -5417,14 +5372,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "health_yoga",
     "en",
     "title",
-    "Health Yoga"
+    "Yoga Practice"
   ],
   [
     "achievement",
     "health_yoga",
     "en",
     "description",
-    "完成一堂瑜伽課"
+    "Complete a yoga class"
   ],
   [
     "achievement",
@@ -5445,14 +5400,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "health_vegan",
     "en",
     "title",
-    "Health Vegan"
+    "Vegan Challenge"
   ],
   [
     "achievement",
     "health_vegan",
     "en",
     "description",
-    "連續一個月素食"
+    "Eat vegan for a month"
   ],
   [
     "achievement",
@@ -5473,14 +5428,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "health_plank_5min",
     "en",
     "title",
-    "Health Plank 5min"
+    "Plank King"
   ],
   [
     "achievement",
     "health_plank_5min",
     "en",
     "description",
-    "平板支撐超過 5 分鐘"
+    "Hold a plank for over 5 minutes"
   ],
   [
     "achievement",
@@ -5501,14 +5456,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_look_up",
     "en",
     "title",
-    "Daily Look Up"
+    "Stargazer"
   ],
   [
     "achievement",
     "daily_look_up",
     "en",
     "description",
-    "抬頭看星星超過 10 分鐘"
+    "Look at the stars for over 10 minutes"
   ],
   [
     "achievement",
@@ -5529,14 +5484,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_suntan",
     "en",
     "title",
-    "Daily Suntan"
+    "Sun-Kissed"
   ],
   [
     "achievement",
     "daily_suntan",
     "en",
     "description",
-    "在海灘曬傷"
+    "Get sunburned at the beach"
   ],
   [
     "achievement",
@@ -5557,14 +5512,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_chopsticks",
     "en",
     "title",
-    "Daily Chopsticks"
+    "Chopstick Master"
   ],
   [
     "achievement",
     "daily_chopsticks",
     "en",
     "description",
-    "用筷子夾起豆腐不碎"
+    "Pick up tofu with chopsticks without breaking it"
   ],
   [
     "achievement",
@@ -5585,14 +5540,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_overtime_hell",
     "en",
     "title",
-    "Career Overtime Hell"
+    "Overtime Hell"
   ],
   [
     "achievement",
     "career_overtime_hell",
     "en",
     "description",
-    "連續一個月每天加班 3 小時"
+    "Work 3 extra hours every day for a month"
   ],
   [
     "achievement",
@@ -5613,14 +5568,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "career_presentation",
     "en",
     "title",
-    "Career Presentation"
+    "Presentation Pro"
   ],
   [
     "achievement",
     "career_presentation",
     "en",
     "description",
-    "在超過 50 人面前簡報"
+    "Present to an audience of 50+"
   ],
   [
     "achievement",
@@ -5641,14 +5596,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_bucket_list",
     "en",
     "title",
-    "Explore Bucket List"
+    "Bucket List"
   ],
   [
     "achievement",
     "explore_bucket_list",
     "en",
     "description",
-    "完成一件人生願望清單"
+    "Complete a bucket-list item"
   ],
   [
     "achievement",
@@ -5669,14 +5624,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_sky_lantern",
     "en",
     "title",
-    "Explore Sky Lantern"
+    "Sky Lantern"
   ],
   [
     "achievement",
     "explore_sky_lantern",
     "en",
     "description",
-    "親手放天燈"
+    "Release a sky lantern yourself"
   ],
   [
     "achievement",
@@ -5697,14 +5652,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_snow",
     "en",
     "title",
-    "Explore Snow"
+    "First Snow"
   ],
   [
     "achievement",
     "explore_snow",
     "en",
     "description",
-    "第一次看到雪"
+    "See snow for the first time"
   ],
   [
     "achievement",
@@ -5725,14 +5680,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_desert",
     "en",
     "title",
-    "Explore Desert"
+    "Desert Trek"
   ],
   [
     "achievement",
     "explore_desert",
     "en",
     "description",
-    "踏上沙漠"
+    "Set foot in a desert"
   ],
   [
     "achievement",
@@ -5753,14 +5708,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_jungle",
     "en",
     "title",
-    "Explore Jungle"
+    "Jungle Adventure"
   ],
   [
     "achievement",
     "explore_jungle",
     "en",
     "description",
-    "深入熱帶雨林"
+    "Venture into a tropical rainforest"
   ],
   [
     "achievement",
@@ -5781,14 +5736,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_underwater",
     "en",
     "title",
-    "Explore Underwater"
+    "Underwater World"
   ],
   [
     "achievement",
     "explore_underwater",
     "en",
     "description",
-    "潛水探索海洋"
+    "Scuba dive and explore the ocean"
   ],
   [
     "achievement",
@@ -5809,14 +5764,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "explore_camping",
     "en",
     "title",
-    "Explore Camping"
+    "Starry Camping"
   ],
   [
     "achievement",
     "explore_camping",
     "en",
     "description",
-    "完成一次野外露營"
+    "Complete a wilderness camping trip"
   ],
   [
     "achievement",
@@ -5837,14 +5792,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_diy",
     "en",
     "title",
-    "Daily Diy"
+    "DIY Master"
   ],
   [
     "achievement",
     "daily_diy",
     "en",
     "description",
-    "自己動手 DIY 一件物品"
+    "Make something with your own hands"
   ],
   [
     "achievement",
@@ -5865,14 +5820,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_fix",
     "en",
     "title",
-    "Daily Fix"
+    "Repair King"
   ],
   [
     "achievement",
     "daily_fix",
     "en",
     "description",
-    "自己修理家電"
+    "Fix a household appliance yourself"
   ],
   [
     "achievement",
@@ -5893,14 +5848,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_plant",
     "en",
     "title",
-    "Daily Plant"
+    "Green Thumb"
   ],
   [
     "achievement",
     "daily_plant",
     "en",
     "description",
-    "成功養活一盆植物超過一年"
+    "Keep a plant alive for over a year"
   ],
   [
     "achievement",
@@ -5921,14 +5876,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_tattoo",
     "en",
     "title",
-    "Daily Tattoo"
+    "Body Art"
   ],
   [
     "achievement",
     "daily_tattoo",
     "en",
     "description",
-    "完成第一個刺青"
+    "Get your first tattoo"
   ],
   [
     "achievement",
@@ -5949,14 +5904,14 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
     "daily_photo_album",
     "en",
     "title",
-    "Daily Photo Album"
+    "Memory Keeper"
   ],
   [
     "achievement",
     "daily_photo_album",
     "en",
     "description",
-    "整理一本實體相簿"
+    "Organize a physical photo album"
   ],
   [
     "achievement",
@@ -5974,4 +5929,4 @@ export const ACHIEVEMENT_TRANSLATIONS: [string, string, string, string, string][
   ]
 ];
 
-export const ACHIEVEMENT_COUNT = 129;
+export const ACHIEVEMENT_COUNT = 128;

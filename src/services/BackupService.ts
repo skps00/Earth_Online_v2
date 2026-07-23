@@ -5,6 +5,8 @@ import { z } from 'zod';
 
 const BACKUP_FILENAME = 'earth_online_backup.json';
 
+export { BACKUP_FILENAME };
+
 const BackupSchema = z.object({
   version: z.number(),
   exportedAt: z.string(),
@@ -59,6 +61,21 @@ export async function importBackup(jsonString: string): Promise<boolean> {
   await replaceAll(data);
   Logger.info('Backup', `Imported ${data.checkIns.length} check-ins, ${data.achievements.length} achievements`);
   return true;
+}
+
+export function getLocalBackupPath(): string {
+  return FileSystem.documentDirectory + BACKUP_FILENAME;
+}
+
+/** Import from the app's local backup file (export default location). */
+export async function importBackupFromLocalFile(): Promise<boolean> {
+  const path = getLocalBackupPath();
+  const info = await FileSystem.getInfoAsync(path);
+  if (!info.exists) {
+    throw new Error('BACKUP_NOT_FOUND');
+  }
+  const json = await FileSystem.readAsStringAsync(path);
+  return importBackup(json);
 }
 
 export async function replaceAll(data: BackupData): Promise<void> {

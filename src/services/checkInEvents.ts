@@ -1,5 +1,6 @@
 import { processEvent } from '@/engine/processEvent';
 import { checkSunEvent } from '@/services/SunriseService';
+import { crossedNationalBorder, crossesDateLine } from '@/utils/checkInTransitions';
 
 export interface CheckInEventInput {
   country: string | null;
@@ -12,11 +13,20 @@ export interface CheckInEventInput {
   uniqueContinents: number;
   hour: number;
   weekday: number;
+  previous?: {
+    latitude: number;
+    longitude: number;
+    country: string | null;
+  } | null;
 }
 
 /** Emit all achievement events tied to a check-in. */
 export async function emitCheckInGameEvents(input: CheckInEventInput): Promise<string[]> {
   const unlocked: string[] = [];
+
+  const crossedBorder = crossedNationalBorder(input.previous?.country, input.country);
+  const crossedDateline =
+    input.previous != null && crossesDateLine(input.previous.longitude, input.longitude);
 
   if (input.country) {
     unlocked.push(
@@ -24,6 +34,9 @@ export async function emitCheckInGameEvents(input: CheckInEventInput): Promise<s
         type: 'checkin_completed',
         country: input.country,
         continent: input.continent ?? '',
+        crossedBorder,
+        crossedDateline,
+        uniqueCountries: input.uniqueCountries,
       })),
     );
   }

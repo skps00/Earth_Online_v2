@@ -3,7 +3,7 @@ import type { AchievementDefinitionRow } from '@/types/database';
 
 const def = (overrides: Partial<AchievementDefinitionRow> = {}): AchievementDefinitionRow => ({
   id: 'test_ach',
-  category: 'Exploration',
+  category: 'Travel',
   prerequisite_id: null,
   rarity: 'Common',
   trigger_type: 'checkin_count',

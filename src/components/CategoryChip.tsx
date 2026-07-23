@@ -1,4 +1,5 @@
-import { Text, Platform } from 'react-native';
+import { Platform } from 'react-native';
+import { AppText } from '@/components/AppText';
 import { useTheme } from '@/theme/ThemeProvider';
 import { Category } from '@/types/achievement';
 import { useTranslation } from '@/i18n';
@@ -11,7 +12,7 @@ export function CategoryChip({ category, active, onPress }: Props) {
   const label = category === 'all' ? t('trophies.categories.all') : t(`trophies.categories.${category.toLowerCase()}`);
 
   return (
-    <Text
+    <AppText
       onPress={onPress}
       textBreakStrategy="simple"
       allowFontScaling={false}
@@ -31,6 +32,6 @@ export function CategoryChip({ category, active, onPress }: Props) {
       }}
     >
       {label}
-    </Text>
+    </AppText>
   );
 }

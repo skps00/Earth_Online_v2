@@ -1,11 +1,12 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { AppText } from '@/components/AppText';
 import { Rarity, rarityColors } from '@/types/achievement';
 
 export function RarityBadge({ rarity }: { rarity: Rarity }) {
   const color = rarityColors(rarity);
   return (
     <View style={[styles.badge, { borderColor: color, backgroundColor: `${color}20` }]}>
-      <Text style={[styles.text, { color }]}>{rarity.toUpperCase()}</Text>
+      <AppText style={[styles.text, { color }]}>{rarity.toUpperCase()}</AppText>
     </View>
   );
 }

@@ -17,6 +17,7 @@
     "rename": "重新命名",
     "ready": "準備好冒險了嗎！",
     "coreAttributes": "核心屬性",
-    "levelFormat": "LVL {{level}} {{species}}"
+    "levelFormat": "LVL {{level}} {{species}}",
+    "xpFormat": "{{current}}/{{max}}"
   }
 }

@@ -28,8 +28,8 @@ describe('achievement types', () => {
     expect(rarityColors('Legendary')).toBeTruthy();
   });
 
-  it('defines five categories', () => {
-    expect(CATEGORIES).toHaveLength(5);
-    expect(CATEGORIES).toContain('Exploration');
+  it('defines six categories', () => {
+    expect(CATEGORIES).toHaveLength(6);
+    expect(CATEGORIES).toContain('Travel');
   });
 });

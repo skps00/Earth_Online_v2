@@ -1,4 +1,5 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { AppText } from '@/components/AppText';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
 
@@ -9,11 +10,11 @@ export function ErrorState({ message, onRetry }: Props) {
   const { t } = useTranslation();
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 48, marginBottom: 12 }}>⚠️</Text>
-      <Text style={[styles.text, { color: colors.error }]}>{message ?? t('errors.NETWORK_OFFLINE')}</Text>
+      <AppText style={{ fontSize: 48, marginBottom: 12 }}>⚠️</AppText>
+      <AppText style={[styles.text, { color: colors.error }]}>{message ?? t('errors.NETWORK_OFFLINE')}</AppText>
       {onRetry && (
         <TouchableOpacity onPress={onRetry} style={[styles.btn, { borderColor: colors.secondary }]}>
-          <Text style={[styles.btnText, { color: colors.secondary }]}>{t('common.retry')}</Text>
+          <AppText style={[styles.btnText, { color: colors.secondary }]}>{t('common.retry')}</AppText>
         </TouchableOpacity>
       )}
     </View>

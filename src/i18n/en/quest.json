@@ -8,6 +8,12 @@
     "xp": "+{{xp}} XP",
     "notStarted": "Not started",
     "empty": "Daily quests will appear here",
-    "completedBadge": "COMPLETED"
+    "completedBadge": "COMPLETED",
+    "takePhoto": "Take photo",
+    "rewardXp": "+{{xp}} XP",
+    "rewardXpCoins": "+{{xp}} XP · +{{coins}} coins",
+    "completeTitle": "QUEST COMPLETE!",
+    "completeRewardXp": "+{{xp}} XP",
+    "completeReward": "+{{xp}} XP · +{{coins}} coins"
   }
 }

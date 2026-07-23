@@ -4,7 +4,17 @@ export type SunPhase = 'sunrise' | 'sunset' | 'solar_noon' | 'golden_hour';
 export type ScreenTimeResult = 'earlybird' | 'allnighter' | 'no_phone';
 
 export type GameEvent =
-  | { type: 'checkin_completed'; country: string; continent: string; city?: string }
+  | {
+      type: 'checkin_completed';
+      country: string;
+      continent: string;
+      city?: string;
+      /** Previous check-in was in a different country. */
+      crossedBorder?: boolean;
+      /** Short arc from previous longitude crossed ±180°. */
+      crossedDateline?: boolean;
+      uniqueCountries?: number;
+    }
   | { type: 'checkin_count'; uniqueLocations: number }
   | { type: 'country_count'; uniqueCountries: number }
   | { type: 'continent_count'; uniqueContinents: number }

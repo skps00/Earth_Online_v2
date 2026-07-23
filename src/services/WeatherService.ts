@@ -2,8 +2,8 @@ import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import { processEvent } from '@/engine/processEvent';
 import type { WeatherCondition } from '@/types/events';
+import { assertGenuineLocation } from '@/utils/locationIntegrity';
 import { Logger } from '@/utils/logger';
-
 const API_KEY =
   (Constants.expoConfig?.extra?.OPENWEATHERMAP_API_KEY as string | undefined) ?? '';
 
@@ -39,17 +39,36 @@ export function mapWeatherConditions(main: string, tempC: number): WeatherCondit
   return [...new Set(conditions)];
 }
 
-export async function checkWeatherAndEmitEvents(): Promise<string[]> {
+export async function checkWeatherAndEmitEvents(
+  coords?: { latitude: number; longitude: number },
+): Promise<string[]> {
   if (!API_KEY) {
     Logger.info('Weather', 'OPENWEATHERMAP_API_KEY not configured');
     return [];
   }
 
-  const { status } = await Location.getForegroundPermissionsAsync();
-  if (status !== 'granted') return [];
+  let latitude: number;
+  let longitude: number;
 
-  const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${loc.coords.latitude}&lon=${loc.coords.longitude}&appid=${API_KEY}&units=metric`;
+  if (coords) {
+    latitude = coords.latitude;
+    longitude = coords.longitude;
+  } else {
+    const { status } = await Location.getForegroundPermissionsAsync();
+    if (status !== 'granted') return [];
+
+    try {
+      const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Low });
+      assertGenuineLocation(loc, 'weather');
+      latitude = loc.coords.latitude;
+      longitude = loc.coords.longitude;
+    } catch (error) {
+      Logger.warn('Weather', `Location unavailable: ${String(error)}`);
+      return [];
+    }
+  }
+
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
 
   const res = await fetch(url);
   if (!res.ok) {

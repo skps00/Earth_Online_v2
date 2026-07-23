@@ -1,10 +1,23 @@
-export type Category = 'Combat' | 'Exploration' | 'Collection' | 'Social' | 'Mastery';
+export type Category =
+  | 'Natural'
+  | 'Milestone'
+  | 'Travel'
+  | 'Daily'
+  | 'Health'
+  | 'Career';
 
 export type Rarity = 'Common' | 'Rare' | 'Epic' | 'Legendary';
 
 export type TriggerType = 'checkin_count' | 'manual' | 'auto_track';
 
-export const CATEGORIES: Category[] = ['Combat', 'Exploration', 'Collection', 'Social', 'Mastery'];
+export const CATEGORIES: Category[] = [
+  'Natural',
+  'Milestone',
+  'Travel',
+  'Daily',
+  'Health',
+  'Career',
+];
 
 export function rarityFromPoints(points: number): Rarity {
   if (points >= 1000) return 'Legendary';

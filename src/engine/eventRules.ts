@@ -28,6 +28,14 @@ registerRule('checkin_completed', {
         const condition = JSON.parse(conditionJson);
         if (condition.country && event.country !== condition.country) return false;
         if (condition.continent && event.continent !== condition.continent) return false;
+        if (condition.crossedBorder === true && event.crossedBorder !== true) return false;
+        if (condition.crossedDateline === true && event.crossedDateline !== true) return false;
+        if (
+          typeof condition.minUniqueCountries === 'number' &&
+          (event.uniqueCountries ?? 0) < condition.minUniqueCountries
+        ) {
+          return false;
+        }
       } catch (e) {
         console.error(`[Rule Error] Invalid condition_json for achievement ${def.id}:`, e);
         return false;

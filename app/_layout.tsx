@@ -2,83 +2,31 @@ import { Stack, useRouter, useSegments } from 'expo-router';
 import { Provider as JotaiProvider } from 'jotai';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from '@/theme/ThemeProvider';
-import { useEffect, useState } from 'react';
-import { seedDatabase } from '@/database/seed';
-import { initCheckIn } from '@/services/CheckInCoordinator';
-import { LocationService } from '@/services/LocationService';
-import { CheckInRepository } from '@/repositories/CheckInRepository';
-import { resetDailyQuests } from '@/services/DailyResetService';
-import { reconcile } from '@/engine/reconcile';
+import { useCallback, useEffect, useState } from 'react';
 import { Logger } from '@/utils/logger';
 import { useSettings } from '@/hooks/useSettings';
-import { registerBackgroundSync } from '@/services/BackgroundSyncService';
-import { isSignedIn } from '@/services/GoogleAuthService';
+import { useLocalizedCatalogSync } from '@/hooks/useLocalizedCatalogSync';
+import { isSignedIn, isGoogleSigninNativeAvailable } from '@/services/GoogleAuthService';
 import { LoginScreen } from '@/components/LoginScreen';
+import { StartupScreen } from '@/components/StartupScreen';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { GlobalAchievementModals } from '@/components/GlobalAchievementModals';
+import { GlobalQuestModals } from '@/components/GlobalQuestModals';
 import { SettingsRepository } from '@/repositories/SettingsRepository';
-import { trackEvent } from '@/services/AnalyticsService';
-import { checkEnvironmentAchievements } from '@/services/EnvironmentAchievementService';
-import { checkScreenTimeAndEmitEvents, initScreenTimeTracker } from '@/services/ScreenTimeService';
-import { checkEarthquakeAndEmitEvents } from '@/services/EarthquakeService';
-import { initIAP } from '@/services/IAPService';
+import { runBlockingStartup, runDeferredStartup, type StartupProgress } from '@/services/AppStartupService';
 import { unlockQueueAtom } from '@/stores/achievementStore';
 import { useSetAtom } from 'jotai';
 
 const settingsRepo = new SettingsRepository();
 
+type AppPhase = 'startup' | 'login' | 'app';
+
+const INITIAL_PROGRESS: StartupProgress = { progress: 0, labelKey: 'startup.init' };
+
 function SettingsBootstrap({ children }: { children: React.ReactNode }) {
   useSettings();
+  useLocalizedCatalogSync();
   return <>{children}</>;
-}
-
-function AppInitializer({ children }: { children: React.ReactNode }) {
-  const [dbReady, setDbReady] = useState(false);
-  const setUnlockQueue = useSetAtom(unlockQueueAtom);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    (async () => {
-      try {
-        initCheckIn({
-          locationService: new LocationService(),
-          checkInRepo: new CheckInRepository(),
-        });
-
-        await seedDatabase();
-        await resetDailyQuests();
-        const fixed = await reconcile();
-        if (fixed > 0) Logger.info('Startup', `Reconciled ${fixed} missed achievements`);
-
-        initScreenTimeTracker();
-
-        const envUnlocked = await checkEnvironmentAchievements();
-        const screenTimeUnlocked = await checkScreenTimeAndEmitEvents();
-        const earthquakeUnlocked = await checkEarthquakeAndEmitEvents();
-        const startupUnlocked = [...envUnlocked, ...screenTimeUnlocked, ...earthquakeUnlocked];
-        if (startupUnlocked.length > 0) {
-          setUnlockQueue(prev => [...prev, ...startupUnlocked.filter(id => !prev.includes(id))]);
-        }
-
-        await registerBackgroundSync();
-        await initIAP();
-        await trackEvent('app_open');
-
-        if (!cancelled) setDbReady(true);
-      } catch (error) {
-        Logger.error('Startup', 'Database initialization failed', error);
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [setUnlockQueue]);
-
-  if (!dbReady) return null;
-
-  return <SettingsBootstrap>{children}</SettingsBootstrap>;
 }
 
 function RootNavigator() {
@@ -118,41 +66,91 @@ function RootNavigator() {
         <Stack.Screen name="onboarding" options={{ presentation: 'modal', animation: 'fade' }} />
       </Stack>
       <GlobalAchievementModals />
+      <GlobalQuestModals />
     </>
   );
 }
 
-export default function RootLayout() {
-  const [isAuth, setIsAuth] = useState<boolean | null>(null);
+function AppShell() {
+  const [phase, setPhase] = useState<AppPhase>('startup');
+  const [startupProgress, setStartupProgress] = useState<StartupProgress>(INITIAL_PROGRESS);
+  const [startupError, setStartupError] = useState<string | null>(null);
+  const [startupAttempt, setStartupAttempt] = useState(0);
+  const setUnlockQueue = useSetAtom(unlockQueueAtom);
+
+  const enterApp = useCallback(() => {
+    runDeferredStartup(ids => {
+      setUnlockQueue(prev => [...prev, ...ids.filter(id => !prev.includes(id))]);
+    });
+    setPhase('app');
+  }, [setUnlockQueue]);
 
   useEffect(() => {
-    isSignedIn().then(setIsAuth);
-  }, []);
+    let cancelled = false;
 
-  if (isAuth === null) return null;
+    (async () => {
+      setStartupError(null);
+      setStartupProgress(INITIAL_PROGRESS);
 
-  if (!isAuth) {
+      try {
+        await runBlockingStartup(state => {
+          if (!cancelled) setStartupProgress(state);
+        });
+        if (cancelled) return;
+
+        let signedIn = false;
+        if (isGoogleSigninNativeAvailable()) {
+          signedIn = await isSignedIn();
+        }
+
+        if (cancelled) return;
+
+        if (signedIn) {
+          enterApp();
+        } else {
+          setPhase('login');
+        }
+      } catch (error) {
+        if (!cancelled) {
+          Logger.error('Startup', 'Gate failed', error);
+          setStartupError(error instanceof Error ? error.message : 'Startup failed');
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [startupAttempt, enterApp]);
+
+  if (phase === 'startup') {
     return (
-      <ErrorBoundary>
-        <JotaiProvider>
-          <SafeAreaProvider>
-            <ThemeProvider>
-              <LoginScreen onLogin={() => setIsAuth(true)} onSkip={() => setIsAuth(true)} />
-            </ThemeProvider>
-          </SafeAreaProvider>
-        </JotaiProvider>
-      </ErrorBoundary>
+      <StartupScreen
+        progress={startupProgress}
+        error={startupError}
+        onRetry={startupError ? () => setStartupAttempt(n => n + 1) : undefined}
+      />
     );
   }
 
+  if (phase === 'login') {
+    return <LoginScreen onLogin={enterApp} onSkip={enterApp} />;
+  }
+
+  return (
+    <SettingsBootstrap>
+      <RootNavigator />
+    </SettingsBootstrap>
+  );
+}
+
+export default function RootLayout() {
   return (
     <ErrorBoundary>
       <JotaiProvider>
         <SafeAreaProvider>
           <ThemeProvider>
-            <AppInitializer>
-              <RootNavigator />
-            </AppInitializer>
+            <AppShell />
           </ThemeProvider>
         </SafeAreaProvider>
       </JotaiProvider>

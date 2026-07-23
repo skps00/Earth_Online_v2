@@ -23,6 +23,8 @@
     "achievementUnlocked": "{{count}} achievement unlocked!",
     "achievementsUnlocked": "{{count}} achievements unlocked!",
     "checkinCount": "{{count}}/10 today",
-    "checkinLimitReached": "Daily limit reached. Try tomorrow!"
+    "checkinLimitReached": "Daily limit reached. Try tomorrow!",
+    "sameLocation": "Already checked in here today.",
+    "newLocation": "New location today!"
   }
 }

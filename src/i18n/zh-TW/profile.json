@@ -8,6 +8,13 @@
     "backup": "備份",
     "backupExport": "匯出備份",
     "backupImport": "匯入備份",
+    "backupImportConfirm": "這會用備份覆蓋目前的打卡、成就與夥伴資料。確定繼續？",
+    "backupImportSource": "選擇備份來源。",
+    "backupImportPickFile": "選擇 JSON 檔案",
+    "backupImportLocal": "使用本機上次匯出的檔案",
+    "backupImportSuccess": "備份匯入成功",
+    "backupImportFailed": "匯入失敗，請確認檔案格式",
+    "backupImportNotFound": "找不到本機備份。請先匯出，或選擇 JSON 檔案。",
     "backupSuccess": "備份完成",
     "memories": "回憶",
     "settings": "設定",
@@ -24,6 +31,13 @@
     "purchaseSuccess": "購買完成！",
     "purchasePending": "IAP 待 Play Console 設定",
     "english": "English",
-    "chinese": "繁體中文"
+    "chinese": "繁體中文",
+    "googleAccount": "Google 帳號",
+    "googleSignedIn": "已登入",
+    "googleNotSignedIn": "未登入",
+    "googleTapToSignIn": "點擊登入",
+    "googleSignOutTitle": "要登出嗎？",
+    "googleSignOutMessage": "你可隨時再次登入。登出後將停止雲端同步，直到重新登入。",
+    "googleSignInFailed": "Google 登入失敗，請重試或使用 Dev Client 建置。"
   }
 }

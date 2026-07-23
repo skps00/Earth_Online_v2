@@ -1,4 +1,5 @@
 import { getDatabase } from '@/database/connection';
+import { localDateFromSqliteUtc, localDateString } from '@/utils/localDate';
 import { loadLocalBackup, replaceAll, type BackupData } from './BackupService';
 import { uploadToDrive, downloadFromDrive } from './DriveService';
 import { Logger } from '@/utils/logger';
@@ -91,13 +92,13 @@ function mergeCheckIns(
 
   all.sort((a, b) => a.created_at.localeCompare(b.created_at));
 
-  const today = new Date().toISOString().slice(0, 10);
+  const today = localDateString();
   let todayCount = 0;
   const trimmed: BackupData['checkIns'] = [];
 
   for (let i = all.length - 1; i >= 0; i--) {
     const c = all[i];
-    if (c.created_at.startsWith(today)) {
+    if (localDateFromSqliteUtc(c.created_at) === today) {
       if (todayCount < MAX_CHECKINS_PER_DAY) {
         trimmed.unshift(c);
         todayCount++;

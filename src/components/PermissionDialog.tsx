@@ -1,4 +1,5 @@
-import { Modal, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Modal, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { AppText } from '@/components/AppText';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
 
@@ -18,14 +19,14 @@ export function PermissionDialog({ visible, title, message, onAllow, onDeny }: P
     <Modal visible={visible} transparent animationType="fade">
       <View style={styles.backdrop}>
         <View style={[styles.dialog, { backgroundColor: colors.surfaceHigh, borderColor: colors.primaryContainer }]}>
-          <Text style={[styles.title, { color: colors.onSurface }]}>{title}</Text>
-          <Text style={[styles.message, { color: colors.onSurfaceVariant }]}>{message}</Text>
+          <AppText style={[styles.title, { color: colors.onSurface }]}>{title}</AppText>
+          <AppText style={[styles.message, { color: colors.onSurfaceVariant }]}>{message}</AppText>
           <View style={styles.buttons}>
             <TouchableOpacity onPress={onDeny} style={[styles.btn, { borderColor: colors.outline }]}>
-              <Text style={[styles.btnText, { color: colors.onSurface }]}>{t('common.cancel')}</Text>
+              <AppText style={[styles.btnText, { color: colors.onSurface }]}>{t('common.cancel')}</AppText>
             </TouchableOpacity>
             <TouchableOpacity onPress={onAllow} style={[styles.btn, { backgroundColor: colors.primaryContainer }]}>
-              <Text style={[styles.btnText, { color: colors.onPrimaryContainer }]}>{t('common.allow')}</Text>
+              <AppText style={[styles.btnText, { color: colors.onPrimaryContainer }]}>{t('common.allow')}</AppText>
             </TouchableOpacity>
           </View>
         </View>

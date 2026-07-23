@@ -17,6 +17,7 @@
     "rename": "Rename",
     "ready": "Ready for adventure!",
     "coreAttributes": "Core Attributes",
-    "levelFormat": "LVL {{level}} {{species}}"
+    "levelFormat": "LVL {{level}} {{species}}",
+    "xpFormat": "{{current}}/{{max}}"
   }
 }

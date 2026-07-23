@@ -1,0 +1,11 @@
+{
+  "startup": {
+    "title": "Earth Online",
+    "init": "Preparing adventure engine…",
+    "database": "Loading world data…",
+    "quests": "Refreshing daily quests…",
+    "sync": "Syncing achievements…",
+    "ready": "Ready!",
+    "failed": "Startup failed. Please try again."
+  }
+}

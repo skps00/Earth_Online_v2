@@ -1,5 +1,7 @@
-import { Modal, View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
+import { Modal, View, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
+import { AppText } from '@/components/AppText';
 import { useState } from 'react';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
 import { rarityColors } from '@/types/achievement';
@@ -28,6 +30,7 @@ export function AchievementDetailModal({
 }: Props) {
   const { colors } = useTheme();
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const [confirming, setConfirming] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -67,11 +70,20 @@ export function AchievementDetailModal({
     <>
       <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
         <View style={styles.overlay}>
-          <View style={[styles.sheet, { backgroundColor: colors.surface, borderColor: rarityColor }]}>
-            <Text style={styles.icon}>{achievement.icon ?? '🏆'}</Text>
-            <Text style={[styles.title, { color: colors.onSurface }]}>{achievement.title}</Text>
-            <Text style={[styles.rarity, { color: rarityColor }]}>{achievement.rarity}</Text>
-            <Text style={[styles.desc, { color: colors.onSurfaceVariant }]}>{achievement.description}</Text>
+          <View
+            style={[
+              styles.sheet,
+              {
+                backgroundColor: colors.surface,
+                borderColor: rarityColor,
+                paddingBottom: 24 + Math.max(insets.bottom, 8),
+              },
+            ]}
+          >
+            <AppText style={styles.icon}>{achievement.icon ?? '🏆'}</AppText>
+            <AppText style={[styles.title, { color: colors.onSurface }]}>{achievement.title}</AppText>
+            <AppText style={[styles.rarity, { color: rarityColor }]}>{achievement.rarity}</AppText>
+            <AppText style={[styles.desc, { color: colors.onSurfaceVariant }]}>{achievement.description}</AppText>
 
             {!unlocked && (
               <View style={styles.progressRow}>
@@ -86,13 +98,13 @@ export function AchievementDetailModal({
                     ]}
                   />
                 </View>
-                <Text style={{ color: colors.onSurfaceVariant, fontSize: 12 }}>
+                <AppText style={{ color: colors.onSurfaceVariant, fontSize: 12 }}>
                   {achievement.progress}/{achievement.trigger_goal}
-                </Text>
+                </AppText>
               </View>
             )}
 
-            {error && <Text style={[styles.error, { color: colors.error }]}>{error}</Text>}
+            {error && <AppText style={[styles.error, { color: colors.error }]}>{error}</AppText>}
 
             {canManual && (
               <TouchableOpacity
@@ -103,19 +115,19 @@ export function AchievementDetailModal({
                 {confirming ? (
                   <ActivityIndicator color={colors.onPrimaryContainer} />
                 ) : (
-                  <Text style={[styles.btnText, { color: colors.onPrimaryContainer }]}>
+                  <AppText style={[styles.btnText, { color: colors.onPrimaryContainer }]}>
                     {t('trophies.confirmComplete')}
-                  </Text>
+                  </AppText>
                 )}
               </TouchableOpacity>
             )}
 
             {unlocked && (
-              <Text style={[styles.unlockedLabel, { color: '#50C878' }]}>{t('trophies.completed')}</Text>
+              <AppText style={[styles.unlockedLabel, { color: '#50C878' }]}>{t('trophies.completed')}</AppText>
             )}
 
             <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
-              <Text style={{ color: colors.onSurfaceVariant }}>{t('common.close')}</Text>
+              <AppText style={[styles.closeText, { color: colors.onSurfaceVariant }]}>{t('common.close')}</AppText>
             </TouchableOpacity>
           </View>
         </View>
@@ -148,5 +160,6 @@ const styles = StyleSheet.create({
   btn: { marginTop: 20, paddingVertical: 14, borderRadius: 12, alignItems: 'center' },
   btnText: { fontSize: 16, fontWeight: '700' },
   unlockedLabel: { fontSize: 16, fontWeight: '700', textAlign: 'center', marginTop: 16 },
-  closeBtn: { marginTop: 16, alignItems: 'center', padding: 8 },
+  closeBtn: { marginTop: 16, alignItems: 'center', paddingVertical: 8, paddingHorizontal: 16 },
+  closeText: { fontSize: 14, lineHeight: 20 },
 });

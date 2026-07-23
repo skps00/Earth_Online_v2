@@ -3,12 +3,17 @@
     "title": "成就",
     "progress": "{{unlocked}} / {{total}} 已解鎖",
     "categories": {
-      "combat": "戰鬥",
-      "exploration": "探索",
-      "collection": "收集",
-      "social": "社交",
-      "mastery": "精通",
+      "natural": "自然現象",
+      "milestone": "人生里程碑",
+      "travel": "旅行探索",
+      "daily": "日常點滴",
+      "health": "健康體能",
+      "career": "事業學業",
       "all": "全部"
+    },
+    "sort": {
+      "recent": "最近解鎖",
+      "difficulty": "由易到難"
     },
     "completed": "已完成",
     "prerequisiteHint": "需先完成 {{name}}",

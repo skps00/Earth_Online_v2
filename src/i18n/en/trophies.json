@@ -3,12 +3,17 @@
     "title": "Trophies",
     "progress": "{{unlocked}} / {{total}} Unlocked",
     "categories": {
-      "combat": "Combat",
-      "exploration": "Exploration",
-      "collection": "Collection",
-      "social": "Social",
-      "mastery": "Mastery",
+      "natural": "Natural",
+      "milestone": "Milestone",
+      "travel": "Travel",
+      "daily": "Daily",
+      "health": "Health",
+      "career": "Career",
       "all": "All"
+    },
+    "sort": {
+      "recent": "Recent",
+      "difficulty": "Easy → Hard"
     },
     "completed": "Completed",
     "prerequisiteHint": "Complete {{name}} first",

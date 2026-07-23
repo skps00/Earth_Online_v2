@@ -2,6 +2,7 @@ import * as Location from 'expo-location';
 import { processEvent } from '@/engine/processEvent';
 import { SettingsRepository } from '@/repositories/SettingsRepository';
 import { haversineKm } from '@/utils/haversine';
+import { assertGenuineLocation } from '@/utils/locationIntegrity';
 import { Logger } from '@/utils/logger';
 
 const USGS_FEED =
@@ -99,22 +100,28 @@ async function markEarthquakeProcessed(id: string): Promise<void> {
   }
 }
 
-export async function checkEarthquakeAndEmitEvents(): Promise<string[]> {
-  const { status } = await Location.getForegroundPermissionsAsync();
-  if (status !== 'granted') return [];
-
+export async function checkEarthquakeAndEmitEvents(
+  coords?: { latitude: number; longitude: number },
+): Promise<string[]> {
   let userLat: number;
   let userLon: number;
 
-  try {
-    const loc = await Location.getCurrentPositionAsync({
-      accuracy: Location.Accuracy.Balanced,
-    });
-    userLat = loc.coords.latitude;
-    userLon = loc.coords.longitude;
-  } catch (error) {
-    Logger.warn('Earthquake', `Location unavailable: ${String(error)}`);
-    return [];
+  if (coords) {
+    userLat = coords.latitude;
+    userLon = coords.longitude;
+  } else {
+    const { status } = await Location.getForegroundPermissionsAsync();
+    if (status !== 'granted') return [];
+
+    try {
+      const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Low });
+      assertGenuineLocation(loc, 'earthquake');
+      userLat = loc.coords.latitude;
+      userLon = loc.coords.longitude;
+    } catch (error) {
+      Logger.warn('Earthquake', `Location unavailable: ${String(error)}`);
+      return [];
+    }
   }
 
   let data: UsgsGeoJson;

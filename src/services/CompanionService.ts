@@ -1,6 +1,7 @@
 import { CompanionRepository } from '@/repositories/CompanionRepository';
 import type { Companion } from '@/types/companion';
 import { Logger } from '@/utils/logger';
+import { isCoinsEnabled } from '@/stores/currencyStore';
 
 const repo = new CompanionRepository();
 
@@ -31,6 +32,13 @@ export async function awardQuestRewards(): Promise<{ leveledUp: boolean; compani
   return grantXp(QUEST_XP, 10);
 }
 
+export async function awardQuestRewardsForQuest(
+  xp: number,
+  coins: number,
+): Promise<{ leveledUp: boolean; companion: Companion | null }> {
+  return grantXp(xp, coins);
+}
+
 export async function awardAchievementRewards(count: number): Promise<{ leveledUp: boolean; companion: Companion | null }> {
   if (count <= 0) return { leveledUp: false, companion: await repo.get() };
   return grantXp(ACHIEVEMENT_XP * count, 20 * count);
@@ -41,7 +49,8 @@ async function grantXp(xpAmount: number, coinAmount: number): Promise<{ leveledU
   if (!current) return { leveledUp: false, companion: null };
 
   await repo.addXp(xpAmount);
-  if (coinAmount > 0) await repo.addCoins(coinAmount);
+  const coinsToGrant = isCoinsEnabled ? coinAmount : 0;
+  if (coinsToGrant > 0) await repo.addCoins(coinsToGrant);
 
   let leveledUp = false;
   let updated = await repo.get();

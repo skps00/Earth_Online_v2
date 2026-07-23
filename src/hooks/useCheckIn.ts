@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSetAtom } from 'jotai';
 import { isCheckingInAtom, lastCheckInAtom, checkInErrorAtom } from '@/stores/checkInStore';
 import { photoPromptAtom } from '@/stores/photoPromptStore';
-import { questVersionAtom } from '@/stores/questStore';
+import { questVersionAtom, questCompleteQueueAtom } from '@/stores/questStore';
 import { achievementVersionAtom, unlockQueueAtom } from '@/stores/achievementStore';
 import { companionAtom } from '@/stores/companionStore';
 import { coinsAtom } from '@/stores/currencyStore';
@@ -16,7 +16,7 @@ const companionRepo = new CompanionRepository();
 
 function mapCheckInError(error: unknown): string {
   const message = error instanceof Error ? error.message : String(error);
-  if (message === 'GPS_DENIED' || message === 'GPS_DISABLED' || message === 'GPS_UNAVAILABLE' || message === 'GPS_TIMEOUT' || message === 'DAILY_LIMIT_REACHED') {
+  if (message === 'GPS_DENIED' || message === 'GPS_DISABLED' || message === 'GPS_UNAVAILABLE' || message === 'GPS_TIMEOUT' || message === 'GPS_MOCKED' || message === 'GPS_IP_MISMATCH' || message === 'GPS_TZ_MISMATCH' || message === 'GPS_TELEPORT' || message === 'GPS_ACCURACY_LOW' || message === 'GPS_STALE_LOCATION' || message === 'DAILY_LIMIT_REACHED') {
     return message;
   }
   if (message.toLowerCase().includes('permission')) return 'GPS_DENIED';
@@ -31,6 +31,7 @@ export function useCheckIn() {
   const setError = useSetAtom(checkInErrorAtom);
   const setPhotoPrompt = useSetAtom(photoPromptAtom);
   const setQuestVersion = useSetAtom(questVersionAtom);
+  const setQuestCompleteQueue = useSetAtom(questCompleteQueueAtom);
   const setAchievementVersion = useSetAtom(achievementVersionAtom);
   const setUnlockQueue = useSetAtom(unlockQueueAtom);
   const setCompanion = useSetAtom(companionAtom);
@@ -67,6 +68,10 @@ export function useCheckIn() {
         setUnlockQueue(prev => [...prev, ...result.unlockedAchievements.filter(id => !prev.includes(id))]);
       }
       if (result.completedQuests.length > 0) {
+        setQuestCompleteQueue((prev) => [
+          ...prev,
+          ...result.completedQuests.filter((id) => !prev.includes(id)),
+        ]);
         for (const q of result.completedQuests) {
           await trackEvent('quest_complete', { questId: q });
         }

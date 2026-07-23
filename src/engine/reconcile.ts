@@ -1,13 +1,13 @@
 import { CheckInRepository } from '@/repositories/CheckInRepository';
-import { AchievementRepository } from '@/repositories/AchievementRepository';
 import { processEvent } from './processEvent';
+import { crossedNationalBorder, crossesDateLine } from '@/utils/checkInTransitions';
 
 const checkInRepo = new CheckInRepository();
-const achievementRepo = new AchievementRepository();
 
 export async function reconcile(): Promise<number> {
   let fixed = 0;
-  const checkIns = await checkInRepo.getAll();
+  const checkInsDesc = await checkInRepo.getAll();
+  const checkIns = [...checkInsDesc].reverse();
   const uniqueLocations = await checkInRepo.countUniqueLocations();
   const uniqueCountries = await checkInRepo.countUniqueCountries();
   const uniqueContinents = await checkInRepo.countUniqueContinents();
@@ -18,15 +18,20 @@ export async function reconcile(): Promise<number> {
 
   fixed = countResults.length + countryResults.length + continentResults.length;
 
+  let previous: (typeof checkIns)[number] | null = null;
   for (const checkIn of checkIns) {
     if (checkIn.country) {
       const results = await processEvent({
         type: 'checkin_completed',
         country: checkIn.country,
         continent: checkIn.continent ?? '',
+        crossedBorder: crossedNationalBorder(previous?.country, checkIn.country),
+        crossedDateline: previous != null && crossesDateLine(previous.longitude, checkIn.longitude),
+        uniqueCountries,
       });
       fixed += results.length;
     }
+    previous = checkIn;
   }
 
   return fixed;

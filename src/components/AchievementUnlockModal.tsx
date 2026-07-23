@@ -1,10 +1,10 @@
-import { Modal, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Modal, View, TouchableOpacity, StyleSheet, Share } from 'react-native';
+import { AppText } from '@/components/AppText';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
 import { CompanionCanvas } from './CompanionCanvas';
 import { rarityColors } from '@/types/achievement';
 import type { AchievementDisplay } from '@/repositories/AchievementRepository';
-import { Share } from 'react-native';
 import { trackEvent } from '@/services/AnalyticsService';
 
 interface Props {
@@ -35,17 +35,17 @@ export function AchievementUnlockModal({ achievement, visible, onDismiss, compan
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onDismiss}>
       <View style={styles.overlay}>
         <View style={[styles.card, { backgroundColor: colors.surface, borderColor: rarityColor }]}>
-          <Text style={styles.celebrate}>{t('trophies.unlockedTitle')}</Text>
+          <AppText style={styles.celebrate}>{t('trophies.unlockedTitle')}</AppText>
           <CompanionCanvas emoji={achievement.icon ?? companionEmoji} size={120} primaryColor={rarityColor} />
-          <Text style={[styles.title, { color: colors.onSurface }]}>{achievement.title}</Text>
-          <Text style={[styles.rarity, { color: rarityColor }]}>{achievement.rarity}</Text>
-          <Text style={[styles.desc, { color: colors.onSurfaceVariant }]}>{achievement.description}</Text>
+          <AppText style={[styles.title, { color: colors.onSurface }]}>{achievement.title}</AppText>
+          <AppText style={[styles.rarity, { color: rarityColor }]}>{achievement.rarity}</AppText>
+          <AppText style={[styles.desc, { color: colors.onSurfaceVariant }]}>{achievement.description}</AppText>
 
           <TouchableOpacity style={[styles.shareBtn, { borderColor: colors.primaryContainer }]} onPress={handleShare}>
-            <Text style={{ color: colors.primaryContainer, fontWeight: '700' }}>{t('common.share')}</Text>
+            <AppText style={[styles.btnText, { color: colors.primaryContainer }]}>{t('common.share')}</AppText>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.continueBtn, { backgroundColor: colors.primaryContainer }]} onPress={onDismiss}>
-            <Text style={{ color: colors.onPrimaryContainer, fontWeight: '700' }}>{t('common.ok')}</Text>
+            <AppText style={[styles.btnText, { color: colors.onPrimaryContainer }]}>{t('common.ok')}</AppText>
           </TouchableOpacity>
         </View>
       </View>
@@ -62,4 +62,5 @@ const styles = StyleSheet.create({
   desc: { fontSize: 13, textAlign: 'center', marginTop: 8, lineHeight: 18 },
   shareBtn: { marginTop: 20, paddingVertical: 12, paddingHorizontal: 32, borderRadius: 10, borderWidth: 1, width: '100%', alignItems: 'center' },
   continueBtn: { marginTop: 10, paddingVertical: 12, paddingHorizontal: 32, borderRadius: 10, width: '100%', alignItems: 'center' },
+  btnText: { fontSize: 16, fontWeight: '700', lineHeight: 22 },
 });

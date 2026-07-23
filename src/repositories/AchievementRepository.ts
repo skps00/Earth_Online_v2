@@ -29,8 +29,8 @@ export class AchievementRepository {
               COALESCE(u.is_unlocked, 0) as is_unlocked,
               u.unlocked_at
        FROM achievement_definitions a
-       LEFT JOIN translations tt ON a.id = tt.entity_id AND tt.lang = ? AND tt.field = 'title'
-       LEFT JOIN translations td ON a.id = td.entity_id AND td.lang = ? AND td.field = 'description'
+       LEFT JOIN translations tt ON a.id = tt.entity_id AND tt.entity_type = 'achievement' AND tt.lang = ? AND tt.field = 'title'
+       LEFT JOIN translations td ON a.id = td.entity_id AND td.entity_type = 'achievement' AND td.lang = ? AND td.field = 'description'
        LEFT JOIN user_achievements u ON a.id = u.achievement_id AND u.user_id = 'local'
        ORDER BY a.category, a.rarity DESC`,
       [lang, lang]
@@ -45,8 +45,8 @@ export class AchievementRepository {
               COALESCE(u.is_unlocked, 0) as is_unlocked,
               u.unlocked_at
        FROM achievement_definitions a
-       LEFT JOIN translations tt ON a.id = tt.entity_id AND tt.lang = ? AND tt.field = 'title'
-       LEFT JOIN translations td ON a.id = td.entity_id AND td.lang = ? AND td.field = 'description'
+       LEFT JOIN translations tt ON a.id = tt.entity_id AND tt.entity_type = 'achievement' AND tt.lang = ? AND tt.field = 'title'
+       LEFT JOIN translations td ON a.id = td.entity_id AND td.entity_type = 'achievement' AND td.lang = ? AND td.field = 'description'
        LEFT JOIN user_achievements u ON a.id = u.achievement_id AND u.user_id = 'local'
        WHERE a.category = ?
        ORDER BY a.rarity DESC`,
@@ -145,8 +145,8 @@ export class AchievementRepository {
               COALESCE(u.is_unlocked, 0) as is_unlocked,
               u.unlocked_at
        FROM achievement_definitions a
-       LEFT JOIN translations tt ON a.id = tt.entity_id AND tt.lang = ? AND tt.field = 'title'
-       LEFT JOIN translations td ON a.id = td.entity_id AND td.lang = ? AND td.field = 'description'
+       LEFT JOIN translations tt ON a.id = tt.entity_id AND tt.entity_type = 'achievement' AND tt.lang = ? AND tt.field = 'title'
+       LEFT JOIN translations td ON a.id = td.entity_id AND td.entity_type = 'achievement' AND td.lang = ? AND td.field = 'description'
        LEFT JOIN user_achievements u ON a.id = u.achievement_id AND u.user_id = 'local'
        WHERE a.id = ?`,
       [lang, lang, id]

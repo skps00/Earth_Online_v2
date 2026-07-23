@@ -1,5 +1,6 @@
-import { View, Text, FlatList, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { useEffect } from 'react';
+import { View, FlatList, ScrollView, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+import { AppText } from '@/components/AppText';
+import { useEffect, useMemo, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '@/theme/ThemeProvider';
 import { useTranslation } from '@/i18n';
@@ -18,8 +19,10 @@ import { CATEGORIES, rarityColors } from '@/types/achievement';
 import { CategoryChip } from '@/components/CategoryChip';
 import { EmptyState } from '@/components/EmptyState';
 import { LoadingSkeleton } from '@/components/LoadingSkeleton';
+import { sortAchievements, type AchievementSortMode } from '@/utils/achievementSort';
 
 const achievementRepo = new AchievementRepository();
+const SORT_MODES: AchievementSortMode[] = ['recent', 'difficulty'];
 
 export default function TrophiesScreen() {
   const { colors } = useTheme();
@@ -35,6 +38,7 @@ export default function TrophiesScreen() {
   const setSelected = useSetAtom(selectedAchievementAtom);
   const lang = useAtomValue(langAtom);
   const achievementVersion = useAtomValue(achievementVersionAtom);
+  const [sortMode, setSortMode] = useState<AchievementSortMode>('recent');
 
   const bottomPadding = insets.bottom + 100;
 
@@ -46,21 +50,25 @@ export default function TrophiesScreen() {
       setUnlocked(ids);
       setLoading(false);
     })();
-  }, [lang, achievementVersion]);
+  }, [lang, achievementVersion, setAchievements, setUnlocked, setLoading]);
+
+  const filtered = useMemo(
+    () => (category === 'all' ? achievements : achievements.filter(a => a.category === category)),
+    [achievements, category],
+  );
+  const sorted = useMemo(() => sortAchievements(filtered, sortMode), [filtered, sortMode]);
 
   if (isLoading) return <LoadingSkeleton lines={6} />;
-
-  const filtered = category === 'all' ? achievements : achievements.filter(a => a.category === category);
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
 
       {/* Tier 1: Fixed Header */}
       <View style={styles.header}>
-        <Text style={[styles.title, { color: colors.primaryContainer }]}>{t('trophies.title')}</Text>
-        <Text style={[styles.progress, { color: colors.onSurfaceVariant }]}>
+        <AppText style={[styles.title, { color: colors.primaryContainer }]}>{t('trophies.title')}</AppText>
+        <AppText style={[styles.progress, { color: colors.onSurfaceVariant }]}>
           {t('trophies.progress', { unlocked: unlockedIds.size, total: achievements.length })}
-        </Text>
+        </AppText>
 
         <ScrollView
           horizontal
@@ -76,14 +84,45 @@ export default function TrophiesScreen() {
             />
           ))}
         </ScrollView>
+
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.sortContent}
+        >
+          {SORT_MODES.map(mode => (
+            <AppText
+              key={mode}
+              onPress={() => setSortMode(mode)}
+              textBreakStrategy="simple"
+              allowFontScaling={false}
+              style={{
+                backgroundColor: sortMode === mode ? colors.secondaryContainer : colors.surfaceHigh,
+                borderColor: sortMode === mode ? colors.secondary : colors.outlineVariant,
+                borderWidth: 1,
+                borderRadius: 8,
+                color: sortMode === mode ? colors.onSecondary : colors.onSurfaceVariant,
+                fontSize: 12,
+                lineHeight: 18,
+                fontFamily: Platform.OS === 'android' ? 'sans-serif' : undefined,
+                paddingHorizontal: 12,
+                paddingVertical: 5,
+                marginRight: 8,
+                flexShrink: 0,
+              }}
+            >
+              {t(`trophies.sort.${mode}`)}
+            </AppText>
+          ))}
+        </ScrollView>
       </View>
 
       {/* Tier 2: Scrollable List */}
-      {filtered.length === 0 ? (
+      {sorted.length === 0 ? (
         <EmptyState message={t('trophies.empty')} />
       ) : (
         <FlatList
-          data={filtered}
+          data={sorted}
           keyExtractor={a => a.id}
           style={{ flex: 1 }}
           contentContainerStyle={{ paddingBottom: bottomPadding }}
@@ -98,16 +137,16 @@ export default function TrophiesScreen() {
               >
               <View style={[styles.card, { backgroundColor: colors.surface, borderColor }]}>
                 <View style={styles.cardHeader}>
-                  {item.icon ? <Text style={styles.cardIcon}>{item.icon}</Text> : null}
+                  {item.icon ? <AppText style={styles.cardIcon}>{item.icon}</AppText> : null}
                   <View style={styles.cardInfo}>
-                    <Text style={[styles.cardTitle, { color: unlocked ? colors.onSurface : colors.onSurfaceVariant }]}>
+                    <AppText style={[styles.cardTitle, { color: unlocked ? colors.onSurface : colors.onSurfaceVariant }]}>
                       {item.title}
-                    </Text>
-                    <Text style={[styles.cardDesc, { color: colors.onSurfaceVariant }]}>{item.description}</Text>
+                    </AppText>
+                    <AppText style={[styles.cardDesc, { color: colors.onSurfaceVariant }]}>{item.description}</AppText>
                   </View>
                   {unlocked ? (
                     <View style={[styles.unlockBadge, { backgroundColor: '#50C87830' }]}>
-                      <Text style={[styles.unlockText, { color: '#50C878' }]}>✓</Text>
+                      <AppText style={[styles.unlockText, { color: '#50C878' }]}>✓</AppText>
                     </View>
                   ) : null}
                 </View>
@@ -116,7 +155,7 @@ export default function TrophiesScreen() {
                     <View style={styles.progressBar}>
                       <View style={[styles.progressFill, { width: `${Math.min((item.progress / item.trigger_goal) * 100, 100)}%`, backgroundColor: rarityColor }]} />
                     </View>
-                    <Text style={[styles.progressText, { color: colors.onSurfaceVariant }]}>{item.progress}/{item.trigger_goal}</Text>
+                    <AppText style={[styles.progressText, { color: colors.onSurfaceVariant }]}>{item.progress}/{item.trigger_goal}</AppText>
                   </View>
                 ) : null}
               </View>
@@ -135,6 +174,7 @@ const styles = StyleSheet.create({
   title: { fontSize: 24, fontWeight: '700', textAlign: 'center', marginTop: 20 },
   progress: { fontSize: 12, textAlign: 'center', marginVertical: 8 },
   chipsContent: { paddingVertical: 4 },
+  sortContent: { paddingTop: 4, paddingBottom: 2 },
   card: { padding: 16, borderRadius: 12, borderWidth: 1, marginBottom: 8 },
   cardHeader: { flexDirection: 'row', alignItems: 'center' },
   cardIcon: { fontSize: 32, marginRight: 12 },

@@ -23,6 +23,8 @@
     "achievementUnlocked": "{{count}} 項成就已解鎖！",
     "achievementsUnlocked": "{{count}} 項成就已解鎖！",
     "checkinCount": "{{count}}/10 今日打卡",
-    "checkinLimitReached": "今日打卡已達上限，明天再試"
+    "checkinLimitReached": "今日打卡已達上限，明天再試",
+    "sameLocation": "今日已在此打卡。",
+    "newLocation": "今日新地點！"
   }
 }
